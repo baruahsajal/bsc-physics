@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9 Science | S.Baruah Academy</title>
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .portal-layout { padding-top: var(--space-xl); padding-bottom: var(--space-3xl); }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md); }
+        .chapter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: var(--space-lg); }
+        .module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); margin-top: var(--space-md); }
+        .mod-btn { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); color: var(--text-primary); padding: var(--space-sm); border-radius: var(--radius-sm); font-size: 0.8rem; text-align: center; text-decoration: none; transition: var(--transition-fast); display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .mod-btn:hover { background: rgba(0, 255, 157, 0.1); border-color: var(--accent-science); color: var(--accent-science); }
+        .mod-btn i { font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar" style="border-bottom-color: var(--accent-science);">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-brand"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Academy Portal</a>
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <button onclick="AuthSystem.logout()" class="btn btn-outline" style="padding: 0.35rem 1rem;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container portal-layout">
+        <div class="toolbar animate-fade-up">
+            <div>
+                <h1 class="heading-display" style="font-size: 2.5rem; color: var(--text-primary);">Class 9 Science</h1>
+                <p style="color: var(--accent-science); font-weight: 500; font-family: var(--font-display);">Assamese Medium Curriculum</p>
+            </div>
+            <div class="glass-panel" style="padding: 0.5rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm);">
+                <i class="fas fa-search" style="color: var(--text-secondary);"></i>
+                <input type="text" placeholder="Search chapters..." style="background: transparent; border: none; color: #fff; outline: none; width: 200px;">
+            </div>
+        </div>
+
+        <div class="chapter-grid animate-fade-up" style="animation-delay: 100ms;">
+            
+            <!-- Chapter 1 -->
+            <div class="glass-panel card" style="border-top: 3px solid var(--accent-science);">
+                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-science); margin-bottom: var(--space-xs);">CHAPTER 01</div>
+                <h2 class="heading-display" style="font-size: 1.3rem; margin-bottom: var(--space-xs);">Matter in Our Surroundings</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">States of matter, physical nature, characteristics of particles, and evaporation.</p>
+                
+                <div class="module-grid">
+                    <a href="../viewer.html?file=ch1-notes.html&type=Notes&title=Chapter%201%20Notes&portal=class9" class="mod-btn"><i class="fas fa-book"></i> Full Notes</a>
+                    <a href="../viewer.html?file=ch1-map.html&type=Mind%20Map&title=Chapter%201%20Map&portal=class9" class="mod-btn"><i class="fas fa-sitemap"></i> Mind Map</a>
+                    <a href="../viewer.html?file=ch1-sim.html&type=Simulation&title=Matter%20Simulation&portal=class9" class="mod-btn" style="color: var(--accent-cyan);"><i class="fas fa-play"></i> Simulation</a>
+                    <a href="../viewer.html?file=ch1-quiz.html&type=Quiz&title=Chapter%201%20Quiz&portal=class9" class="mod-btn" style="color: var(--accent-warning);"><i class="fas fa-check-double"></i> Chapter Test</a>
+                </div>
+                <a href="#" class="btn btn-outline" style="width: 100%; margin-top: var(--space-md); padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-download"></i> Download PYQs & Important Qs</a>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="glass-panel card" style="border-top: 3px solid var(--accent-science);">
+                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-science); margin-bottom: var(--space-xs);">CHAPTER 02</div>
+                <h2 class="heading-display" style="font-size: 1.3rem; margin-bottom: var(--space-xs);">Is Matter Around Us Pure</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">Mixtures, solutions, physical and chemical changes, and separation techniques.</p>
+                
+                <div class="module-grid">
+                    <a href="#" class="mod-btn"><i class="fas fa-book"></i> Full Notes</a>
+                    <a href="#" class="mod-btn"><i class="fas fa-sitemap"></i> Mind Map</a>
+                    <a href="#" class="mod-btn" style="color: var(--accent-cyan);"><i class="fas fa-play"></i> Simulation</a>
+                    <a href="#" class="mod-btn" style="color: var(--accent-warning);"><i class="fas fa-check-double"></i> Chapter Test</a>
+                </div>
+                <a href="#" class="btn btn-outline" style="width: 100%; margin-top: var(--space-md); padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-download"></i> Download PYQs & Important Qs</a>
+            </div>
+
+            <!-- Chapter 8 (Physics portion example) -->
+            <div class="glass-panel card" style="border-top: 3px solid var(--accent-science);">
+                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-science); margin-bottom: var(--space-xs);">CHAPTER 08</div>
+                <h2 class="heading-display" style="font-size: 1.3rem; margin-bottom: var(--space-xs);">Motion</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">Distance, displacement, velocity, acceleration, and graphical representations.</p>
+                
+                <div class="module-grid">
+                    <a href="#" class="mod-btn"><i class="fas fa-book"></i> Full Notes</a>
+                    <a href="#" class="mod-btn"><i class="fas fa-sitemap"></i> Mind Map</a>
+                    <a href="#" class="mod-btn" style="color: var(--accent-cyan);"><i class="fas fa-play"></i> Simulation</a>
+                    <a href="#" class="mod-btn" style="color: var(--accent-warning);"><i class="fas fa-check-double"></i> Chapter Test</a>
+                </div>
+                <a href="#" class="btn btn-outline" style="width: 100%; margin-top: var(--space-md); padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-download"></i> Download PYQs & Important Qs</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AuthSystem.verifyAccess('class9');
+        });
+    </script>
+</body>
+</html>
