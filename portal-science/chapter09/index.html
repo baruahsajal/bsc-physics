@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chapter 9: Force and Laws of Motion (বল আৰু গতি বিষয়ক সূত্ৰসমূহ) - S.Baruah Academy</title>
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --border: rgba(255, 255, 255, 0.1);
+            --phy: #38bdf8;
+            --highlight: #facc15;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        header { text-align: center; margin-bottom: 30px; max-width: 800px; width: 100%; }
+        header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
+        header p { color: #94a3b8; font-size: 1rem; }
+
+        .module-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+
+        /* Navigation Bar inside Module */
+        .module-nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+        .nav-tab { padding: 10px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: #94a3b8; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .nav-tab.active { background: var(--accent); color: #020617; border-color: var(--accent); }
+
+        /* Content Panels */
+        .content-panel { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 25px; backdrop-filter: blur(10px); }
+        .content-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .content-panel h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .content-panel h3 { color: var(--highlight); margin: 20px 0 10px 0; font-size: 1.1rem; }
+        .content-panel p, .content-panel li { line-height: 1.6; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px; }
+        .content-panel ul { padding-left: 20px; }
+
+        /* Interactive Grid Cards */
+        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px; }
+        .sim-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: 0.2s; }
+        .sim-card:hover { border-color: var(--accent); transform: translateY(-2px); background: rgba(56, 189, 248, 0.05); }
+        .sim-card h4 { color: var(--accent); font-size: 1.05rem; }
+        .sim-card p { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+
+        .btn-back { display: inline-block; margin-bottom: 20px; padding: 8px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none; font-size: 0.85rem; }
+        .btn-back:hover { background: rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="module-container">
+        <a href="../index.html" class="btn-back">← Back to Portal Dashboard</a>
+
+        <header>
+            <h1>Chapter 9: Force & Laws of Motion (বল আৰু গতি বিষয়ক সূত্ৰসমূহ)</h1>
+            <p>Class 9 Science • SEBA / ASSEB Curriculum & Interactive Simulations</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="module-nav">
+            <div class="nav-tab active" onclick="switchTab('notes')">Full Notes (টোকা)</div>
+            <div class="nav-tab" onclick="switchTab('simulations')">Simulations (পৰীক্ষণ)</div>
+            <div class="nav-tab" onclick="switchTab('formulas')">Formulas (সূত্ৰসমূহ)</div>
+            <div class="nav-tab" onclick="switchTab('numericals')">Numericals (গণিত)</div>
+            <div class="nav-tab" onclick="switchTab('downloads')">Downloads (ডাউনলোড)</div>
+        </div>
+
+        <!-- 1. Notes Panel -->
+        <div id="notes" class="content-panel active">
+            <h2>Comprehensive Chapter Notes (সম্পূৰ্ণ পাঠটোকা)</h2>
+
+            <h3>1. Force and its Effects (বল আৰু ইয়াৰ প্ৰভাৱ)</h3>
+            <p><strong>বল (Force):</strong> বল হৈছে এনে এটা কাৰক যি বস্তুৰ স্থিৰ বা গতিশীল অৱস্থা সলনি কৰে বা সলনি কৰিবলৈ চেষ্টা কৰে। বল প্ৰয়োগ কৰি বস্তুৰ আকাৰ আৰু আকৃতিও সলনি কৰিব পাৰি।</p>
+            <ul>
+                <li><strong>সন্তুলিত বল (Balanced Forces):</strong> যেতিয়া এটা বস্তুৰ ওপৰত ক্ৰিয়া কৰা মুঠ বলৰ পৰিমাণ শূন্য হয়। ই বস্তুৰ অৱস্থাৰ পৰিৱৰ্তন নকৰে।</li>
+                <li><strong>অসন্তুলিত বল (Unbalanced Forces):</strong> যেতিয়া মুঠ বলৰ পৰিমাণ শূন্য নহয়। ই বস্তুৰ গতি বা দিশ সলনি কৰে।</li>
+            </ul>
+
+            <h3>2. Newton's Laws of Motion (নিউটনেৰ গতি বিষয়ক সূত্ৰসমূহ)</h3>
+            <p><strong>প্ৰথম সূত্ৰ (First Law / Law of Inertia):</strong> কোনো বাহ্যিক অসন্তুলিত বলে ক্ৰিয়া নকৰালৈকে স্থিৰ বস্তু এটা স্থিৰ অৱস্থাতে থাকিব আৰু গতিশীল বস্তু এটা একে বেগেৰে সৰলৰেখাত গতি কৰি থাকিব। বস্তুত নিহিত থকা এই ধৰ্মটোক <strong>জড়তা (Inertia)</strong> বোলে।</p>
+            <p><strong>দ্বিতীয় সূত্ৰ (Second Law):</strong> বস্তুৰ ভৰবেগ পৰিৱৰ্তনৰ হাৰ বস্তুটোৰ ওপৰত প্ৰয়োগ কৰা অসন্তুলিত বলৰ সমানুপাতিক আৰু বল যি দিশত প্ৰয়োগ কৰা হয়, ভৰবেগৰ পৰিৱৰ্তনো সেই দিশতে হয়।</p>
+            <p><strong>তৃতীয় সূত্ৰ (Third Law):</strong> প্ৰতিটো ক্ৰিয়াৰে সমান আৰু বিপৰীতমুখী প্ৰতিক্ৰিয়া আছে। ক্ৰিয়া আৰু প্ৰতিক্ৰিয়া সদায় দুটা বেলেগ বেলেগ বস্তুৰ ওপৰত ক্ৰিয়া কৰে।</p>
+
+            <h3>3. Momentum (ভৰবেগ)</h3>
+            <p>বস্তুৰ ভৰ আৰু বেগৰ পূৰণফলকে ভৰবেগ বোলে। ই এটা ভেক্টৰ ৰাশি।</p>
+        </div>
+
+        <!-- 2. Simulations Panel -->
+        <div id="simulations" class="content-panel">
+            <h2>Interactive Physics Simulations (পৰীক্ষণসমূহ)</h2>
+            <p>Explore concept-based interactive visual simulations built for the Force chapter:</p>
+
+            <div class="sim-grid">
+                <a href="../../simulations/tug-of-war.html" class="sim-card" target="_blank">
+                    <h4>1. Balanced vs Unbalanced</h4>
+                    <p>Tug of war animation demonstrating net force.</p>
+                </a>
+                <a href="../../simulations/inertia-coin.html" class="sim-card" target="_blank">
+                    <h4>2. Inertia of Rest</h4>
+                    <p>Classic coin and glass tumbler experiment.</p>
+                </a>
+                <a href="../../simulations/newtons-second-law.html" class="sim-card" target="_blank">
+                    <h4>3. Newton's 2nd Law ($F=ma$)</h4>
+                    <p>Change mass and force to see acceleration changes.</p>
+                </a>
+                <a href="../../simulations/action-reaction.html" class="sim-card" target="_blank">
+                    <h4>4. 3rd Law: Action & Reaction</h4>
+                    <p>Recoil of a gun and rocket propulsion simulator.</p>
+                </a>
+                <a href="../../simulations/momentum-conservation.html" class="sim-card" target="_blank">
+                    <h4>5. Conservation of Momentum</h4>
+                    <p>Collision of two spheres and momentum tracking.</p>
+                </a>
+                <a href="../../simulations/friction-blocks.html" class="sim-card" target="_blank">
+                    <h4>6. Understanding Friction</h4>
+                    <p>Push a block on rough vs smooth surfaces.</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 3. Formulas Panel -->
+        <div id="formulas" class="content-panel">
+            <h2>Formula Sheet (প্ৰয়োজনীয় সূত্ৰাৱলী)</h2>
+            <p>Quick reference formula cards for exams and numerical problem solving:</p>
+            <ul>
+                <li><strong>ভৰবেগ (Momentum, $p$):</strong> $p = mv$ (Unit: kg m/s)</li>
+                <li><strong>নিউটনেৰ দ্বিতীয় সূত্ৰ (Force, $F$):</strong> $F = m \times a$ (Unit: Newton or N)</li>
+                <li><strong>বলৰ আন এটি সমীকৰণ:</strong> $F = m \frac{v - u}{t}$</li>
+                <li><strong>ভৰবেগৰ সংৰক্ষণ সূত্ৰ (Conservation of Momentum):</strong><br> $m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2$</li>
+            </ul>
+        </div>
+
+        <!-- 4. Numericals Panel -->
+        <div id="numericals" class="content-panel">
+            <h2>Numerical Practice (সংখ্যাত্মক প্ৰশ্নোত্তৰ)</h2>
+            <p><strong>Example Problem:</strong> 5 kg ভৰৰ বস্তু এটাৰ ওপৰত 2 চেকেণ্ড সময়ৰ বাবে এটা নিৰ্দিষ্ট বল প্ৰয়োগ কৰা হ'ল। ই বস্তুটোৰ বেগ 3 m/s ৰ পৰা 7 m/s লৈ বৃদ্ধি কৰিলে। প্ৰয়োগ কৰা বলৰ পৰিমাণ নিৰ্ণয় কৰা।</p>
+            <p><strong>Solution:</strong><br>
+            Mass ($m$) = 5 kg<br>
+            Initial velocity ($u$) = 3 m/s<br>
+            Final velocity ($v$) = 7 m/s<br>
+            Time ($t$) = 2 s<br><br>
+            $F = m \times \frac{v - u}{t}$<br>
+            $F = 5 \times \frac{7 - 3}{2}$<br>
+            $F = 5 \times \frac{4}{2}$<br>
+            $F = 5 \times 2 = 10$ N<br><br>
+            <strong>প্ৰয়োগ কৰা বলৰ পৰিমাণ = 10 N</strong></p>
+        </div>
+
+        <!-- 5. Downloads Panel -->
+        <div id="downloads" class="content-panel">
+            <h2>Download Study Materials (ডাউনলোড শাখা)</h2>
+            <p>Access offline PDF notes and important resources directly via Google Drive links:</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                <li><a href="YOUR_DRIVE_LINK_NOTES_CH9" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Chapter 9 Full Notes (PDF)</a></li>
+                <li><a href="YOUR_DRIVE_LINK_PYQ_CH9" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Previous Years Questions & Solutions (PDF)</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
