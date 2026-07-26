@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chapter 3: Atoms and Molecules (পৰমাণু আৰু অণু) - S.Baruah Academy</title>
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --accent: #a855f7; /* Chemistry Purple */
+            --border: rgba(255, 255, 255, 0.1);
+            --chem: #a855f7;
+            --highlight: #facc15;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        header { text-align: center; margin-bottom: 30px; max-width: 800px; width: 100%; }
+        header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
+        header p { color: #94a3b8; font-size: 1rem; }
+
+        .module-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+
+        /* Navigation Bar inside Module */
+        .module-nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+        .nav-tab { padding: 10px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: #94a3b8; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .nav-tab.active { background: var(--accent); color: #020617; border-color: var(--accent); }
+
+        /* Content Panels */
+        .content-panel { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 25px; backdrop-filter: blur(10px); }
+        .content-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .content-panel h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .content-panel h3 { color: var(--highlight); margin: 20px 0 10px 0; font-size: 1.1rem; }
+        .content-panel p, .content-panel li { line-height: 1.6; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px; }
+        .content-panel ul { padding-left: 20px; }
+
+        /* Interactive Grid Cards */
+        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px; }
+        .sim-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: 0.2s; }
+        .sim-card:hover { border-color: var(--accent); transform: translateY(-2px); background: rgba(168, 85, 247, 0.05); }
+        .sim-card h4 { color: var(--accent); font-size: 1.05rem; }
+        .sim-card p { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+
+        .btn-back { display: inline-block; margin-bottom: 20px; padding: 8px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none; font-size: 0.85rem; }
+        .btn-back:hover { background: rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="module-container">
+        <a href="../index.html" class="btn-back">← Back to Portal Dashboard</a>
+
+        <header>
+            <h1>Chapter 3: Atoms and Molecules (পৰমাণু আৰু অণু)</h1>
+            <p>Class 9 Science • SEBA / ASSEB Curriculum & Interactive Simulations</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="module-nav">
+            <div class="nav-tab active" onclick="switchTab('notes')">Full Notes (টোকা)</div>
+            <div class="nav-tab" onclick="switchTab('simulations')">Simulations (পৰীক্ষণ)</div>
+            <div class="nav-tab" onclick="switchTab('formulas')">Key Concepts (মূল ধাৰণা)</div>
+            <div class="nav-tab" onclick="switchTab('numericals')">Numericals (গণিত)</div>
+            <div class="nav-tab" onclick="switchTab('downloads')">Downloads (ডাউনলোড)</div>
+        </div>
+
+        <!-- 1. Notes Panel -->
+        <div id="notes" class="content-panel active">
+            <h2>Comprehensive Chapter Notes (সম্পূৰ্ণ পাঠটোকা)</h2>
+
+            <h3>1. Laws of Chemical Combination (ৰাসায়নিক সংযোগৰ সূত্ৰসমূহ)</h3>
+            <ul>
+                <li><strong>ভৰৰ সংৰক্ষণ সূত্ৰ (Law of Conservation of Mass):</strong> কোনো এটা ৰাসায়নিক বিক্ৰিয়াত ভৰৰ সৃষ্টি বা বিনাশ নহয়। বিক্ৰিয়ক পদাৰ্থৰ মুঠ ভৰ, উৎপন্ন হোৱা পদাৰ্থৰ মুঠ ভৰৰ সমান।</li>
+                <li><strong>স্থিৰানুপাত সূত্ৰ (Law of Constant Proportions):</strong> কোনো এটা ৰাসায়নিক যৌগত মৌলবোৰৰ ভৰৰ অনুপাত সদায় নিৰ্দিষ্ট থাকে (যেনে: পানীত হাইড্ৰ'জেন আৰু অক্সিজেনৰ ভৰৰ অনুপাত সদায় 1:8)।</li>
+            </ul>
+
+            <h3>2. Dalton's Atomic Theory (ডাল্টনৰ পৰমাণুবাদ)</h3>
+            <p>জন ডাল্টনে পদাৰ্থৰ গঠনৰ বিষয়ে এক সূত্ৰ আগবঢ়াইছিল। ইয়াৰ মূল ধাৰণাসমূহ হ'ল:</p>
+            <ul>
+                <li>সকলো পদাৰ্থ পৰমাণু নামৰ ক্ষুদ্ৰ কণাৰে গঠিত।</li>
+                <li>পৰমাণু অবিভাজ্য। ৰাসায়নিক বিক্ৰিয়াত ইয়াক সৃষ্টি বা ধ্বংস কৰিব নোৱাৰি।</li>
+                <li>একেটা মৌলৰ পৰমাণুসমূহৰ ভৰ আৰু ৰাসায়নিক ধৰ্ম একে।</li>
+                <li>ভিন্ন মৌলৰ পৰমাণুসমূহৰ ভৰ আৰু ৰাসায়নিক ধৰ্ম বেলেগ বেলেগ।</li>
+            </ul>
+
+            <h3>3. Atoms, Molecules, and Ions (পৰমাণু, অণু আৰু আয়ন)</h3>
+            <p><strong>পৰমাণু (Atom):</strong> পদাৰ্থৰ আটাইতকৈ ক্ষুদ্ৰতম কণা। ই সাধাৰণতে স্বাধীনভাৱে থাকিব নোৱাৰে।<br>
+            <strong>অণু (Molecule):</strong> দুটা বা ততোধিক পৰমাণু লগ হৈ গঠন কৰা স্বাধীনভাৱে থাকিব পৰা আটাইতকৈ ক্ষুদ্ৰ কণা।<br>
+            <strong>আয়ন (Ion):</strong> আধানযুক্ত (positive বা negative) পৰমাণু বা পৰমাণুৰ পুঞ্জক আয়ন বোলে (যেনে: $Na^+$, $Cl^-$)।</p>
+
+            <h3>4. Mole Concept (ম'ল ধাৰণা)</h3>
+            <p>কোনো পদাৰ্থৰ 1 ম'ল হ'ল সেই পদাৰ্থবিধৰ এটা নিৰ্দিষ্ট পৰিমাণ, য'ত $6.022 \times 10^{23}$ টা কণা (পৰমাণু, অণু বা আয়ন) থাকে। ইয়াক <strong>এভ'গেড্ৰ' ধ্ৰুৱক (Avogadro Constant)</strong> বুলি কোৱা হয়।</p>
+        </div>
+
+        <!-- 2. Simulations Panel -->
+        <div id="simulations" class="content-panel">
+            <h2>Interactive Chemistry Simulations (পৰীক্ষণসমূহ)</h2>
+            <p>Explore concept-based interactive visual simulations built for the Atoms and Molecules chapter:</p>
+
+            <div class="sim-grid">
+                <a href="../../simulations/law-of-conservation.html" class="sim-card" target="_blank">
+                    <h4>1. Conservation of Mass Lab</h4>
+                    <p>Mix chemicals in a closed flask and track the total mass.</p>
+                </a>
+                <a href="../../simulations/build-a-molecule.html" class="sim-card" target="_blank">
+                    <h4>2. Build a Molecule</h4>
+                    <p>Connect atoms to form water, carbon dioxide, and oxygen.</p>
+                </a>
+                <a href="../../simulations/ions-and-formula.html" class="sim-card" target="_blank">
+                    <h4>3. Chemical Formula Builder</h4>
+                    <p>Combine cations and anions to generate proper chemical formulas.</p>
+                </a>
+                <a href="../../simulations/mole-calculator.html" class="sim-card" target="_blank">
+                    <h4>4. The Mole Concept</h4>
+                    <p>Visualize Avogadro's number and convert grams to moles.</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 3. Formulas Panel -->
+        <div id="formulas" class="content-panel">
+            <h2>Key Concepts & Formulas (মূল ধাৰণা আৰু সূত্ৰ)</h2>
+            <p>Quick reference formula cards for exams and numerical problem solving:</p>
+            <ul>
+                <li><strong>পাৰমাণৱিক ভৰ (Atomic Mass):</strong> কাৰ্বন-12 ($^{12}\text{C}$) সমস্থানিকৰ এটা পৰমাণুৰ ভৰৰ ঠিক $\frac{1}{12}$ অংশৰ সৈতে তুলনা কৰি পোৱা ভৰ। একক: 'u' (unified mass).</li>
+                <li><strong>আণৱিক ভৰ (Molecular Mass):</strong> এটা অণুত থকা সকলোবোৰ পৰমাণুৰ পাৰমাণৱিক ভৰৰ যোগফল।</li>
+                <li><strong>ম'ল সংখ্যা (Number of Moles, $n$):</strong><br>
+                ভৰৰ পৰা: $n = \frac{m}{M}$ (য'ত $m$ = প্ৰদত্ত ভৰ, $M$ = ম'লাৰ ভৰ)<br>
+                কণাৰ সংখ্যাৰ পৰা: $n = \frac{N}{N_0}$ (য'ত $N$ = কণাৰ সংখ্যা, $N_0 = 6.022 \times 10^{23}$)</li>
+            </ul>
+        </div>
+
+        <!-- 4. Numericals Panel -->
+        <div id="numericals" class="content-panel">
+            <h2>Numerical Practice (সংখ্যাত্মক প্ৰশ্নোত্তৰ)</h2>
+            <p><strong>Example Problem 1:</strong> পানীৰ ($H_2O$) আণৱিক ভৰ নিৰ্ণয় কৰা।</p>
+            <p><strong>Solution:</strong><br>
+            হাইড্ৰ'জেনৰ পাৰমাণৱিক ভৰ = 1 u<br>
+            অক্সিজেনৰ পাৰমাণৱিক ভৰ = 16 u<br><br>
+            $H_2O$ ৰ আণৱিক ভৰ = $2 \times (\text{H ৰ ভৰ}) + 1 \times (\text{O ৰ ভৰ})$<br>
+            $= 2 \times 1 + 1 \times 16$<br>
+            $= 2 + 16$<br>
+            $= 18 \, \text{u}$<br><br></p>
+
+            <hr style="border: 1px solid var(--border); margin: 20px 0;">
+
+            <p><strong>Example Problem 2:</strong> 52 g হিলিয়ামত (He) কিমান ম'ল আছে নিৰ্ণয় কৰা।</p>
+            <p><strong>Solution:</strong><br>
+            হিলিয়ামৰ ম'লাৰ ভৰ ($M$) = 4 g/mol<br>
+            প্ৰদত্ত ভৰ ($m$) = 52 g<br><br>
+            আমি জানো যে, ম'ল সংখ্যা ($n$) = $\frac{m}{M}$<br>
+            $n = \frac{52}{4}$<br>
+            $n = 13 \, \text{moles}$<br><br>
+            <strong>উত্তৰ:</strong> 52 g হিলিয়ামত 13 ম'ল আছে।</p>
+        </div>
+
+        <!-- 5. Downloads Panel -->
+        <div id="downloads" class="content-panel">
+            <h2>Download Study Materials (ডাউনলোড শাখা)</h2>
+            <p>Access offline PDF notes and important resources directly via Google Drive links:</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                <li><a href="YOUR_DRIVE_LINK_NOTES_CH3" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Chapter 3 Full Notes (PDF)</a></li>
+                <li><a href="YOUR_DRIVE_LINK_PYQ_CH3" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Previous Years Questions & Solutions (PDF)</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
