@@ -3,837 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDC-3 Complete Course | Notes & Solutions</title>
-    <!-- Futuristic Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* --- FUTURISTIC DARK THEME CSS --- */
-        :root {
-            --bg-color: #0a0a0f;
-            --card-bg: #13131f;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0b0;
-            --accent-cyan: #00f3ff;
-            --accent-green: #00ff9d;
-            --accent-purple: #bd00ff;
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Background Grid Effect */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* --- HEADER --- */
-        header {
-            background: rgba(10, 10, 15, 0.95);
-            padding: 1rem 5%;
-            border-bottom: 2px solid var(--accent-cyan);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--accent-cyan);
-            text-shadow: 0 0 10px var(--accent-cyan);
-            text-decoration: none;
-        }
-
-        /* --- NAVIGATION --- */
-        .nav-scroller {
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 10px 0;
-            background: var(--card-bg);
-            border-bottom: var(--glass-border);
-        }
-
-        .nav-tabs {
-            display: flex;
-            gap: 10px;
-            padding: 0 5%;
-            list-style: none;
-        }
-
-        .nav-btn {
-            background: transparent;
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-family: 'Orbitron', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent-cyan);
-            color: #000;
-            box-shadow: 0 0 15px var(--accent-cyan);
-        }
-
-        /* --- MAIN CONTAINER --- */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent-green);
-            margin-bottom: 1.5rem;
-            border-left: 5px solid var(--accent-green);
-            padding-left: 15px;
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
-        }
-
-        /* --- CONTENT CARDS --- */
-        .content-card {
-            background: var(--card-bg);
-            border: var(--glass-border);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 2px; height: 100%;
-            background: var(--accent-purple);
-            box-shadow: 0 0 10px var(--accent-purple);
-        }
-
-        h3 { color: var(--text-primary); margin-bottom: 10px; }
-        p, li { color: var(--text-secondary); margin-bottom: 10px; font-size: 1.1rem; }
-        
-        /* Lists */
-        ul { margin-left: 20px; margin-bottom: 15px; }
-        li::marker { color: var(--accent-cyan); }
-
-        /* --- ACCORDION FOR NOTES --- */
-        .accordion {
-            background: rgba(255,255,255,0.05);
-            color: var(--text-primary);
-            cursor: pointer;
-            padding: 15px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 1.1rem;
-            transition: 0.4s;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .accordion:hover, .accordion.active-acc {
-            background: rgba(0, 243, 255, 0.1);
-            color: var(--accent-cyan);
-        }
-
-        .panel {
-            padding: 0 18px;
-            background-color: rgba(0,0,0,0.2);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-        }
-
-        .panel-content { padding: 15px 0; }
-
-        /* --- ANSWER BUTTONS --- */
-        .show-ans-btn {
-            background: linear-gradient(45deg, var(--accent-purple), #ff0055);
-            border: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: bold;
-            margin-top: 10px;
-            box-shadow: 0 0 10px rgba(189, 0, 255, 0.4);
-        }
-        
-        .answer-box {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            border-left: 3px solid var(--accent-green);
-            background: rgba(0, 255, 157, 0.05);
-            color: #d0ffd0;
-        }
-
-        /* --- TAB CONTENT LOGIC --- */
-        .tab-content { display: none; animation: fadeIn 0.5s; }
-        .tab-content.active-tab { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid var(--accent-cyan);
-            color: var(--text-secondary);
-        }
-        
-        /* Code Box for Physics/Math formulas */
-        .formula-box {
-            background: #000;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            color: var(--accent-green);
-            border: 1px solid var(--accent-green);
-            margin: 10px 0;
-        }
-    </style>
+    <title>MDC-3 Complete Course | Common Courses</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <!-- Header -->
-    <header>
-        <a href="#" class="logo"><i class="fas fa-atom"></i> MDC-3 HUB</a>
-        <div style="font-size: 0.9rem; color: var(--accent-green);">EXAM READY 2025</div>
-    </header>
-
-    <!-- Navigation Tabs -->
-    <div class="nav-scroller">
-        <ul class="nav-tabs">
-            <li class="nav-btn active" onclick="openTab('syllabus')">Syllabus</li>
-            <li class="nav-btn" onclick="openTab('unit1')">Unit 1</li>
-            <li class="nav-btn" onclick="openTab('unit2')">Unit 2</li>
-            <li class="nav-btn" onclick="openTab('unit3')">Unit 3</li>
-            <li class="nav-btn" onclick="openTab('pyq')">PYQ & Sol.</li>
-            <li class="nav-btn" onclick="openTab('sample')">Sample Papers</li>
-        </ul>
-    </div>
-
-    <div class="container">
-
-    <!-- ================= SYLLABUS SECTION ================= -->
-<div id="syllabus" class="tab-content active-tab">
-    <h2 class="section-title"><i class="fas fa-book-open"></i> Course Overview: MDC-3</h2>
-    
-    <div class="content-card">
-        <h3><i class="fas fa-graduation-cap"></i> Land and People of Assam</h3>
-        <p><strong>Course Code:</strong> MDC-3 | <strong>Total Lectures:</strong> 34</p>
-        <p style="color: var(--accent-green); margin-top: 15px;">
-            <i class="fas fa-check-circle"></i> Complete notes, previous year solutions, and sample papers available for all units below.
-        </p>
-    </div>
-
-    <!-- Unit Breakdown Table -->
-    <div class="content-card" style="margin-top: 30px;">
-        <h3><i class="fas fa-list-ol"></i> Syllabus Breakdown by Units</h3>
-        
-        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <thead style="background: rgba(0, 243, 255, 0.1); border-bottom: 2px solid var(--accent-cyan);">
-                <tr>
-                    <th style="padding: 15px; text-align: left; color: var(--accent-cyan); border-bottom: 1px solid rgba(255,255,255,0.1);">Unit</th>
-                    <th style="padding: 15px; text-align: left; color: var(--accent-cyan); border-bottom: 1px solid rgba(255,255,255,0.1);">Topics Covered</th>
-                    <th style="padding: 15px; text-align: center; color: var(--accent-cyan); border-bottom: 1px solid rgba(255,255,255,0.1);">Lectures</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="background: rgba(0, 243, 255, 0.03);">
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-green); font-weight: bold;">Unit I</td>
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <strong style="color: var(--text-primary);">Administrative Geography</strong><br>
-                        • Locational significance of Assam<br>
-                        • Assam as an administrative division (Pre and Post-Independence)<br>
-                        • Changes and Present administrative divisions
-                    </td>
-                    <td style="padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-cyan); font-weight: bold;">8</td>
-                </tr>
-                <tr>
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-green); font-weight: bold;">Unit II</td>
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <strong style="color: var(--text-primary);">Physical Characteristics & Problems</strong><br>
-                        • Relief, drainage, climate and vegetation<br>
-                        • Associated problems: River-bank erosion, landslides and floods
-                    </td>
-                    <td style="padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-cyan); font-weight: bold;">10</td>
-                </tr>
-                <tr style="background: rgba(0, 243, 255, 0.03);">
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-green); font-weight: bold;">Unit III</td>
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <strong style="color: var(--text-primary);">Natural Resources</strong><br>
-                        • Forests, wildlife and biodiversity<br>
-                        • Mineral resources
-                    </td>
-                    <td style="padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-cyan); font-weight: bold;">8</td>
-                </tr>
-                <tr>
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-green); font-weight: bold;">Unit IV</td>
-                    <td style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <strong style="color: var(--text-primary);">Population Studies</strong><br>
-                        • Trend of growth, spatial variation in growth, density<br>
-                        • Ethno-religious and linguistic composition<br>
-                        • Age composition, urbanization, literacy
-                    </td>
-                    <td style="padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--accent-cyan); font-weight: bold;">8</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Quick Navigation -->
-    <div class="content-card" style="margin-top: 30px; background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(189, 0, 255, 0.1));">
-        <h3><i class="fas fa-compass"></i> Quick Access to Study Materials</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-            <a href="#unit1" onclick="openTab('unit1')" style="display: block; padding: 15px; background: rgba(0, 243, 255, 0.1); border: 1px solid var(--accent-cyan); border-radius: 8px; text-decoration: none; color: var(--accent-cyan); text-align: center; transition: all 0.3s ease;">
-                <i class="fas fa-book"></i> Unit 1 Notes
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-atom" style="color: var(--accent-cyan);"></i>
+                MDC-3 HUB
             </a>
-            <a href="#unit2" onclick="openTab('unit2')" style="display: block; padding: 15px; background: rgba(0, 243, 255, 0.1); border: 1px solid var(--accent-cyan); border-radius: 8px; text-decoration: none; color: var(--accent-cyan); text-align: center; transition: all 0.3s ease;">
-                <i class="fas fa-book"></i> Unit 2 Notes
-            </a>
-            <a href="#unit3" onclick="openTab('unit3')" style="display: block; padding: 15px; background: rgba(0, 243, 255, 0.1); border: 1px solid var(--accent-cyan); border-radius: 8px; text-decoration: none; color: var(--accent-cyan); text-align: center; transition: all 0.3s ease;">
-                <i class="fas fa-book"></i> Unit 3 Notes
-            </a>
-            <a href="#pyq" onclick="openTab('pyq')" style="display: block; padding: 15px; background: rgba(0, 255, 157, 0.1); border: 1px solid var(--accent-green); border-radius: 8px; text-decoration: none; color: var(--accent-green); text-align: center; transition: all 0.3s ease;">
-                <i class="fas fa-history"></i> Previous Year Q&A
-            </a>
-            <a href="#sample" onclick="openTab('sample')" style="display: block; padding: 15px; background: rgba(189, 0, 255, 0.1); border: 1px solid var(--accent-purple); border-radius: 8px; text-decoration: none; color: var(--accent-purple); text-align: center; transition: all 0.3s ease;">
-                <i class="fas fa-file-alt"></i> Sample Papers
-            </a>
-        </div>
-    </div>
-
-    <!-- Recommended Books -->
-    <div class="content-card" style="margin-top: 30px;">
-        <h3><i class="fas fa-books"></i> Recommended Reference Books</h3>
-        <ol style="margin-left: 20px; line-height: 2;">
-            <li style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-cyan);">Bhagabati, A.K., Bora, A.K. and Kar, B.K.</strong> (editsl), 2022: 
-                <em style="color: var(--accent-green);">Geography of Assam</em>, 
-                Rajesh Publications, New Delhi (Revised & Enlarged Edition).
-            </li>
-            <li style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-cyan);">Bora, A.K. and Nath, M.</strong> (editsl), 2022: 
-                <em style="color: var(--accent-green);">An Illustrated Geography of Assam</em>, 
-                EBH Publications (India), Guwahati.
-            </li>
-            <li style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-cyan);">Dikshit, K.R. and Dikshit, J.K.</strong>, 2015: 
-                <em style="color: var(--accent-green);">North-East India: Land, People and Economy</em>, 
-                Springer Science.
-            </li>
-            <li style="margin-bottom: 15px;">
-                <strong style="color: var(--accent-cyan);">Taher, M. and Ahmedi, P.</strong>, 2007: 
-                <em style="color: var(--accent-green);">Geography of North-East India</em>, 
-                Mani ManiPrakash, Guwahati.
-            </li>
-        </ol>
-    </div>
-
-    <!-- Download Syllabus -->
-<div class="content-card" style="margin-top: 30px; text-align: center; background: linear-gradient(135deg, rgba(0, 255, 157, 0.1), rgba(0, 243, 255, 0.1)); border: 2px solid var(--accent-green);">
-    <h3><i class="fas fa-download"></i> Download Official Syllabus</h3>
-    <p style="margin: 20px 0;">Get the complete official syllabus PDF for offline reference</p>
-    <a href="https://drive.google.com/uc?id=1z1Pskyb0yWdH5rmgO0e-eSm3F8INgiK_&export=download" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green)); color: #000; text-decoration: none; border-radius: 30px; font-weight: bold; font-family: 'Orbitron', sans-serif; box-shadow: 0 5px 20px rgba(0, 243, 255, 0.4); transition: all 0.3s ease;">
-        <i class="fas fa-file-pdf"></i> Download Syllabus PDF
-    </a>
-    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);">
-        <i class="fas fa-info-circle"></i> Last Updated: December 2025 | Format: PDF | Size: ~500 KB
-    </p>
-</div>
-     
-<!-- ================= UNIT 1 SECTION ================= -->
-<div id="unit1" class="tab-content">
-    <h2 class="section-title">Unit 1: Locational Significance & Administrative Divisions</h2>
-    
-    <!-- Topic 1.1 -->
-    <button class="accordion">1.1: Locational Significance of Assam <i class="fas fa-chevron-down" style="float:right"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <h4>Geographical Location</h4>
-            <p>Assam is strategically located in the northeastern region of India, serving as the gateway to the Seven Sister States.</p>
-            
-            <div class="formula-box">
-                Location: 24°8'N to 28°2'N latitude and 89°42'E to 96°E longitude
-            </div>
-            
-            <ul>
-                <li><strong>Total Area:</strong> 78,438 sq km (approximately)</li>
-                <li><strong>Position:</strong> Bordered by Bhutan and Arunachal Pradesh (North), Nagaland and Manipur (East), Meghalaya, Tripura, Mizoram and Bangladesh (South), West Bengal (West)</li>
-                <li><strong>Rank:</strong> Largest state among North-Eastern states in terms of area</li>
-            </ul>
-
-            <h4>Strategic Importance</h4>
-            <ul>
-                <li><strong>Gateway to Northeast:</strong> Acts as the corridor connecting the northeastern states with the rest of India</li>
-                <li><strong>International Borders:</strong> Shares borders with Bhutan (international) and Bangladesh, making it geopolitically significant</li>
-                <li><strong>Trade Route:</strong> Historical trade routes connecting India with Southeast Asia passed through Assam</li>
-                <li><strong>Defense Strategy:</strong> Located in a sensitive border area, crucial for national security</li>
-                <li><strong>Cultural Bridge:</strong> Connects Indian mainland culture with Southeast Asian influences</li>
-            </ul>
-
-            <h4>Physiographic Significance</h4>
-            <ul>
-                <li><strong>Brahmaputra Valley:</strong> One of the most fertile river valleys in the world</li>
-                <li><strong>Rich Biodiversity:</strong> Located in the Indo-Burma biodiversity hotspot</li>
-                <li><strong>Natural Resources:</strong> Abundant forest cover, wildlife, mineral resources (oil, natural gas, coal)</li>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="notes.html" class="nav-link">Notes</a></li>
+                <li><a href="common-courses.html" class="nav-link active">Common Courses</a></li>
             </ul>
         </div>
-    </div>
+    </nav>
 
-    <!-- Topic 1.2 -->
-    <button class="accordion">1.2: Assam - Pre-Independence Administrative Divisions <i class="fas fa-chevron-down" style="float:right"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <h4>Ancient Period (Pragjyotishpur & Kamarupa Kingdom)</h4>
-            <ul>
-                <li>Assam was known as <strong>Pragjyotishpura</strong> in ancient texts</li>
-                <li>The powerful <strong>Kamarupa Kingdom</strong> (4th-12th century) covered present-day Assam and parts of neighboring states</li>
-                <li>Kingdom was divided into administrative units called <strong>Vishayas</strong></li>
-            </ul>
+    <main class="container" style="padding-top: 8rem; padding-bottom: var(--space-3xl);">
+        <header style="margin-bottom: var(--space-xl);">
+            <h1 class="heading-display text-gradient" style="font-size: 2.5rem;">Land and People of Assam</h1>
+            <p style="color: var(--accent-success); font-weight: 600;">EXAM READY 2026 | Course Code: MDC-3</p>
+        </header>
 
-            <h4>Ahom Period (1228-1826)</h4>
-            <ul>
-                <li>Ahom kings ruled Assam for nearly 600 years</li>
-                <li>Administrative system based on <strong>Paik system</strong> (organized labor force)</li>
-                <li>Territory divided into <strong>Bars</strong> (provinces) and <strong>Mels</strong> (subdivisions)</li>
-                <li>Main divisions: Upper Assam, Central Assam, and Lower Assam</li>
-            </ul>
-
-            <h4>British Colonial Period (1826-1947)</h4>
-            <div class="formula-box">
-                Treaty of Yandabo - 1826 (Assam came under British control)
-            </div>
-            
-            <ul>
-                <li><strong>1826:</strong> Assam annexed by British after Treaty of Yandabo (First Anglo-Burmese War)</li>
-                <li><strong>1874:</strong> Assam became a separate Chief Commissioner's Province</li>
-                <li><strong>Initial Division:</strong> Divided into Upper Assam and Lower Assam divisions</li>
-                <li><strong>Districts Created:</strong> Kamrup, Darrang, Nowgong, Sibsagar, Lakhimpur, Cachar, Goalpara</li>
-                <li><strong>1905-1911:</strong> Temporary partition - Assam merged with East Bengal (reversed in 1911)</li>
-                <li><strong>1912:</strong> Assam again became a separate province with Shillong as capital</li>
-            </ul>
-
-            <h4>Administrative Changes Under British</h4>
-            <ul>
-                <li>Introduction of Revenue Districts and Sub-divisions</li>
-                <li>Creation of Deputy Commissioner posts for district administration</li>
-                <li>Establishment of Municipal Boards in urban areas</li>
-                <li>Development of tea estates led to special administrative arrangements</li>
-            </ul>
+        <div class="tab-nav animate-fade-up">
+            <button class="tab-btn active" data-tab="syllabus">Syllabus</button>
+            <button class="tab-btn" data-tab="unit1">Unit 1</button>
+            <button class="tab-btn" data-tab="unit2">Unit 2</button>
+            <button class="tab-btn" data-tab="unit3">Unit 3</button>
+            <button class="tab-btn" data-tab="pyq">PYQ & Sol.</button>
         </div>
-    </div>
 
-    <!-- Topic 1.3 -->
-    <button class="accordion">1.3: Post-Independence Changes (1947-Present) <i class="fas fa-chevron-down" style="float:right"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <h4>Major Territorial Changes</h4>
-            
-            <div class="formula-box">
-                1947: Assam at Independence had 14 districts
-            </div>
+        <!-- Syllabus Tab -->
+        <div id="syllabus" class="tab-content active">
+            <div class="glass-panel card">
+                <h2 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-md);"><i class="fas fa-list-ol"></i> Syllabus Breakdown</h2>
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>Unit</th>
+                            <th>Topics Covered</th>
+                            <th>Lectures</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: var(--accent-success); font-weight: 600;">Unit I</td>
+                            <td><strong>Administrative Geography</strong><br>Locational significance, pre/post-independence divisions.</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--accent-success); font-weight: 600;">Unit II</td>
+                            <td><strong>Physical Characteristics</strong><br>Relief, drainage, climate, vegetation, floods, erosion.</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--accent-success); font-weight: 600;">Unit III</td>
+                            <td><strong>Natural Resources</strong><br>Forests, wildlife, biodiversity, minerals.</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--accent-success); font-weight: 600;">Unit IV</td>
+                            <td><strong>Population Studies</strong><br>Growth trends, ethno-religious composition, literacy.</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <ul>
-                <li><strong>1947:</strong> Partition of India - Sylhet district (majority Muslim area) went to East Pakistan (now Bangladesh) after referendum</li>
-                <li><strong>1963:</strong> Nagaland carved out of Assam (became 16th state of India)</li>
-                <li><strong>1972:</strong> Meghalaya became a separate state (earlier part of Assam as United Khasi-Jaintia Hills and Garo Hills)</li>
-                <li><strong>1972:</strong> Mizoram and Arunachal Pradesh became Union Territories (separated from Assam)</li>
-                <li><strong>1987:</strong> Arunachal Pradesh and Mizoram attained full statehood</li>
-            </ul>
-
-            <h4>Impact of Reorganization</h4>
-            <ul>
-                <li>Assam's area reduced from approximately 1,42,000 sq km to 78,438 sq km</li>
-                <li>Loss of hill districts led to focus on plains development</li>
-                <li>Administrative focus shifted to managing ethnic and linguistic diversity</li>
-                <li>Created challenges in resource management and revenue generation</li>
-            </ul>
-
-            <h4>Capital Changes</h4>
-            <ul>
-                <li><strong>Before 1972:</strong> Shillong (now in Meghalaya) was the capital</li>
-                <li><strong>After 1972:</strong> Dispur (suburb of Guwahati) became the new capital of Assam</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Topic 1.4 -->
-    <button class="accordion">1.4: Present Administrative Divisions <i class="fas fa-chevron-down" style="float:right"></i></button>
-    <div class="panel">
-        <div class="panel-content">
-            <h4>Current Administrative Structure (2025)</h4>
-            
-            <div class="formula-box">
-                Total Districts: 35 (as of 2025)
-                Total Sub-divisions: 78+
-                Development Blocks: 184+
-            </div>
-
-            <h4>List of 35 Districts</h4>
-            <ol>
-                <li>Baksa</li>
-                <li>Barpeta</li>
-                <li>Biswanath</li>
-                <li>Bongaigaon</li>
-                <li>Cachar</li>
-                <li>Charaideo</li>
-                <li>Chirang</li>
-                <li>Darrang</li>
-                <li>Dhemaji</li>
-                <li>Dhubri</li>
-                <li>Dibrugarh</li>
-                <li>Dima Hasao (North Cachar Hills)</li>
-                <li>Goalpara</li>
-                <li>Golaghat</li>
-                <li>Hailakandi</li>
-                <li>Hojai</li>
-                <li>Jorhat</li>
-                <li>Kamrup</li>
-                <li>Kamrup Metropolitan</li>
-                <li>Karbi Anglong</li>
-                <li>Karimganj</li>
-                <li>Kokrajhar</li>
-                <li>Lakhimpur</li>
-                <li>Majuli</li>
-                <li>Morigaon</li>
-                <li>Nagaon</li>
-                <li>Nalbari</li>
-                <li>Sivasagar</li>
-                <li>Sonitpur</li>
-                <li>South Salmara-Mankachar</li>
-                <li>Tinsukia</li>
-                <li>Udalguri</li>
-                <li>West Karbi Anglong</li>
-                <li>Bajali</li>
-                <li>Tamulpur</li>
-            </ol>
-
-            <h4>Divisions of Assam</h4>
-            <p>Assam is divided into <strong>5 administrative divisions</strong> for better governance:</p>
-            <ol>
-                <li><strong>Upper Assam Division:</strong> Dibrugarh, Tinsukia, Sivasagar, Jorhat, Golaghat, Charaideo, Majuli</li>
-                <li><strong>Lower Assam Division:</strong> Bongaigaon, Kokrajhar, Dhubri, Goalpara, Barpeta, Chirang, Baksa, South Salmara</li>
-                <li><strong>Central Assam Division:</strong> Nagaon, Morigaon, Hojai</li>
-                <li><strong>North Assam Division:</strong> Lakhimpur, Dhemaji, Sonitpur, Biswanath, Udalguri, Darrang</li>
-                <li><strong>Barak Valley Division:</strong> Cachar, Karimganj, Hailakandi</li>
-            </ol>
-
-            <h4>Autonomous Councils</h4>
-            <p>For protection of tribal rights and culture, autonomous councils exist:</p>
-            <ul>
-                <li><strong>Bodoland Territorial Council (BTC):</strong> Covers Kokrajhar, Chirang, Baksa, Udalguri districts</li>
-                <li><strong>Karbi Anglong Autonomous Council</strong></li>
-                <li><strong>Dima Hasao Autonomous Council (North Cachar Hills)</strong></li>
-                <li><strong>Mising Autonomous Council</strong></li>
-                <li><strong>Rabha Hasong Autonomous Council</strong></li>
-                <li><strong>Sonowal Kachari Autonomous Council</strong></li>
-                <li><strong>Thengal Kachari Autonomous Council</strong></li>
-                <li><strong>Tiwa Autonomous Council</strong></li>
-                <li><strong>Deori Autonomous Council</strong></li>
-            </ul>
-
-            <h4>Urban Administrative Units</h4>
-            <ul>
-                <li><strong>Municipal Corporations:</strong> Guwahati</li>
-                <li><strong>Municipal Boards:</strong> Dibrugarh, Jorhat, Silchar, Nagaon, Tinsukia, Tezpur, Dhubri (7 cities)</li>
-                <li><strong>Town Committees:</strong> 44+ towns</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Important Questions Section -->
-    <div style="margin-top: 30px;">
-        <h3 style="color:var(--accent-cyan)"><i class="fas fa-question-circle"></i> Important Exam Questions (Unit 1)</h3>
-        
-        <!-- Q1 -->
-        <div class="content-card">
-            <p><strong>Q1: Discuss the locational significance of Assam. (5 marks)</strong> [file:40]</p>
-            <button class="show-ans-btn" onclick="toggleAnswer('u1a1')">Show Answer</button>
-            <div id="u1a1" class="answer-box">
-                <p><strong>Answer:</strong></p>
-                <p><strong>Introduction:</strong> Assam is located in the northeastern region of India between 24°8'N to 28°2'N latitude and 89°42'E to 96°E longitude.</p>
-                <p><strong>Key Points:</strong></p>
-                <ul>
-                    <li><strong>Gateway Position:</strong> Acts as the corridor and gateway to the entire northeastern region, connecting seven sister states</li>
-                    <li><strong>Strategic Location:</strong> Shares international borders with Bhutan and Bangladesh, making it geopolitically important for India's defense</li>
-                    <li><strong>Trade Significance:</strong> Historical trade routes to Southeast Asia passed through Assam, making it a commercial hub</li>
-                    <li><strong>Biodiversity Hotspot:</strong> Located in Indo-Burma biodiversity region with rich flora and fauna</li>
-                    <li><strong>Resource Rich:</strong> Presence of Brahmaputra valley, oil fields, tea gardens, and forests adds economic significance</li>
-                </ul>
-                <p><strong>Conclusion:</strong> Assam's location makes it strategically, economically, and culturally significant for India and the entire Northeast region.</p>
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: rgba(0, 243, 255, 0.05); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: var(--radius-md); text-align: center;">
+                    <h3 class="heading-display" style="margin-bottom: var(--space-md); color: var(--text-primary);">Download Official Syllabus</h3>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Download PDF (~500 KB)</a>
+                </div>
             </div>
         </div>
 
-        <!-- Q2 -->
-        <div class="content-card">
-            <p><strong>Q2: Write a note on the administrative changes in Assam during Pre and Post-Independence period. (10 marks)</strong></p>
-            <button class="show-ans-btn" onclick="toggleAnswer('u1a2')">Show Answer</button>
-            <div id="u1a2" class="answer-box">
-                <p><strong>PRE-INDEPENDENCE (British Period 1826-1947):</strong></p>
-                <ul>
-                    <li>1826: Assam came under British rule after Treaty of Yandabo</li>
-                    <li>1874: Became a separate Chief Commissioner's Province</li>
-                    <li>Divided into districts: Kamrup, Darrang, Nowgong, Sibsagar, Lakhimpur, Cachar, Goalpara</li>
-                    <li>1905-1911: Temporarily merged with East Bengal, then separated again</li>
-                    <li>1912: Shillong became the capital</li>
-                </ul>
-                <p><strong>POST-INDEPENDENCE (After 1947):</strong></p>
-                <ul>
-                    <li><strong>1947:</strong> Sylhet district went to East Pakistan after referendum</li>
-                    <li><strong>1963:</strong> Nagaland carved out and became separate state</li>
-                    <li><strong>1972:</strong> Meghalaya became separate state; Mizoram and Arunachal Pradesh became Union Territories</li>
-                    <li><strong>1972:</strong> Capital shifted from Shillong to Dispur</li>
-                    <li><strong>1987:</strong> Arunachal Pradesh and Mizoram attained full statehood</li>
-                    <li><strong>Present:</strong> Assam reduced to 78,438 sq km with 35 districts</li>
-                </ul>
-                <p><strong>Impact:</strong> Reorganization reduced Assam's area but helped in better administration and gave identity to various ethnic groups.</p>
+        <!-- Unit 1 Tab -->
+        <div id="unit1" class="tab-content">
+            <div class="glass-panel card">
+                <h2 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-lg);">Unit 1: Locational Significance</h2>
+                
+                <button class="accordion">1.1: Geographical Location <i class="fas fa-chevron-down"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p style="color: var(--text-secondary); margin-bottom: var(--space-md);">Assam covers <strong>78,438 sq km</strong>. It is strategically located in the northeastern region of India.</p>
+                        <div class="formula-box">
+                            Location: 24°8'N to 28°2'N latitude and 89°42'E to 96°E longitude
+                        </div>
+                        <ul style="color: var(--text-secondary); margin-left: var(--space-lg); margin-top: var(--space-md);">
+                            <li><strong>Position:</strong> Bordered by Bhutan and Arunachal Pradesh (North), Nagaland and Manipur (East), Meghalaya, Tripura, Mizoram and Bangladesh (South), West Bengal (West)</li>
+                            <li><strong>Gateway:</strong> Acts as the corridor connecting the NE states with the rest of India.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button class="accordion">1.2: Important Exam Questions <i class="fas fa-chevron-down"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <div style="background: rgba(255,255,255,0.03); padding: var(--space-md); border-radius: var(--radius-sm); margin-bottom: var(--space-md);">
+                            <p style="font-weight: 600; margin-bottom: var(--space-sm);">Q: Discuss the locational significance of Assam. (5 marks)</p>
+                            <button class="btn btn-outline show-ans-btn" data-target="ans1" data-default-text="View Answer">View Answer</button>
+                            <div id="ans1" class="answer-box">
+                                <p><strong>Gateway Position:</strong> Acts as the corridor and gateway to the entire northeastern region.<br>
+                                <strong>Strategic Location:</strong> Shares international borders with Bhutan and Bangladesh.<br>
+                                <strong>Biodiversity Hotspot:</strong> Located in Indo-Burma biodiversity region.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Q3 -->
-        <div class="content-card">
-            <p><strong>Q3: Explain the present administrative divisions of Assam. (5 marks)</strong></p>
-            <button class="show-ans-btn" onclick="toggleAnswer('u1a3')">Show Answer</button>
-            <div id="u1a3" class="answer-box">
-                <p><strong>Current Structure:</strong> Assam has 35 districts organized into 5 administrative divisions.</p>
-                <p><strong>Five Divisions:</strong></p>
-                <ul>
-                    <li><strong>Upper Assam:</strong> 7 districts (Dibrugarh, Tinsukia, Sivasagar, Jorhat, Golaghat, Charaideo, Majuli)</li>
-                    <li><strong>Lower Assam:</strong> 8 districts (Bongaigaon, Kokrajhar, Dhubri, Goalpara, Barpeta, etc.)</li>
-                    <li><strong>Central Assam:</strong> 3 districts (Nagaon, Morigaon, Hojai)</li>
-                    <li><strong>North Assam:</strong> 6 districts (Lakhimpur, Dhemaji, Sonitpur, Biswanath, Udalguri, Darrang)</li>
-                    <li><strong>Barak Valley:</strong> 3 districts (Cachar, Karimganj, Hailakandi)</li>
-                </ul>
-                <p><strong>Special Features:</strong></p>
-                <ul>
-                    <li>Bodoland Territorial Council (BTC) provides autonomous governance to 4 districts</li>
-                    <li>Two hill districts have autonomous councils: Karbi Anglong and Dima Hasao</li>
-                    <li>Guwahati is the only Municipal Corporation; Dispur is the state capital</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Q4 -->
-        <div class="content-card">
-            <p><strong>Q4: What is the total land area of Assam? (1 mark)</strong> [file:40]</p>
-            <button class="show-ans-btn" onclick="toggleAnswer('u1a4')">Show Answer</button>
-            <div id="u1a4" class="answer-box">
-                <p><strong>Answer:</strong> The total land area of Assam is approximately <strong>78,438 square kilometers (78,438 sq km)</strong>.</p>
-            </div>
-        </div>
-
-        <!-- Q5 -->
-        <div class="content-card">
-            <p><strong>Q5: Write the rank of Assam among North-Eastern States in terms of area. (2 marks)</strong> [file:41]</p>
-            <button class="show-ans-btn" onclick="toggleAnswer('u1a5')">Show Answer</button>
-            <div id="u1a5" class="answer-box">
-                <p><strong>Answer:</strong> Assam ranks <strong>1st (First/Largest)</strong> among the North-Eastern States in terms of geographical area. With 78,438 sq km, it is the largest state in the northeastern region of India, followed by Arunachal Pradesh.</p>
-            </div>
-        </div>
-
-        <!-- Q6 -->
-        <div class="content-card">
-            <p><strong>Q6: Name the country which shares international border with Assam. (1 mark)</strong> [file:41]</p>
-            <button class="show-ans-btn" onclick="toggleAnswer('u1a6')">Show Answer</button>
-            <div id="u1a6" class="answer-box">
-                <p><strong>Answer:</strong> The two countries that share international borders with Assam are:</p>
-                <ul>
-                    <li><strong>Bhutan</strong> (Northern border)</li>
-                    <li><strong>Bangladesh</strong> (Southern and Western border)</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Q7 -->
-        <div class="content-card">
-            <p><strong>Q7: Why is Assam called the land of rivers? Explain. (5 marks)</strong> [file:40]</p>
-            <button class="show-ans-btn" onclick="toggleAnswer('u1a7')">Show Answer</button>
-            <div id="u1a7" class="answer-box">
-                <p><strong>Answer:</strong></p>
-                <p><strong>Introduction:</strong> Assam is often called the "Land of Rivers" due to the presence of numerous rivers and their tributaries flowing through the state.</p>
-                <p><strong>Reasons:</strong></p>
-                <ul>
-                    <li><strong>Brahmaputra River System:</strong> The mighty Brahmaputra is one of the world's largest rivers, flowing 890 km through Assam</li>
-                    <li><strong>Numerous Tributaries:</strong> Over 50 tributaries join Brahmaputra including Subansiri, Manas, Dibang, Lohit, Dhansiri, Kopili, etc.</li>
-                    <li><strong>Barak River System:</strong> Another major river system in southern Assam (Barak Valley)</li>
-                    <li><strong>Economic Importance:</strong> Rivers provide water for irrigation, fisheries, and transportation</li>
-                    <li><strong>Cultural Significance:</strong> Rivers are integral to Assamese culture, festivals (like Bihu), and daily life</li>
-                    <li><strong>Ecological Role:</strong> Support rich biodiversity, wetlands, and fertile alluvial plains</li>
-                </ul>
-                <p><strong>Conclusion:</strong> The dense network of rivers has shaped Assam's geography, economy, and culture, justifying the name "Land of Rivers."</p>
-            </div>
-        </div>
-    </div>
-
-</div>
-        <!-- ================= UNIT 2 SECTION ================= -->
+        <!-- Unit 2 Tab -->
         <div id="unit2" class="tab-content">
-            <h2 class="section-title">Unit 2: [Topic Name]</h2>
-            <div class="content-card">
-                <p><em>Notes for Unit 2 coming soon...</em></p>
+            <div class="glass-panel card">
+                <h2 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-lg);">Unit 2: Physical Characteristics</h2>
+                <p style="color: var(--text-secondary);">Comprehensive notes for Unit 2 will be synchronized shortly.</p>
             </div>
-             <!-- Copy the structure from Unit 1 to add more notes here -->
         </div>
 
-        <!-- ================= UNIT 3 SECTION ================= -->
+        <!-- Unit 3 Tab -->
         <div id="unit3" class="tab-content">
-            <h2 class="section-title">Unit 3: [Topic Name]</h2>
-            <div class="content-card">
-                <p><em>Notes for Unit 3 coming soon...</em></p>
+            <div class="glass-panel card">
+                <h2 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-lg);">Unit 3: Natural Resources</h2>
+                <p style="color: var(--text-secondary);">Comprehensive notes for Unit 3 will be synchronized shortly.</p>
             </div>
         </div>
 
-        <!-- ================= PYQ SECTION ================= -->
+        <!-- PYQ Tab -->
         <div id="pyq" class="tab-content">
-            <h2 class="section-title">Previous Year Questions (Solved)</h2>
-            
-            <div class="content-card">
-                <h3><i class="fas fa-history"></i> 2024 Exam Paper</h3>
-                
-                <p><strong>Q1 (5 Marks): Discuss the impact of...</strong></p>
-                <button class="show-ans-btn" onclick="toggleAnswer('pyq1')">View Solution</button>
-                <div id="pyq1" class="answer-box">
-                    <p>The impact can be categorized into three areas: Social, Economic, and Political...</p>
-                </div>
-
-                <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
-
-                <p><strong>Q2 (10 Marks): Explain in detail with diagram...</strong></p>
-                <button class="show-ans-btn" onclick="toggleAnswer('pyq2')">View Solution</button>
-                <div id="pyq2" class="answer-box">
-                    <p>Detailed solution goes here...</p>
+            <div class="glass-panel card">
+                <h2 class="heading-display" style="color: var(--accent-physics); margin-bottom: var(--space-lg);">Previous Year Questions</h2>
+                <div style="background: rgba(255,255,255,0.03); padding: var(--space-md); border-radius: var(--radius-sm); border-left: 3px solid var(--accent-physics);">
+                    <p style="font-weight: 600; margin-bottom: var(--space-sm);">[2024] Q: Name the highest hill range in Assam.</p>
+                    <button class="btn btn-outline show-ans-btn" data-target="pyq1" data-default-text="View Solution">View Solution</button>
+                    <div id="pyq1" class="answer-box" style="border-left-color: var(--accent-physics); background: rgba(189, 0, 255, 0.05);">
+                        <p>The Barail Range.</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </main>
 
-        <!-- ================= SAMPLE PAPER SECTION ================= -->
-        <div id="sample" class="tab-content">
-            <h2 class="section-title">Expected Sample Paper 2025</h2>
-            <p style="margin-bottom: 20px;">Fully solved expected questions for the upcoming exam.</p>
-
-            <div class="content-card" style="border-left: 3px solid var(--accent-purple);">
-                <h3>Section A: Very Short Answers</h3>
-                
-                <p><strong>1. Define the term 'X'.</strong></p>
-                <p class="answer-text" style="color:var(--accent-green)">Ans: Definition of X is...</p>
-                
-                <p><strong>2. What is the unit of 'Y'?</strong></p>
-                <p class="answer-text" style="color:var(--accent-green)">Ans: The unit is...</p>
-            </div>
-
-            <div class="content-card">
-                <h3>Section B: Descriptive Questions</h3>
-                <p><strong>1. Describe the process of...</strong></p>
-                <button class="show-ans-btn" onclick="toggleAnswer('sample1')">Show Full Answer</button>
-                <div id="sample1" class="answer-box">
-                    <p><strong>Introduction:</strong> Start with a definition.</p>
-                    <p><strong>Body:</strong> Explain the process step-by-step.</p>
-                    <p><strong>Conclusion:</strong> Summarize importance.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>Created by sajal | B.Sc Physics Student</p>
-        <div style="margin-top: 10px;">
-            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-github"></i></a>
-            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+    <footer class="footer">
+        <div class="container" style="text-align: center; color: var(--text-muted);">
+            <p>&copy; 2026 Physics Portal | Built by Sajal Barua</p>
         </div>
     </footer>
 
-    <!-- JavaScript for Interactivity -->
-    <script>
-        // Tab Switching Logic
-        function openTab(tabName) {
-            var i, tabContent, navBtn;
-            
-            // Hide all tab content
-            tabContent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].classList.remove("active-tab");
-            }
-
-            // Remove active class from buttons
-            navBtn = document.getElementsByClassName("nav-btn");
-            for (i = 0; i < navBtn.length; i++) {
-                navBtn[i].classList.remove("active");
-            }
-
-            // Show current tab and set button active
-            document.getElementById(tabName).classList.add("active-tab");
-            event.currentTarget.classList.add("active");
-        }
-
-        // Accordion Logic
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active-acc");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                } 
-            });
-        }
-
-        // Show/Hide Answer Logic
-        function toggleAnswer(id) {
-            var x = document.getElementById(id);
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-        }
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
