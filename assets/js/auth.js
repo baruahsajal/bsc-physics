@@ -1,13 +1,17 @@
 class SecurityGatekeeper {
     constructor() {
+        // Automatically detects if running on GitHub Pages and sets the correct repository folder path
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const repoBase = isGitHubPages ? '/bsc-physics' : '';
+
         this.config = {
             bsc: {
                 hash: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', // Passcode: 123456
-                redirect: '/portal-physics/index.html'
+                redirect: repoBase + '/portal-physics/index.html'
             },
             class9: {
                 hash: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', // Passcode: 123456
-                redirect: '/portal-science/index.html'
+                redirect: repoBase + '/portal-science/index.html'
             }
         };
     }
@@ -37,13 +41,17 @@ class SecurityGatekeeper {
     verifyAccess(portalId) {
         const hasAccess = sessionStorage.getItem(`access_granted_${portalId}`) === 'true';
         if (!hasAccess) {
-            window.location.href = `/request-access.html?target=${portalId}&reason=unauthorized`;
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            const repoBase = isGitHubPages ? '/bsc-physics' : '';
+            window.location.href = repoBase + `/request-access.html?target=${portalId}&reason=unauthorized`;
         }
     }
 
     logout() {
         sessionStorage.clear();
-        window.location.href = '/index.html';
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const repoBase = isGitHubPages ? '/bsc-physics' : '';
+        window.location.href = repoBase + '/index.html';
     }
 }
 
