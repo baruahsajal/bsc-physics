@@ -3,231 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDC-3: Land and People of Assam</title>
-    <style>
-        :root {
-            --bg-dark: #0a0a0c;
-            --card-bg: #16161a;
-            --accent: #00ffcc;
-            --secondary: #ff00ff;
-            --text-main: #e0e0e0;
-            --text-dim: #a0a0a0;
-            --border: #2d2d35;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container { max-width: 900px; margin: 0 auto; }
-        
-        h1, h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
-        .unit-title { border-left: 4px solid var(--secondary); padding-left: 15px; margin-top: 50px; }
-
-        /* Accordion Styles */
-        .accordion {
-            background-color: var(--card-bg);
-            color: var(--accent);
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: 1px solid var(--border);
-            text-align: left;
-            outline: none;
-            font-size: 1.1rem;
-            transition: 0.4s;
-            border-radius: 8px;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .active, .accordion:hover { background-color: #1c1c24; border-color: var(--accent); }
-
-        .panel {
-            padding: 0 18px;
-            background-color: transparent;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            margin-bottom: 15px;
-        }
-
-        /* Card & UI Elements */
-        .content-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-
-        .show-ans-btn {
-            background: transparent;
-            border: 1px solid var(--secondary);
-            color: var(--secondary);
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .show-ans-btn:hover { background: var(--secondary); color: white; box-shadow: 0 0 10px var(--secondary); }
-
-        .answer-box {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            border-left: 2px solid var(--accent);
-            background: rgba(0, 255, 204, 0.05);
-        }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid var(--border); padding: 12px; text-align: left; }
-        th { color: var(--accent); }
-
-        .nav-tabs { display: flex; gap: 10px; margin-bottom: 30px; position: sticky; top: 0; background: var(--bg-dark); padding: 10px 0; z-index: 100; }
-        .nav-tabs a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; }
-        .nav-tabs a:hover { color: var(--accent); border-color: var(--accent); }
-    </style>
+    <title>MDC-3 | Land and People of Assam</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-<div class="container">
-    <header style="text-align: center; margin-bottom: 40px;">
-        <h1>MDC-3 Study Portal</h1>
-        <p style="color: var(--text-dim);">Land and People of Assam | Comprehensive Courseware</p>
-    </header>
-
-    <nav class="nav-tabs">
-        <a href="#unit1">UNIT 1</a>
-        <a href="#unit2">UNIT 2</a>
-        <a href="#unit3">UNIT 3</a>
-        <a href="#unit4">UNIT 4</a>
-        <a href="#pyq">SOLVED PYQ</a>
-        <a href="#sample">2025 SAMPLE</a>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-atom" style="color: var(--accent-cyan);"></i>
+                Physics Portal
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="notes.html" class="nav-link">Notes</a></li>
+                <li><a href="common-courses.html" class="nav-link">Common Courses</a></li>
+                <li><a href="mdc3.html" class="nav-link active">MDC-3</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section id="unit1">
-        <h2 class="unit-title">Unit 1: Locational Significance</h2>
-        <button class="accordion">1.1 Geography & Borders</button>
-        <div class="panel">
-            <div class="content-card">
-                <p>Assam covers <strong>78,438 sq. km</strong>. It shares international borders with <strong>Bhutan</strong> and <strong>Bangladesh</strong>.</p>
-                
-            </div>
-        </div>
-        <div class="content-card">
-            <p class="question">Q: Why is Assam called the "Gateway to NE India"?</p>
-            <button class="show-ans-btn">Reveal Answer</button>
-            <div class="answer-box">It connects the rest of India via the 22km Siliguri Corridor (Chicken's Neck) and provides the primary transit route for the other six NE states.</div>
-        </div>
-    </section>
+    <main class="container" style="padding-top: 8rem; padding-bottom: var(--space-3xl);">
+        <header style="text-align: center; margin-bottom: var(--space-xl);">
+            <h1 class="heading-display text-gradient" style="font-size: 3rem;">MDC-3 Study Portal</h1>
+            <p class="heading-rajdhani" style="color: var(--text-secondary); font-size: 1.25rem;">Comprehensive Courseware & Preparation Dashboard</p>
+        </header>
 
-    <section id="unit2">
-        <h2 class="unit-title">Unit 2: Physical Characteristics & Problems</h2>
-        <button class="accordion">2.1 Relief & Drainage</button>
-        <div class="panel">
-            <div class="content-card">
-                <p>The state is divided into: <strong>Brahmaputra Valley, Barak Valley, and the Hilly Region</strong>.</p>
-                
-                <p>Climate: Tropical Monsoon Rainforest climate with high humidity.</p>
-            </div>
-        </div>
-        <div class="content-card">
-            <p class="question">Q: State two causes of annual floods in Assam.</p>
-            <button class="show-ans-btn">Reveal Answer</button>
-            <div class="answer-box">1. Extremely high monsoon rainfall. 2. Siltation of the riverbed (aggradation) causing reduced water-carrying capacity.</div>
-        </div>
-    </section>
+        <div style="display: grid; gap: var(--space-lg);">
+            <!-- Section 1 -->
+            <section class="glass-panel card animate-fade-up">
+                <h2 class="heading-display" style="color: var(--accent-cyan); border-left: 4px solid var(--accent-physics); padding-left: var(--space-md); margin-bottom: var(--space-md);">Unit 2: Physical Characteristics & Problems</h2>
+                <button class="accordion">2.1 Relief & Drainage <i class="fas fa-chevron-down"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p style="color: var(--text-secondary); margin-bottom: var(--space-sm);">The state is divided into: <strong>Brahmaputra Valley, Barak Valley, and the Hilly Region</strong>.</p>
+                        <p style="color: var(--text-secondary);">Climate: Tropical Monsoon Rainforest climate with high humidity.</p>
+                    </div>
+                </div>
 
-    <section id="unit3">
-        <h2 class="unit-title">Unit 3: Natural Resources</h2>
-        <button class="accordion">3.1 Minerals & Forests</button>
-        <div class="panel">
-            <div class="content-card">
-                <ul>
-                    <li><strong>Oil:</strong> Digboi, Naharkatiya, Moran.</li>
-                    <li><strong>Coal:</strong> Makum, Ledo.</li>
-                    <li><strong>Limestone:</strong> Karbi Anglong.</li>
-                </ul>
-                [attachment_0](attachment)
-            </div>
+                <div style="background: rgba(255,255,255,0.03); padding: var(--space-md); border-radius: var(--radius-sm); margin-top: var(--space-md);">
+                    <p style="font-weight: 600; margin-bottom: var(--space-sm);">Q: State two causes of annual floods in Assam.</p>
+                    <button class="btn btn-outline show-ans-btn" data-target="ans-flood" data-default-text="Reveal Answer">Reveal Answer</button>
+                    <div id="ans-flood" class="answer-box">
+                        <p>1. Extremely high monsoon rainfall.<br>2. Siltation of the riverbed (aggradation) causing reduced water-carrying capacity.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="glass-panel card animate-fade-up" style="animation-delay: 100ms;">
+                <h2 class="heading-display" style="color: var(--accent-cyan); border-left: 4px solid var(--accent-physics); padding-left: var(--space-md); margin-bottom: var(--space-md);">Unit 4: Population</h2>
+                <button class="accordion">4.1 Demographic Trends <i class="fas fa-chevron-down"></i></button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p style="color: var(--text-secondary);">Density: <strong>398 persons/sq. Km</strong>. Literacy: <strong>72.19%</strong>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="glass-panel card animate-fade-up" style="animation-delay: 200ms; border: 1px solid var(--accent-science);">
+                <h2 class="heading-display" style="color: var(--accent-science); border-left: 4px solid var(--accent-science); padding-left: var(--space-md); margin-bottom: var(--space-md);">Sample Paper 2026</h2>
+                <div style="background: rgba(0,0,0,0.2); padding: var(--space-md); border-radius: var(--radius-sm);">
+                    <p style="color: var(--accent-science); font-weight: 600; margin-bottom: var(--space-xs);">Section C: Long Answer (10 Marks)</p>
+                    <p style="margin-bottom: var(--space-md);">Discuss the impact of river bank erosion on the socio-economic life of the people of Assam.</p>
+                    <button class="btn btn-primary show-ans-btn" data-target="ans-erosion" data-default-text="View Detailed Solution">View Detailed Solution</button>
+                    <div id="ans-erosion" class="answer-box" style="border-color: var(--accent-science); background: rgba(0, 255, 157, 0.05);">
+                        <p>1. <strong>Landlessness:</strong> Thousands of hectares of fertile land are lost annually.<br>
+                        2. <strong>Displacement:</strong> Creation of 'Erosion Induced IDPs' (Internally Displaced Persons).<br>
+                        3. <strong>Economic Loss:</strong> Loss of livestock and standing crops.</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </main>
 
-    <section id="unit4">
-        <h2 class="unit-title">Unit 4: Population</h2>
-        <button class="accordion">4.1 Demographic Trends</button>
-        <div class="panel">
-            <div class="content-card">
-                <p>Density: <strong>398 persons/sq. km</strong>. Literacy: <strong>72.19%</strong>.</p>
-            </div>
-        </div></section>
-
-    <section id="pyq">
-        <h2 class="unit-title">Previous Year Questions (Solved)</h2>
-        <div class="content-card">
-            <p><strong>[2024] Q: Name the highest hill range in Assam.</strong></p>
-            <button class="show-ans-btn">Show Answer</button>
-            <div class="answer-box">The Barail Range.</div>
+    <footer class="footer">
+        <div class="container" style="text-align: center; color: var(--text-muted);">
+            <p>&copy; 2026 MDC-3 Thought Partner Portal</p>
         </div>
-    </section>
-
-    <section id="sample">
-        <h2 class="unit-title">Sample Paper 2025</h2>
-        <div class="content-card" style="border: 1px solid var(--accent);">
-            <p><strong>Section C: Long Answer (10 Marks)</strong></p>
-            <p>Discuss the impact of river bank erosion on the socio-economic life of the people of Assam.</p>
-            <button class="show-ans-btn">View Detailed Solution</button>
-            <div class="answer-box">
-                <p>1. <strong>Landlessness:</strong> Thousands of hectares of fertile land are lost annually.<br>
-                2. <strong>Displacement:</strong> Creation of 'Erosion Induced IDPs' (Internally Displaced Persons).<br>
-                3. <strong>Economic Loss:</strong> Loss of livestock and standing crops.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer style="margin-top: 100px; text-align: center; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border); padding: 20px;">
-        <p>&copy; 2025 MDC-3 Thought Partner Portal</p>
     </footer>
-</div>
 
-<script>
-    // Accordion Logic
-    var acc = document.getElementsByClassName("accordion");
-    for (var i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        });
-    }
-
-    // Answer Reveal Logic
-    var btns = document.getElementsByClassName("show-ans-btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            var box = this.nextElementSibling;
-            if (box.style.display === "block") {
-                box.style.display = "none";
-                this.innerHTML = "Reveal Answer";
-            } else {
-                box.style.display = "block";
-                this.innerHTML = "Hide Answer";
-            }
-        });
-    }
-</script>
-
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
