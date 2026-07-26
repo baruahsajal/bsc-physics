@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chapter 8: Motion (গতি) - S.Baruah Academy</title>
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --border: rgba(255, 255, 255, 0.1);
+            --phy: #38bdf8;
+            --highlight: #facc15;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        header { text-align: center; margin-bottom: 30px; max-width: 800px; width: 100%; }
+        header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
+        header p { color: #94a3b8; font-size: 1rem; }
+
+        .module-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+
+        /* Navigation Bar inside Module */
+        .module-nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+        .nav-tab { padding: 10px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: #94a3b8; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .nav-tab.active { background: var(--accent); color: #020617; border-color: var(--accent); }
+
+        /* Content Panels */
+        .content-panel { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 25px; backdrop-filter: blur(10px); }
+        .content-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .content-panel h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .content-panel h3 { color: var(--highlight); margin: 20px 0 10px 0; font-size: 1.1rem; }
+        .content-panel p, .content-panel li { line-height: 1.6; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px; }
+        .content-panel ul { padding-left: 20px; }
+
+        /* Interactive Grid Cards */
+        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px; }
+        .sim-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: 0.2s; }
+        .sim-card:hover { border-color: var(--accent); transform: translateY(-2px); background: rgba(56, 189, 248, 0.05); }
+        .sim-card h4 { color: var(--accent); font-size: 1.05rem; }
+        .sim-card p { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+
+        .btn-back { display: inline-block; margin-bottom: 20px; padding: 8px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none; font-size: 0.85rem; }
+        .btn-back:hover { background: rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="module-container">
+        <a href="../index.html" class="btn-back">← Back to Portal Dashboard</a>
+
+        <header>
+            <h1>Chapter 8: Motion (গতি)</h1>
+            <p>Class 9 Science • SEBA / ASSEB Curriculum & Interactive Simulations</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="module-nav">
+            <div class="nav-tab active" onclick="switchTab('notes')">Full Notes (টোকা)</div>
+            <div class="nav-tab" onclick="switchTab('simulations')">Simulations (পৰীক্ষণ)</div>
+            <div class="nav-tab" onclick="switchTab('formulas')">Formulas (সূত্ৰসমূহ)</div>
+            <div class="nav-tab" onclick="switchTab('numericals')">Numericals (গণিত)</div>
+            <div class="nav-tab" onclick="switchTab('downloads')">Downloads (ডাউনলোড)</div>
+        </div>
+
+        <!-- 1. Notes Panel -->
+        <div id="notes" class="content-panel active">
+            <h2>Comprehensive Chapter Notes (সম্পূৰ্ণ পাঠটোকা)</h2>
+            
+            <h3>1. Introduction & Rest vs Motion (বিশ্ৰাম আৰু গতি)</h3>
+            <p>বস্তু এটাই সময়ৰ বাগৰৰ লগে লগে আশে-পাশৰ সাপেক্ষে নিজৰ অৱস্থান সলনি নকৰিলে তাক <strong>বিশ্ৰাম (Rest)</strong> বুলি কোৱা হয়। আনহাতে, সময়ৰ লগে লগে অৱস্থান সলনি কৰিলে তাক <strong>গতি (Motion)</strong> বুলি কোৱা হয়।</p>
+            <p><strong>বেগ (Velocity):</strong> নিৰ্দিষ্ট দিশত প্রতি একক সময়ত বস্তুৱে অতিক্ৰম কৰা দূৰত্ব[span_0](start_span)[span_0](end_span).</p>
+            <p><strong>ত্বৰণ (Acceleration):</strong> বস্তুৰ বেগ পৰিৱৰ্তনৰ হাৰ[span_1](start_span)[span_1](end_span).</p>
+
+            <h3>2. Scalar and Vector Quantities (স্কেলিচ আৰু ভেক্টৰ ৰাশি)</h3>
+            <ul>
+                <li><strong>স্কেলিচ ৰাশি (Scalar Quantity):</strong> যিবোৰ ৰাশিম তাৰ পৰিমাণহে থাকে, দিশ নাথাকে (যেনে: দূৰত্ব, দ্ৰুতি, সময়)।</li>
+                <li><strong>ভেক্টৰ ৰাশি (Vector Quantity):</strong> যিবোৰ ৰাশিৰ পৰিমাণ আৰু দিশ উভয়য়েই থাকে (যেনে: সৰণ, বেগ, ত্বৰণ).</li>
+            </ul>
+
+            <h3>3. Equations of Motion (গতিৰ সমীকৰণসমূহ)</h3>
+            <p>লৈখিক পদ্ধতিৰে প্ৰতিষ্ঠা কৰা গতিৰ তিনিটা মুখ্য সমীকৰণ[span_2](start_span)[span_2](end_span):</p>
+            <ul>
+                <li>$v = u + at$ (বেগ-সময় সম্পৰ্ক)[span_3](start_span)[span_3](end_span)</li>
+                <li>$s = ut + \frac{1}{2}at^2$ (স্থান-সময় সম্পৰ্ক)[span_4](start_span)[span_4](end_span)</li>
+                <li>$2as = v^2 - u^2$ (স্থান-বেগ সম্পৰ্ক)[span_5](start_span)[span_5](end_span)</li>
+            </ul>
+        </div>
+
+        <!-- 2. Simulations Panel -->
+        <div id="simulations" class="content-panel">
+            <h2>Interactive Physics Simulations (পৰীক্ষণসমূহ)</h2>
+            <p>Explore concept-based interactive visual simulations built for Class 9 Motion chapter[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span):</p>
+            
+            <div class="sim-grid">
+                <a href="../simulations/motion-1d.html" class="sim-card" target="_blank">
+                    <h4>1. 1D Motion (Fig 8.1)</h4>
+                    <p>Straight line motion and position tracking[span_16](start_span)[span_16](end_span).</p>
+                </a>
+                <a href="../simulations/farmer-field.html" class="sim-card" target="_blank">
+                    <h4>2. 2D Farmer's Field</h4>
+                    <p>In-text question on square field displacement[span_17](start_span)[span_17](end_span).</p>
+                </a>
+                <a href="../simulations/uniform-motion.html" class="sim-card" target="_blank">
+                    <h4>3. Uniform vs Non-Uniform</h4>
+                    <p>Table 8.1 race animation and comparisons[span_18](start_span)[span_18](end_span).</p>
+                </a>
+                <a href="../simulations/average-speed.html" class="sim-card" target="_blank">
+                    <h4>4. Average Speed Calculator</h4>
+                    <p>Interactive solver for Example 8.1[span_19](start_span)[span_19](end_span).</p>
+                </a>
+                <a href="../simulations/swim-velocity.html" class="sim-card" target="_blank">
+                    <h4>5. Usha's Swim</h4>
+                    <p>Example 8.3: Speed vs Average Velocity[span_20](start_span)[span_20](end_span).</p>
+                </a>
+                <a href="../simulations/acceleration.html" class="sim-card" target="_blank">
+                    <h4>6. Rahul's Bicycle</h4>
+                    <p>Example 8.4: Positive & Negative Acceleration[span_21](start_span)[span_21](end_span).</p>
+                </a>
+                <a href="../simulations/distance-time-graph.html" class="sim-card" target="_blank">
+                    <h4>7. Distance-Time Graphs</h4>
+                    <p>Figure 8.3 & 8.4 slope and motion types[span_22](start_span)[span_22](end_span).</p>
+                </a>
+                <a href="../simulations/velocity-time-area.html" class="sim-card" target="_blank">
+                    <h4>8. Velocity-Time Area</h4>
+                    <p>Figure 8.5 & 8.6 area equals distance[span_23](start_span)[span_23](end_span).</p>
+                </a>
+                <a href="../simulations/equations-of-motion.html" class="sim-card" target="_blank">
+                    <h4>9. Equations Derivation</h4>
+                    <p>Graphical step-by-step proof (Fig 8.8)[span_24](start_span)[span_24](end_span).</p>
+                </a>
+                <a href="../simulations/kinematics-solver.html" class="sim-card" target="_blank">
+                    <h4>10. Numerical Solver</h4>
+                    <p>Examples 8.5, 8.6, and 8.7 interactive solver[span_25](start_span)[span_25](end_span).</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 3. Formulas Panel -->
+        <div id="formulas" class="content-panel">
+            <h2>Formula Sheet (প্ৰয়োজনীয় সূত্ৰাৱলী)</h2>
+            <p>Quick reference formula cards for exams and numerical problem solving:</p>
+            <ul>
+                <li><strong>দ্ৰুতি (Speed, $v$):</strong> $v = \frac{s}{t}$ (Unit: $m/s$)</li>
+                <li><strong>গড় দ্ৰুতি (Average Speed):</strong> $\text{Total Distance} / \text{Total Time}$</li>
+                <li><strong>ত্বৰণ (Acceleration, $a$):</strong> $a = \frac{v - u}{t}$ (Unit: $m/s^2$)</li>
+                <li><strong>গতিৰ সমীকৰণসমূহ:</strong> $v = u + at$, $s = ut + \frac{1}{2}at^2$, $2as = v^2 - u^2$[span_26](start_span)[span_26](end_span)</li>
+            </ul>
+        </div>
+
+        <!-- 4. Numericals Panel -->
+        <div id="numericals" class="content-panel">
+            <h2>Numerical Practice (সংখ্যাত্মক প্ৰশ্নোত্তৰ)</h2>
+            <p><strong>Example Problem:</strong> ৰে'লগাড়ী এখনে স্থিৰ অৱস্থাৰ পৰা গতি কৰি ৫ মিনিটত ৭২ km/h বেগ লাভ কৰিলে। ইয়াৰ ত্বৰণ নিৰ্ণয় কৰা[span_27](start_span)[span_27](end_span)।</p>
+            <p><strong>Solution:</strong><br>
+            Initial velocity, $u = 0$<br>
+            Final velocity, $v = 72 \times \frac{5}{18} = 20 \, m/s$<br>
+            Time, $t = 5 \times 60 = 300 \, s$<br>
+            $a = \frac{v - u}{t} = \frac{20 - 0}{300} = \frac{1}{15} \approx 0.067 \, m/s^2$[span_28](start_span)[span_28](end_span)</p>
+        </div>
+
+        <!-- 5. Downloads Panel -->
+        <div id="downloads" class="content-panel">
+            <h2>Download Study Materials (ডাউনলোড শাখা)</h2>
+            <p>Access offline PDF notes and important resources directly via Google Drive links:</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                <li><a href="YOUR_DRIVE_LINK_NOTES_CH8" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Chapter 8 Full Notes (PDF)</a></li>
+                <li><a href="YOUR_DRIVE_LINK_PYQ_CH8" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Previous Years Questions & Solutions (PDF)</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
