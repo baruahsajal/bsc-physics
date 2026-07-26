@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Viewer | Learning Ecosystem</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { overflow: hidden; display: flex; flex-direction: column; height: 100vh; }
+        .viewer-header {
+            background: var(--bg-surface);
+            border-bottom: var(--border-glass);
+            padding: var(--space-sm) var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: var(--z-nav);
+        }
+        .viewer-controls { display: flex; gap: var(--space-sm); align-items: center; }
+        .content-area {
+            flex: 1;
+            width: 100%;
+            background: #ffffff; /* HTML content requires white background usually */
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="viewer-header">
+        <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <button onclick="window.history.back()" class="btn btn-outline" style="padding: 0.5rem; border: none;"><i class="fas fa-arrow-left"></i></button>
+            <div>
+                <h1 id="content-title" class="heading-display" style="font-size: 1.1rem; margin: 0;">Loading...</h1>
+                <span id="content-type" class="badge badge-progress" style="font-size: 0.65rem; margin-top: 4px;">Content</span>
+            </div>
+        </div>
+        <div class="viewer-controls">
+            <button id="fullscreen-btn" class="btn btn-outline" style="padding: 0.5rem 0.75rem;"><i class="fas fa-expand"></i></button>
+            <a id="download-content-btn" href="#" class="btn btn-primary" style="padding: 0.5rem 1rem;"><i class="fas fa-download"></i> Download</a>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <iframe id="content-frame" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    </main>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/viewer.js"></script>
+</body>
+</html>
