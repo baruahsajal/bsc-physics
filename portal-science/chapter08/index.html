@@ -1,197 +1,717 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="as">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Chapter 8: Motion (গতি) - S.Baruah Academy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 8: Motion | S.Baruah Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #020617;
             --panel: #0f172a;
             --card-bg: rgba(30, 41, 59, 0.7);
             --text: #f8fafc;
-            --accent: #38bdf8; /* Physics Blue */
+            --accent: #3b82f6;
             --border: rgba(255, 255, 255, 0.1);
-            --phy: #38bdf8;
             --highlight: #facc15;
+            --accent-hover: #2563eb;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
 
-        header { text-align: center; margin-bottom: 30px; max-width: 800px; width: 100%; }
-        header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
-        header p { color: #94a3b8; font-size: 1rem; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .module-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(250, 204, 21, 0.1), transparent 25%);
+            background-attachment: fixed;
+        }
 
-        /* Navigation Bar inside Module */
-        .module-nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
-        .nav-tab { padding: 10px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: #94a3b8; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
-        .nav-tab.active { background: var(--accent); color: #020617; border-color: var(--accent); }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-        /* Content Panels */
-        .content-panel { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 25px; backdrop-filter: blur(10px); }
-        .content-panel.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-        .content-panel h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-        .content-panel h3 { color: var(--highlight); margin: 20px 0 10px 0; font-size: 1.1rem; }
-        .content-panel p, .content-panel li { line-height: 1.6; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px; }
-        .content-panel ul { padding-left: 20px; }
+        header h1 {
+            font-size: 2rem;
+            color: var(--highlight);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+        }
 
-        /* Interactive Grid Cards */
-        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px; }
-        .sim-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: 0.2s; }
-        .sim-card:hover { border-color: var(--accent); transform: translateY(-2px); background: rgba(56, 189, 248, 0.05); }
-        .sim-card h4 { color: var(--accent); font-size: 1.05rem; }
-        .sim-card p { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+        header h2 {
+            font-size: 1.8rem;
+            color: var(--text);
+        }
 
-        .btn-back { display: inline-block; margin-bottom: 20px; padding: 8px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none; font-size: 0.85rem; }
-        .btn-back:hover { background: rgba(255,255,255,0.1); }
+        /* Navigation */
+        .tabs-container {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            padding: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            min-width: 700px; /* Ensures scrolling on small devices */
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1.1rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Content Area */
+        .tab-pane {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.4s forwards;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        h3 {
+            color: var(--highlight);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--accent);
+        }
+
+        .math-eq {
+            font-family: 'Inter', serif;
+            font-style: italic;
+            background: var(--panel);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            border: 1px solid var(--border);
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        /* Simulations Tab Styles */
+        .sim-container {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .track {
+            width: 100%;
+            height: 80px;
+            background: #334155;
+            border-radius: 8px;
+            position: relative;
+            margin: 30px 0;
+            overflow: hidden;
+            border-bottom: 4px dashed #64748b;
+        }
+
+        .car {
+            width: 50px;
+            height: 40px;
+            background: var(--highlight);
+            border-radius: 8px;
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--bg);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            transition: left 0.05s linear;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            width: 120px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: auto;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-reset {
+            background: #ef4444;
+        }
+        .btn-reset:hover {
+            background: #dc2626;
+        }
+
+        .sim-stats {
+            margin-top: 15px;
+            font-family: 'Inter', monospace;
+            color: var(--highlight);
+            font-size: 1.1rem;
+        }
+
+        .sim-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sim-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sim-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .sim-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Q&A Styles */
+        .qa-box {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .qa-box:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .question {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+        .solution {
+            padding-left: 20px;
+            border-left: 3px solid var(--accent);
+        }
+
+        /* Downloads Styles */
+        .download-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: var(--accent);
+        }
+
+        .download-icon {
+            background: var(--accent);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-family: 'Inter', sans-serif;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="module-container">
-        <a href="../index.html" class="btn-back">← Back to Portal Dashboard</a>
+<div class="container">
+    <header>
+        <h1>S.Baruah Academy</h1>
+        <h2>অধ্যায় ৮: গতি (Chapter 8: Motion)</h2>
+    </header>
 
-        <header>
-            <h1>Chapter 8: Motion (গতি)</h1>
-            <p>Class 9 Science • SEBA / ASSEB Curriculum & Interactive Simulations</p>
-        </header>
+    <div class="tabs-container">
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'notes')">সম্পূৰ্ণ পাঠটোকা (Notes)</button>
+            <button class="tab-btn" onclick="openTab(event, 'sim')">পৰীক্ষণ (Simulations)</button>
+            <button class="tab-btn" onclick="openTab(event, 'formulas')">মূল ধাৰণা আৰু সূত্ৰ (Formulas)</button>
+            <button class="tab-btn" onclick="openTab(event, 'qa')">গণিত আৰু প্ৰশ্নোত্তৰ (Q&A)</button>
+            <button class="tab-btn" onclick="openTab(event, 'downloads')">ডাউনলোড (Downloads)</button>
+        </nav>
+    </div>
 
-        <!-- Navigation Tabs -->
-        <div class="module-nav">
-            <div class="nav-tab active" onclick="switchTab('notes')">Full Notes (টোকা)</div>
-            <div class="nav-tab" onclick="switchTab('simulations')">Simulations (পৰীক্ষণ)</div>
-            <div class="nav-tab" onclick="switchTab('formulas')">Formulas (সূত্ৰসমূহ)</div>
-            <div class="nav-tab" onclick="switchTab('numericals')">Numericals (গণিত)</div>
-            <div class="nav-tab" onclick="switchTab('downloads')">Downloads (ডাউনলোড)</div>
-        </div>
-
-        <!-- 1. Notes Panel -->
-        <div id="notes" class="content-panel active">
-            <h2>Comprehensive Chapter Notes (সম্পূৰ্ণ পাঠটোকা)</h2>
-
-            <h3>1. Introduction & Rest vs Motion (বিশ্ৰাম আৰু গতি)</h3>
-            <p>বস্তু এটাই সময়ৰ বাগৰৰ লগে লগে আশে-পাশৰ সাপেক্ষে নিজৰ অৱস্থান সলনি নকৰিলে তাক <strong>বিশ্ৰাম (Rest)</strong> বুলি কোৱা হয়। আনহাতে, সময়ৰ লগে লগে অৱস্থান সলনি কৰিলে তাক <strong>গতি (Motion)</strong> বুলি কোৱা হয়।</p>
-            <p><strong>বেগ (Velocity):</strong> নিৰ্দিষ্ট দিশত প্রতি একক সময়ত বস্তুৱে অতিক্ৰম কৰা দূৰত্ব।</p>
-            <p><strong>ত্বৰণ (Acceleration):</strong> বস্তুৰ বেগ পৰিৱৰ্তনৰ হাৰ।</p>
-
-            <h3>2. Scalar and Vector Quantities (স্কেলিচ আৰু ভেক্টৰ ৰাশি)</h3>
+    <!-- Tab 1: Notes -->
+    <div id="notes" class="tab-pane active">
+        <div class="glass-card">
+            <h3>১. প্ৰসংগ বিন্দু আৰু স্থানাংক (Reference Point & Origin)</h3>
+            <p>কোনো এটা বস্তুৰ অৱস্থান নিৰ্ণয় কৰিবলৈ আমি এটা নিৰ্দিষ্ট বিন্দুৰ প্ৰয়োজন হয়, যাক <strong>প্ৰসংগ বিন্দু (Reference Point)</strong> বা <strong>মূলবিন্দু (Origin)</strong> বুলি কোৱা হয়।</p>
             <ul>
-                <li><strong>স্কেলিচ ৰাশি (Scalar Quantity):</strong> যিবোৰ ৰাশিম তাৰ পৰিমাণহে থাকে, দিশ নাথাকে (যেনে: দূৰত্ব, দ্ৰুতি, সময়)।</li>
-                <li><strong>ভেক্টৰ ৰাশি (Vector Quantity):</strong> যিবোৰ ৰাশিৰ পৰিমাণ আৰু দিশ উভয়য়েই থাকে (যেনে: সৰণ, বেগ, ত্বৰণ)।</li>
-            </ul>
-
-            <h3>3. Equations of Motion (গতিৰ সমীকৰণসমূহ)</h3>
-            <p>লৈখিক পদ্ধতিৰে প্ৰতিষ্ঠা কৰা গতিৰ তিনিটা মুখ্য সমীকৰণ:</p>
-            <ul>
-                <li>$v = u + at$ (বেগ-সময় সম্পৰ্ক)</li>
-                <li>$s = ut + \frac{1}{2}at^2$ (স্থান-সময় সম্পৰ্ক)</li>
-                <li>$2as = v^2 - u^2$ (স্থান-বেগ সম্পৰ্ক)</li>
+                <li>যদি সময়ৰ লগে লগে কোনো বস্তুৰ অৱস্থানৰ পৰিৱৰ্তন হয়, তেন্তে বস্তুটো <strong>গতি (Motion)</strong> ত থকা বুলি কোৱা হয়।</li>
+                <li>গতি সদায় আপেক্ষিক (Relative)।</li>
             </ul>
         </div>
 
-        <!-- 2. Simulations Panel -->
-        <div id="simulations" class="content-panel">
-            <h2>Interactive Physics Simulations (পৰীক্ষণসমূহ)</h2>
-            <p>Explore concept-based interactive visual simulations built for Class 9 Motion chapter:</p>
+        <div class="glass-card">
+            <h3>২. দূৰত্ব আৰু সৰণ (Distance and Displacement)</h3>
+            <ul>
+                <li><strong>দূৰত্ব (Distance):</strong> কোনো বস্তুৱে অতিক্ৰম কৰা পথৰ মুঠ দৈৰ্ঘ্যক দূৰত্ব বোলে। ই এটা স্কেলাৰ ৰাশি (Scalar Quantity)। ইয়াৰ মান কেতিয়াও শূন্য হ'ব নোৱাৰে।</li>
+                <li><strong>সৰণ (Displacement):</strong> বস্তু এটাৰ প্ৰাৰম্ভিক অৱস্থান আৰু অন্তিম অৱস্থানৰ মাজৰ নূন্যতম দূৰত্বক সৰণ বোলে। ই এটা ভেক্টৰ ৰাশি (Vector Quantity)। ইয়াৰ মান শূন্য, ধনাত্মক বা ঋণাত্মক হ'ব পাৰে।</li>
+            </ul>
+        </div>
 
+        <div class="glass-card">
+            <h3>৩. সুষম গতি আৰু অসম গতি (Uniform and Non-uniform Motion)</h3>
+            <ul>
+                <li><strong>সুষম গতি (Uniform Motion):</strong> যদি কোনো এটা বস্তুৱে সমান সময়ৰ ব্যৱধানত সমান দূৰত্ব অতিক্ৰম কৰে, তেন্তে তাক সুষম গতি বোলে।</li>
+                <li><strong>অসম গতি (Non-uniform Motion):</strong> যদি কোনো বস্তুৱে সমান সময়ৰ ব্যৱধানত অসমান দূৰত্ব অতিক্ৰম কৰে, তেন্তে তাক অসম গতি বোলে। (যেনে: ৰাস্তাত চলা গাড়ী)।</li>
+            </ul>
+        </div>
+
+        <div class="glass-card">
+            <h3>৪. দ্ৰুতি আৰু বেগ (Speed and Velocity)</h3>
+            <ul>
+                <li><strong>দ্ৰুতি (Speed):</strong> একক সময়ত অতিক্ৰম কৰা দূৰত্বক দ্ৰুতি বোলে। (দ্ৰুতি = দূৰত্ব / সময়)। ইয়াৰ SI একক হৈছে মিটাৰ/ছেকেণ্ড (m/s)।</li>
+                <li><strong>বেগ (Velocity):</strong> নিৰ্দিষ্ট দিশত একক সময়ত অতিক্ৰম কৰা দূৰত্ব (বা সৰণ) ক বেগ বোলে। (বেগ = সৰণ / সময়)। ইয়াৰো SI একক m/s।</li>
+                <li><strong>গড় দ্ৰুতি (Average Speed):</strong> মুঠ দূৰত্বক মুঠ সময়ৰে হৰণ কৰিলে গড় দ্ৰুতি পোৱা যায়।</li>
+            </ul>
+        </div>
+
+        <div class="glass-card">
+            <h3>৫. ত্বৰণ (Acceleration)</h3>
+            <p>একক সময়ত হোৱা বেগৰ পৰিৱৰ্তনৰ হাৰক <strong>ত্বৰণ (Acceleration)</strong> বোলে।</p>
+            <ul>
+                <li>যদি প্ৰাৰম্ভিক বেগ (Initial Velocity) <strong>u</strong> আৰু অন্তিম বেগ (Final Velocity) <strong>v</strong> হয় 't' সময়ৰ পাছত, তেন্তে ত্বৰণ, <span class="math-eq">a = (v - u) / t</span></li>
+                <li>ত্বৰণৰ SI একক হৈছে <strong>m/s²</strong>।</li>
+                <li>বেগ হ্ৰাস পালে তাক <strong>ঋণাত্মক ত্বৰণ (Negative Acceleration)</strong> বা <strong>মন্থৰণ (Retardation)</strong> বোলে।</li>
+            </ul>
+        </div>
+        
+        <div class="glass-card">
+            <h3>৬. সুষম বৃত্তীয় গতি (Uniform Circular Motion)</h3>
+            <p>যেতিয়া কোনো বস্তুৱে এটা বৃত্তাকাৰ পথত স্থিৰ দ্ৰুতিৰে গতি কৰে, তেতিয়া তাৰ গতিক <strong>সুষম বৃত্তীয় গতি (Uniform Circular Motion)</strong> বোলে। ইয়াত দ্ৰুতি একে থাকে যদিও দিশ সলনি হৈ থকাৰ বাবে বেগৰ পৰিৱৰ্তন হয়, অৰ্থাৎ ই এক ত্বৰিত গতি (Accelerated Motion)।</p>
+        </div>
+    </div>
+
+    <!-- Tab 2: Simulations -->
+    <div id="sim" class="tab-pane">
+        <div class="glass-card">
+            <h3>ইণ্টাৰেক্টিভ পৰীক্ষণ: গতিৰ লেখ (Interactive Motion Simulation)</h3>
+            <p>তলৰ বাকচত প্ৰাৰম্ভিক বেগ (Velocity) আৰু ত্বৰণ (Acceleration) ৰ মান দিয়ক আৰু "Start" ত ক্লিক কৰি গাড়ীয়খনৰ গতি নিৰীক্ষণ কৰক।</p>
+            
+            <div class="sim-container">
+                <div class="controls">
+                    <div class="input-group">
+                        <label>প্ৰাৰম্ভিক বেগ, u (px/s)</label>
+                        <input type="number" id="sim-u" value="20" min="0" max="200">
+                    </div>
+                    <div class="input-group">
+                        <label>ত্বৰণ, a (px/s²)</label>
+                        <input type="number" id="sim-a" value="10" min="-50" max="100">
+                    </div>
+                    <button class="btn" onclick="startSimulation()">Start / আৰম্ভ</button>
+                    <button class="btn btn-reset" onclick="resetSimulation()">Reset / পুনৰাই</button>
+                </div>
+
+                <div class="track" id="track">
+                    <div class="car" id="car">🚗</div>
+                </div>
+
+                <div class="sim-stats">
+                    সময় (Time): <span id="stat-t">0.00</span> s | 
+                    দূৰত্ব (Distance): <span id="stat-s">0.00</span> px | 
+                    বৰ্তমানৰ বেগ (Current Velocity): <span id="stat-v">0.00</span> px/s
+                </div>
+            </div>
+            
+            <script>
+                let animationId;
+                let startTime;
+                let isRunning = false;
+                
+                const car = document.getElementById('car');
+                const track = document.getElementById('track');
+                const statT = document.getElementById('stat-t');
+                const statS = document.getElementById('stat-s');
+                const statV = document.getElementById('stat-v');
+                
+                let u_val = 0;
+                let a_val = 0;
+
+                function startSimulation() {
+                    if (isRunning) return;
+                    
+                    u_val = parseFloat(document.getElementById('sim-u').value) || 0;
+                    a_val = parseFloat(document.getElementById('sim-a').value) || 0;
+                    
+                    isRunning = true;
+                    startTime = performance.now();
+                    requestAnimationFrame(updateSimulation);
+                }
+
+                function updateSimulation(currentTime) {
+                    if (!isRunning) return;
+
+                    // Calculate time in seconds
+                    let t = (currentTime - startTime) / 1000;
+                    
+                    // Equations of motion: s = ut + 0.5at^2, v = u + at
+                    let s = (u_val * t) + (0.5 * a_val * t * t);
+                    let v = u_val + (a_val * t);
+                    
+                    let trackWidth = track.clientWidth;
+                    let carWidth = car.clientWidth;
+                    let maxDistance = trackWidth - carWidth;
+
+                    // Stop if it hits the end or goes backwards past start
+                    if (s >= maxDistance) {
+                        s = maxDistance;
+                        isRunning = false;
+                    } else if (s < 0) {
+                        s = 0;
+                        isRunning = false;
+                    }
+
+                    // Update UI
+                    car.style.left = s + 'px';
+                    statT.innerText = t.toFixed(2);
+                    statS.innerText = s.toFixed(2);
+                    statV.innerText = v.toFixed(2);
+
+                    if (isRunning) {
+                        animationId = requestAnimationFrame(updateSimulation);
+                    }
+                }
+
+                function resetSimulation() {
+                    isRunning = false;
+                    cancelAnimationFrame(animationId);
+                    car.style.left = '0px';
+                    statT.innerText = '0.00';
+                    statS.innerText = '0.00';
+                    statV.innerText = '0.00';
+                }
+            </script>
+        </div>
+
+        <div class="glass-card">
+            <h3>অন্যান্য পৰীক্ষণৰ লিংক (External Simulations)</h3>
             <div class="sim-grid">
-                <a href="../../simulations/motion-1d.html" class="sim-card" target="_blank">
-                    <h4>1. 1D Motion (Fig 8.1)</h4>
-                    <p>Straight line motion and position tracking.</p>
+                <a href="../../simulations/distance_vs_displacement.html" class="sim-card">
+                    <div class="sim-icon">📏</div>
+                    <h4>দূৰত্ব আৰু সৰণ</h4>
+                    <p>Distance vs Displacement</p>
                 </a>
-                <a href="../../simulations/farmer-field.html" class="sim-card" target="_blank">
-                    <h4>2. 2D Farmer's Field</h4>
-                    <p>In-text question on square field displacement.</p>
+                <a href="../../simulations/velocity_time_graph.html" class="sim-card">
+                    <div class="sim-icon">📈</div>
+                    <h4>বেগ-সময় লেখ</h4>
+                    <p>Velocity-Time Graphs</p>
                 </a>
-                <a href="../../simulations/uniform-motion.html" class="sim-card" target="_blank">
-                    <h4>3. Uniform vs Non-Uniform</h4>
-                    <p>Table 8.1 race animation and comparisons.</p>
-                </a>
-                <a href="../../simulations/average-speed.html" class="sim-card" target="_blank">
-                    <h4>4. Average Speed Calculator</h4>
-                    <p>Interactive solver for Example 8.1.</p>
-                </a>
-                <a href="../../simulations/swim-velocity.html" class="sim-card" target="_blank">
-                    <h4>5. Usha's Swim</h4>
-                    <p>Example 8.3: Speed vs Average Velocity.</p>
-                </a>
-                <a href="../../simulations/acceleration.html" class="sim-card" target="_blank">
-                    <h4>6. Rahul's Bicycle</h4>
-                    <p>Example 8.4: Positive & Negative Acceleration.</p>
-                </a>
-                <a href="../../simulations/distance-time-graph.html" class="sim-card" target="_blank">
-                    <h4>7. Distance-Time Graphs</h4>
-                    <p>Figure 8.3 & 8.4 slope and motion types.</p>
-                </a>
-                <a href="../../simulations/velocity-time-area.html" class="sim-card" target="_blank">
-                    <h4>8. Velocity-Time Area</h4>
-                    <p>Figure 8.5 & 8.6 area equals distance.</p>
-                </a>
-                <a href="../../simulations/equations-of-motion.html" class="sim-card" target="_blank">
-                    <h4>9. Equations Derivation</h4>
-                    <p>Graphical step-by-step proof (Fig 8.8).</p>
-                </a>
-                <a href="../../simulations/kinematics-solver.html" class="sim-card" target="_blank">
-                    <h4>10. Numerical Solver</h4>
-                    <p>Examples 8.5, 8.6, and 8.7 interactive solver.</p>
+                <a href="../../simulations/circular_motion.html" class="sim-card">
+                    <div class="sim-icon">🔄</div>
+                    <h4>বৃত্তীয় গতি</h4>
+                    <p>Uniform Circular Motion</p>
                 </a>
             </div>
         </div>
-
-        <!-- 3. Formulas Panel -->
-        <div id="formulas" class="content-panel">
-            <h2>Formula Sheet (প্ৰয়োজনীয় সূত্ৰাৱলী)</h2>
-            <p>Quick reference formula cards for exams and numerical problem solving:</p>
-            <ul>
-                <li><strong>দ্ৰুতি (Speed, $v$):</strong> $v = \frac{s}{t}$ (Unit: m/s)</li>
-                <li><strong>গড় দ্ৰুতি (Average Speed):</strong> $\frac{\text{Total Distance}}{\text{Total Time}}$</li>
-                <li><strong>ত্বৰণ (Acceleration, $a$):</strong> $a = \frac{v - u}{t}$ (Unit: $\text{m/s}^2$)</li>
-                <li><strong>গতিৰ সমীকৰণসমূহ:</strong> $v = u + at$, $s = ut + \frac{1}{2}at^2$, $2as = v^2 - u^2$</li>
-            </ul>
-        </div>
-
-        <!-- 4. Numericals Panel -->
-        <div id="numericals" class="content-panel">
-            <h2>Numerical Practice (সংখ্যাত্মক প্ৰশ্নোত্তৰ)</h2>
-            <p><strong>Example Problem:</strong> ৰে'লগাড়ী এখনে স্থিৰ অৱস্থাৰ পৰা গতি কৰি 5 মিনিটত 72 km/h বেগ লাভ কৰিলে। ইয়াৰ ত্বৰণ নিৰ্ণয় কৰা।</p>
-            <p><strong>Solution:</strong><br>
-            আদি বেগ (Initial velocity, $u$) = $0$<br>
-            অন্তিম বেগ (Final velocity, $v$) = $72 \times \frac{5}{18} = 20 \, \text{m/s}$<br>
-            সময় (Time, $t$) = $5 \times 60 = 300 \, \text{s}$<br><br>
-            <strong>ত্বৰণ ($a$):</strong><br>
-            $a = \frac{v - u}{t}$<br>
-            $a = \frac{20 - 0}{300}$<br>
-            $a = \frac{1}{15} \approx 0.067 \, \text{m/s}^2$<br><br>
-            <strong>উত্তৰ:</strong> ৰে'লগাড়ীখনৰ ত্বৰণ প্ৰায় $0.067 \, \text{m/s}^2$।</p>
-        </div>
-
-        <!-- 5. Downloads Panel -->
-        <div id="downloads" class="content-panel">
-            <h2>Download Study Materials (ডাউনলোড শাখা)</h2>
-            <p>Access offline PDF notes and important resources directly via Google Drive links:</p>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-                <li><a href="YOUR_DRIVE_LINK_NOTES_CH8" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Chapter 8 Full Notes (PDF)</a></li>
-                <li><a href="YOUR_DRIVE_LINK_PYQ_CH8" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Previous Years Questions & Solutions (PDF)</a></li>
-            </ul>
-        </div>
-
     </div>
 
-    <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.content-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-    </script>
+    <!-- Tab 3: Formulas -->
+    <div id="formulas" class="tab-pane">
+        <div class="glass-card">
+            <h3>মূল ধাৰণা আৰু সূত্ৰসমূহ (Key Formulas)</h3>
+            
+            <p><strong>১. দ্ৰুতি (Speed):</strong></p>
+            <div class="math-eq">v = s / t</div>
+            <p>(য'ত v = দ্ৰুতি, s = অতিক্ৰম কৰা দূৰত্ব, t = সময়)</p>
+
+            <p><strong>২. গড় দ্ৰুতি (Average Speed):</strong></p>
+            <div class="math-eq">v<sub>avg</sub> = মুঠ দূৰত্ব / মুঠ সময়</div>
+
+            <p><strong>৩. ত্বৰণ (Acceleration):</strong></p>
+            <div class="math-eq">a = (v - u) / t</div>
+            <p>(য'ত a = ত্বৰণ, v = অন্তিম বেগ, u = প্ৰাৰম্ভিক বেগ, t = সময়)</p>
+
+            <br>
+            <h3>গতিৰ সমীকৰণ (Equations of Motion)</h3>
+            <p>সুষমভাৱে ত্বৰিত গতিৰ ক্ষেত্ৰত তলৰ তিনিটা সমীকৰণ ব্যৱহাৰ কৰা হয়:</p>
+            
+            <ol>
+                <li>
+                    <strong>বেগ-সময়ৰ সম্পৰ্ক (Velocity-Time Relation):</strong><br>
+                    <div class="math-eq">v = u + at</div>
+                </li>
+                <li>
+                    <strong>অৱস্থান-সময়ৰ সম্পৰ্ক (Position-Time Relation):</strong><br>
+                    <div class="math-eq">s = ut + &frac12;at<sup>2</sup></div>
+                </li>
+                <li>
+                    <strong>অৱস্থান-বেগৰ সম্পৰ্ক (Position-Velocity Relation):</strong><br>
+                    <div class="math-eq">v<sup>2</sup> - u<sup>2</sup> = 2as</div>
+                </li>
+            </ol>
+            
+            <br>
+            <h3>বৃত্তীয় গতি (Circular Motion)</h3>
+            <p>ব্যাসাৰ্ধ 'r' থকা এটা বৃত্তাকাৰ পথত 't' সময়ত সম্পূৰ্ণ পাক এটা ঘূৰিলে, দ্ৰুতি:</p>
+            <div class="math-eq">v = (2&pi;r) / t</div>
+        </div>
+    </div>
+
+    <!-- Tab 4: Q&A -->
+    <div id="qa" class="tab-pane">
+        <div class="glass-card">
+            <h3>গণিত আৰু প্ৰশ্নোত্তৰ (Numericals & Reasoning)</h3>
+            
+            <div class="qa-box">
+                <div class="question">Question 1: এটা বস্তুৱে 4 ছেকেণ্ডত 16 মিটাৰ দূৰত্ব অতিক্ৰম কৰে আৰু পৰৱৰ্তী 2 ছেকেণ্ডত আৰু 16 মিটাৰ অতিক্ৰম কৰে। বস্তুটোৰ গড় দ্ৰুতি (Average Speed) কিমান?</div>
+                <div class="solution">
+                    <p><strong>Solution:</strong></p>
+                    <p>ইয়াত, বস্তুটোৱে অতিক্ৰম কৰা মুঠ দূৰত্ব (Total Distance), s = 16 m + 16 m = 32 m</p>
+                    <p>লোৱা মুঠ সময় (Total Time), t = 4 s + 2 s = 6 s</p>
+                    <p>আমি জানো যে, গড় দ্ৰুতি = মুঠ দূৰত্ব / মুঠ সময়</p>
+                    <p>গতিকে, গড় দ্ৰুতি = 32 m / 6 s = <strong>5.33 m/s</strong></p>
+                    <p><strong>উত্তৰ:</strong> বস্তুটোৰ গড় দ্ৰুতি হ'ল 5.33 m/s।</p>
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Question 2: এখন গাড়ীৰ বেগ 5 ছেকেণ্ডত 18 km/h ৰ পৰা 36 km/h লৈ সুষমভাৱে বৃদ্ধি পালে। গাড়ীখনৰ (i) ত্বৰণ আৰু (ii) এই সময়খিনিত অতিক্ৰম কৰা দূৰত্ব উলিওৱা।</div>
+                <div class="solution">
+                    <p><strong>Solution:</strong></p>
+                    <p>দিয়া আছে,<br>
+                    প্ৰাৰম্ভিক বেগ (u) = 18 km/h = 18 × (5/18) m/s = 5 m/s<br>
+                    অন্তিম বেগ (v) = 36 km/h = 36 × (5/18) m/s = 10 m/s<br>
+                    সময় (t) = 5 s</p>
+                    
+                    <p><strong>(i) ত্বৰণ (Acceleration):</strong><br>
+                    a = (v - u) / t<br>
+                    a = (10 - 5) / 5 = 5 / 5 = <strong>1 m/s²</strong></p>
+                    
+                    <p><strong>(ii) অতিক্ৰম কৰা দূৰত্ব (Distance):</strong><br>
+                    গতিৰ দ্বিতীয় সমীকৰণ ব্যৱহাৰ কৰি, s = ut + &frac12;at²<br>
+                    s = (5 × 5) + &frac12; × 1 × (5)²<br>
+                    s = 25 + 12.5 = <strong>37.5 m</strong></p>
+                </div>
+            </div>
+
+            <div class="qa-box">
+                <div class="question">Question 3: দূৰত্ব আৰু সৰণৰ মাজৰ দুটা মূল পাৰ্থক্য লিখা। (Write two main differences between distance and displacement.)</div>
+                <div class="solution">
+                    <p><strong>Solution:</strong></p>
+                    <ul>
+                        <li><strong>১.</strong> দূৰত্ব হৈছে বস্তু এটা গৈ পোৱা পথৰ মুঠ দৈৰ্ঘ্য (স্কেলাৰ ৰাশি)। আনহাতে, সৰণ হৈছে প্ৰাৰম্ভিক আৰু অন্তিম অৱস্থানৰ মাজৰ নূন্যতম পোনপটীয়া দূৰত্ব (ভেক্টৰ ৰাশি)।</li>
+                        <li><strong>২.</strong> দূৰত্ব কেতিয়াও শূন্য হ'ব নোৱাৰে (যদি বস্তুটোৱে গতি কৰিছে)। কিন্তু সৰণ শূন্য হ'ব পাৰে (যেনে: এটা বস্তুৱে ঘূৰি আহি পুনৰ প্ৰাৰম্ভিক স্থান পালে সৰণ শূন্য হয়)।</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Tab 5: Downloads -->
+    <div id="downloads" class="tab-pane">
+        <div class="glass-card">
+            <h3>ডাউনলোড (Study Materials)</h3>
+            <p>তলৰ লিংকসমূহৰ পৰা PDF পাঠটোকা আৰু বিগত বৰ্ষৰ প্ৰশ্নকাকত (PYQs) ডাউনলোড কৰক:</p>
+            
+            <div class="download-list">
+                <a href="YOUR_DRIVE_LINK_NOTES" class="download-btn" target="_blank">
+                    <span>১. সম্পূৰ্ণ অধ্যায় ৮: গতি ৰ পাঠটোকা (Full Chapter 8 Notes PDF)</span>
+                    <span class="download-icon">PDF &darr;</span>
+                </a>
+                
+                <a href="YOUR_DRIVE_LINK_NCERT_SOL" class="download-btn" target="_blank">
+                    <span>২. পাঠ্যপুথিৰ প্ৰশ্নোত্তৰ (NCERT Textual Solutions PDF)</span>
+                    <span class="download-icon">PDF &darr;</span>
+                </a>
+
+                <a href="YOUR_DRIVE_LINK_PYQ" class="download-btn" target="_blank">
+                    <span>৩. বিগত বৰ্ষৰ প্ৰশ্নকাকত (Previous Year Questions - PYQ)</span>
+                    <span class="download-icon">ZIP &darr;</span>
+                </a>
+                
+                <a href="YOUR_DRIVE_LINK_FORMULA" class="download-btn" target="_blank">
+                    <span>৪. সূত্ৰসমূহৰ সাৰাংশ (Quick Formula Cheat Sheet)</span>
+                    <span class="download-icon">PDF &darr;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Tab Switching Logic
+    function openTab(evt, tabName) {
+        // Hide all tab content
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        tabPanes.forEach(pane => {
+            pane.classList.remove('active');
+        });
+
+        // Remove active class from all buttons
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Show specific tab and make button active
+        document.getElementById(tabName).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+</script>
+
 </body>
 </html>
