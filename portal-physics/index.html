@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.Sc. Physics Portal | Gauhati University</title>
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .portal-layout { display: grid; grid-template-columns: 260px 1fr; gap: var(--space-xl); align-items: start; padding-top: var(--space-xl); padding-bottom: var(--space-3xl); }
+        .sidebar { position: sticky; top: 6rem; display: flex; flex-direction: column; gap: var(--space-sm); }
+        .nav-item { padding: var(--space-sm) var(--space-md); border-radius: var(--radius-md); color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: var(--space-md); font-weight: 500; transition: var(--transition-fast); border-left: 3px solid transparent; }
+        .nav-item:hover, .nav-item.active { background: rgba(189, 0, 255, 0.1); color: var(--accent-physics); border-left-color: var(--accent-physics); }
+        .semester-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-lg); }
+        .subject-list { list-style: none; margin: var(--space-md) 0; }
+        .subject-list li { margin-bottom: var(--space-sm); padding-bottom: var(--space-sm); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .subject-list li:last-child { border-bottom: none; }
+        .subject-name { font-size: 0.9rem; color: var(--text-primary); }
+        .subject-code { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-physics); }
+        @media (max-width: 900px) {
+            .portal-layout { grid-template-columns: 1fr; }
+            .sidebar { position: relative; top: 0; flex-direction: row; overflow-x: auto; }
+            .nav-item { white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" style="border-bottom-color: var(--accent-physics);">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-brand"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> B.Sc. Portal</a>
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm);">
+                    <i class="fas fa-search" style="color: var(--text-secondary);"></i>
+                    <input type="text" placeholder="Search syllabus..." style="background: transparent; border: none; color: #fff; outline: none; width: 150px;">
+                </div>
+                <button onclick="AuthSystem.logout()" class="btn btn-outline" style="padding: 0.35rem 1rem;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container portal-layout">
+        <aside class="sidebar glass-panel animate-fade-up">
+            <div style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
+                <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Resource Center</h3>
+                <span style="font-size: 0.8rem; color: var(--accent-success);"><i class="fas fa-check-circle"></i> Authenticated</span>
+            </div>
+            <a href="index.html" class="nav-item active"><i class="fas fa-th-large"></i> Semester Dashboard</a>
+            <a href="labs.html" class="nav-item"><i class="fas fa-flask"></i> Laboratory Hub</a>
+            <a href="#" class="nav-item"><i class="fas fa-square-root-variable"></i> Formula Sheets</a>
+            <a href="#" class="nav-item"><i class="fas fa-file-pdf"></i> Question Banks (PYQ)</a>
+            <a href="#" class="nav-item"><i class="fas fa-laptop-code"></i> Computational Physics</a>
+        </aside>
+
+        <section class="animate-fade-up" style="animation-delay: 100ms;">
+            <header style="margin-bottom: var(--space-xl);">
+                <h1 class="heading-display" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Academic Semesters</h1>
+                <p style="color: var(--text-secondary);">FYUGP Physics Major & Mathematics Minor Architecture</p>
+            </header>
+
+            <div class="semester-grid">
+                <div class="glass-panel card" style="border-top: 3px solid var(--accent-success);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="heading-display" style="font-size: 1.25rem;">Semester 1</h2>
+                        <span class="badge badge-completed">Completed</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div>
+                                <div class="subject-code">PHY0100104</div>
+                                <div class="subject-name">Mathematical Physics & Mechanics</div>
+                            </div>
+                            <a href="../viewer.html?file=files/sem1-math-mech.html&type=Notes&title=Math%20Physics&portal=bsc" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.7rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                        <li>
+                            <div>
+                                <div class="subject-code">SEC-SWAYAM</div>
+                                <div class="subject-name">AI in Physics</div>
+                            </div>
+                            <a href="../viewer.html?file=files/sem1-ai.html&type=Notes&title=AI%20in%20Physics&portal=bsc" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.7rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">View All Resources</a>
+                </div>
+
+                <div class="glass-panel card" style="border-top: 3px solid var(--accent-success);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="heading-display" style="font-size: 1.25rem;">Semester 2</h2>
+                        <span class="badge badge-completed">Completed</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div>
+                                <div class="subject-code">PHY0200104</div>
+                                <div class="subject-name">Electricity & Magnetism</div>
+                            </div>
+                            <a href="#" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.7rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                        <li>
+                            <div>
+                                <div class="subject-code">SEC</div>
+                                <div class="subject-name">Basic Workshop Skills</div>
+                            </div>
+                            <a href="#" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.7rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">View All Resources</a>
+                </div>
+
+                <div class="glass-panel card" style="border-top: 3px solid var(--accent-physics);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="heading-display" style="font-size: 1.25rem; color: var(--accent-physics);">Semester 3</h2>
+                        <span class="badge" style="background: rgba(189, 0, 255, 0.1); color: var(--accent-physics); border: 1px solid var(--accent-physics);">In Progress</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div>
+                                <div class="subject-code">PHY0300104</div>
+                                <div class="subject-name">Waves & Optics</div>
+                            </div>
+                            <a href="#" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.7rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                        <li>
+                            <div>
+                                <div class="subject-code">PHY0300204</div>
+                                <div class="subject-name">Electromagnetic Theory</div>
+                            </div>
+                            <a href="#" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.7rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Continue Study</a>
+                </div>
+
+                <div class="glass-panel card" style="opacity: 0.6; pointer-events: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="heading-display" style="font-size: 1.25rem;">Semester 4</h2>
+                        <span class="badge badge-locked">Locked</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div><div class="subject-name">Classical Mechanics</div></div>
+                        </li>
+                        <li>
+                            <div><div class="subject-name">Quantum Mechanics-I</div></div>
+                        </li>
+                        <li>
+                            <div><div class="subject-name">Analog Electronics</div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AuthSystem.verifyAccess('bsc');
+        });
+    </script>
+</body>
+</html>
