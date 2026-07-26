@@ -2,11 +2,11 @@ class SecurityGatekeeper {
     constructor() {
         this.config = {
             bsc: {
-                hash: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',
+                hash: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', // Passcode: 123456
                 redirect: '/portal-physics/index.html'
             },
             class9: {
-                hash: '481f6cc0511143ccdd7e2d1b1b94faf0a700a8b49cd13922a70b5ae28acaa8c5',
+                hash: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', // Passcode: 123456
                 redirect: '/portal-science/index.html'
             }
         };
