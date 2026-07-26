@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chapter 1: Matter in Our Surroundings (আমাৰ চাৰিওকাষৰ পদাৰ্থ) - S.Baruah Academy</title>
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --accent: #a855f7; /* Changed to Chemistry Purple */
+            --border: rgba(255, 255, 255, 0.1);
+            --chem: #a855f7;
+            --highlight: #facc15;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        header { text-align: center; margin-bottom: 30px; max-width: 800px; width: 100%; }
+        header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
+        header p { color: #94a3b8; font-size: 1rem; }
+
+        .module-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+
+        /* Navigation Bar inside Module */
+        .module-nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+        .nav-tab { padding: 10px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: #94a3b8; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .nav-tab.active { background: var(--accent); color: #020617; border-color: var(--accent); }
+
+        /* Content Panels */
+        .content-panel { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 25px; backdrop-filter: blur(10px); }
+        .content-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .content-panel h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .content-panel h3 { color: var(--highlight); margin: 20px 0 10px 0; font-size: 1.1rem; }
+        .content-panel p, .content-panel li { line-height: 1.6; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px; }
+        .content-panel ul { padding-left: 20px; }
+
+        /* Interactive Grid Cards */
+        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px; }
+        .sim-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: 0.2s; }
+        .sim-card:hover { border-color: var(--accent); transform: translateY(-2px); background: rgba(168, 85, 247, 0.05); }
+        .sim-card h4 { color: var(--accent); font-size: 1.05rem; }
+        .sim-card p { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+
+        .btn-back { display: inline-block; margin-bottom: 20px; padding: 8px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none; font-size: 0.85rem; }
+        .btn-back:hover { background: rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="module-container">
+        <a href="../index.html" class="btn-back">← Back to Portal Dashboard</a>
+
+        <header>
+            <h1>Chapter 1: Matter in Our Surroundings (আমাৰ চাৰিওকাষৰ পদাৰ্থ)</h1>
+            <p>Class 9 Science • SEBA / ASSEB Curriculum & Interactive Simulations</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="module-nav">
+            <div class="nav-tab active" onclick="switchTab('notes')">Full Notes (টোকা)</div>
+            <div class="nav-tab" onclick="switchTab('simulations')">Simulations (পৰীক্ষণ)</div>
+            <div class="nav-tab" onclick="switchTab('formulas')">Key Concepts (মূল ধাৰণা)</div>
+            <div class="nav-tab" onclick="switchTab('numericals')">Q & A (প্ৰশ্নোত্তৰ)</div>
+            <div class="nav-tab" onclick="switchTab('downloads')">Downloads (ডাউনলোড)</div>
+        </div>
+
+        <!-- 1. Notes Panel -->
+        <div id="notes" class="content-panel active">
+            <h2>Comprehensive Chapter Notes (সম্পূৰ্ণ পাঠটোকা)</h2>
+
+            <h3>1. Physical Nature of Matter (পদাৰ্থৰ ভৌতিক প্ৰকৃতি)</h3>
+            <p>আমাৰ চাৰিওফালে থকা যিবোৰ বস্তুৰ ভৰ আছে আৰু যিবোৰে ঠাই আগুৰি থাকে, তাকে <strong>পদাৰ্থ (Matter)</strong> বোলে। পদাৰ্থ অতি ক্ষুদ্ৰ কণাৰে গঠিত।</p>
+            <p><strong>পদাৰ্থৰ কণিকাবোৰৰ বৈশিষ্ট্য:</strong></p>
+            <ul>
+                <li>কণিকাবোৰৰ মাজত খালী ঠাই থাকে।</li>
+                <li>কণিকাবোৰ অনবৰতে গতি কৰি থাকে (সিহঁতৰ গতিশক্তি থাকে)। উষ্ণতা বাঢ়িলে কণিকাবোৰৰ গতিশক্তি বাঢ়ে।</li>
+                <li>পদাৰ্থৰ কণিকাবোৰে পৰস্পৰে পৰস্পৰক আকৰ্ষণ কৰে।</li>
+            </ul>
+
+            <h3>2. States of Matter (পদাৰ্থৰ অৱস্থাসমূহ)</h3>
+            <p>পদাৰ্থ প্ৰধানকৈ তিনিটা অৱস্থাত পোৱা যায়:</p>
+            <ul>
+                <li><strong>গোটা অৱস্থা (Solid State):</strong> নিৰ্দিষ্ট আকাৰ আৰু আয়তন থাকে। কণিকাবোৰৰ মাজৰ আকৰ্ষণ বল আটাইতকৈ বেছি।</li>
+                <li><strong>জুলীয়া অৱস্থা (Liquid State):</strong> নিৰ্দিষ্ট আয়তন আছে যদিও নিৰ্দিষ্ট আকাৰ নাই (পাত্ৰৰ আকাৰ লয়)।</li>
+                <li><strong>গেছীয় অৱস্থা (Gaseous State):</strong> নিৰ্দিষ্ট আয়তন আৰু আকাৰ নাই। কণিকাবোৰৰ মাজৰ আকৰ্ষণ বল আটাইতকৈ কম।</li>
+            </ul>
+
+            <h3>3. Change of State (অৱস্থাৰ পৰিৱৰ্তন)</h3>
+            <p>উষ্ণতা আৰু চাপৰ পৰিৱৰ্তন কৰি পদাৰ্থৰ অৱস্থা সলনি কৰিব পাৰি।</p>
+            <ul>
+                <li><strong>গলন (Melting):</strong> গোটা অৱস্থাৰ পৰা জুলীয়া অৱস্থালৈ যোৱা প্ৰক্ৰিয়া।</li>
+                <li><strong>উত্তলন (Boiling):</strong> জুলীয়া অৱস্থাৰ পৰা গেছীয় অৱস্থালৈ যোৱা প্ৰক্ৰিয়া।</li>
+                <li><strong>উৰ্ধ্বপাতন (Sublimation):</strong> গোটা পদাৰ্থ এটা তাপ পালে জুলীয়া অৱস্থালৈ নগৈ পোনে পোনে গেছীয় অৱস্থা পোৱা প্ৰক্ৰিয়া (যেনে: কৰ্পূৰ, এম'নিয়াম ক্ল'ৰাইড)।</li>
+            </ul>
+
+            <h3>4. Evaporation (বাষ্পীভৱন)</h3>
+            <p>উত্তলনাংকতকৈ কম যিকোনো উষ্ণতাত জুলীয়া পদাৰ্থ এটা গেছীয় অৱস্থালৈ পৰিৱৰ্তিত হোৱা প্ৰক্ৰিয়াটোক <strong>বাষ্পীভৱন (Evaporation)</strong> বোলে। বাষ্পীভৱনে শীতলতাৰ সৃষ্টি কৰে।</p>
+        </div>
+
+        <!-- 2. Simulations Panel -->
+        <div id="simulations" class="content-panel">
+            <h2>Interactive Chemistry Simulations (পৰীক্ষণসমূহ)</h2>
+            <p>Explore concept-based interactive visual simulations built for the Matter chapter:</p>
+
+            <div class="sim-grid">
+                <a href="../../simulations/states-of-matter.html" class="sim-card" target="_blank">
+                    <h4>1. States of Matter</h4>
+                    <p>Observe particles in Solid, Liquid, and Gas phases.</p>
+                </a>
+                <a href="../../simulations/diffusion.html" class="sim-card" target="_blank">
+                    <h4>2. Diffusion (ব্যাপন)</h4>
+                    <p>See how temperature affects the mixing of ink in water.</p>
+                </a>
+                <a href="../../simulations/sublimation.html" class="sim-card" target="_blank">
+                    <h4>3. Sublimation Lab</h4>
+                    <p>Experiment with heating Ammonium Chloride.</p>
+                </a>
+                <a href="../../simulations/evaporation.html" class="sim-card" target="_blank">
+                    <h4>4. Evaporation & Cooling</h4>
+                    <p>Analyze how surface area, temperature, and wind speed affect evaporation rates.</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 3. Formulas Panel -->
+        <div id="formulas" class="content-panel">
+            <h2>Key Concepts & Formulas (মূল ধাৰণা আৰু সূত্ৰ)</h2>
+            <p>Quick reference formula cards for exams and conversions:</p>
+            <ul>
+                <li><strong>উষ্ণতাৰ ৰূপান্তৰ (Temperature Conversion):</strong><br>
+                কেলভিন (Kelvin, $K$) আৰু চেলছিয়াছ (Celsius, $^\circ C$) ৰ মাজৰ সম্পৰ্ক:<br>
+                $K = ^\circ C + 273$</li>
+                <li><strong>ঘনত্ব (Density, $d$):</strong> প্ৰতি একক আয়তনৰ ভৰকে ঘনত্ব বোলে।<br>
+                $d = \frac{m}{V}$<br>
+                <em>(ঘনত্ব = ভৰ / আয়তন)</em></li>
+            </ul>
+        </div>
+
+        <!-- 4. Numericals Panel -->
+        <div id="numericals" class="content-panel">
+            <h2>Q & A / Problem Practice (প্ৰশ্নোত্তৰ)</h2>
+            <p><strong>Example Conversion 1:</strong> তলৰ উষ্ণতাবোৰক চেলছিয়াছ স্কেললৈ পৰিৱৰ্তন কৰা।<br>
+            (a) 300 K &nbsp;&nbsp; (b) 573 K</p>
+            <p><strong>Solution:</strong><br>
+            আমি জানো যে, $^\circ C = K - 273$<br>
+            (a) $300 \, K = (300 - 273)^\circ C = 27^\circ C$<br>
+            (b) $573 \, K = (573 - 273)^\circ C = 300^\circ C$</p>
+
+            <br>
+            <p><strong>Conceptual Question:</strong> গ্ৰীষ্মকালত আমি কপাহী কাপোৰ পিন্ধিব লাগে কিয়?</p>
+            <p><strong>Solution:</strong> গ্ৰীষ্মকালত আমাৰ শৰীৰৰ পৰা ঘাম বেছিকৈ ওলায়। কপাহী কাপোৰে পানী ভালদৰে শোষণ কৰিব পাৰে, যাৰ ফলত ঘামবোৰ সহজতে বায়ুমণ্ডলত বাষ্পীভৱন হ'বলৈ সুবিধা পায়। বাষ্পীভৱনৰ বাবে প্ৰয়োজনীয় তাপ আমাৰ শৰীৰৰ পৰা শোষণ কৰে বাবে আমাৰ শৰীৰটো শীতল পৰে।</p>
+        </div>
+
+        <!-- 5. Downloads Panel -->
+        <div id="downloads" class="content-panel">
+            <h2>Download Study Materials (ডাউনলোড শাখা)</h2>
+            <p>Access offline PDF notes and important resources directly via Google Drive links:</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                <li><a href="YOUR_DRIVE_LINK_NOTES_CH1" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Chapter 1 Full Notes (PDF)</a></li>
+                <li><a href="YOUR_DRIVE_LINK_PYQ_CH1" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Previous Years Questions & Solutions (PDF)</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
