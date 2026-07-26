@@ -17,15 +17,11 @@ class SecurityGatekeeper {
 
     async authenticate(portalId, password) {
         const cleanInput = password ? password.trim().toLowerCase() : '';
-
-        // Determine target: If user typed the physics passcode, force BSC portal. 
-        // If they typed the science passcode, force Class 9 portal.
+        
+        // Auto-detect portal based on password typed
         let targetKey = portalId;
-        if (cleanInput === 'jugita baruah') {
-            targetKey = 'bsc';
-        } else if (cleanInput === '@class9science') {
-            targetKey = 'class9';
-        }
+        if (cleanInput === 'jugita baruah') targetKey = 'bsc';
+        if (cleanInput === '@class9science') targetKey = 'class9';
 
         const target = this.config[targetKey];
         if (!target) return false;
