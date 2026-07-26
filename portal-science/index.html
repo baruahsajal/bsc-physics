@@ -2,99 +2,246 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 9 Science | S.Baruah Academy</title>
-    <link rel="stylesheet" href="../assets/css/variables.css">
-    <link rel="stylesheet" href="../assets/css/global.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Class 9 Science - Complete Curriculum Dashboard</title>
     <style>
-        .portal-layout { padding-top: var(--space-xl); padding-bottom: var(--space-3xl); }
-        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md); }
-        .chapter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: var(--space-lg); }
-        .module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); margin-top: var(--space-md); }
-        .mod-btn { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); color: var(--text-primary); padding: var(--space-sm); border-radius: var(--radius-sm); font-size: 0.8rem; text-align: center; text-decoration: none; transition: var(--transition-fast); display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .mod-btn:hover { background: rgba(0, 255, 157, 0.1); border-color: var(--accent-science); color: var(--accent-science); }
-        .mod-btn i { font-size: 1.1rem; }
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --border: rgba(255, 255, 255, 0.1);
+            --chem: #a855f7;
+            --bio: #22c55e;
+            --phy: #38bdf8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; }
+
+        header { text-align: center; margin-bottom: 30px; }
+        header h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 5px; }
+        header p { color: #94a3b8; font-size: 0.95rem; }
+
+        .container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
+
+        .section-title { font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+        .chapter-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 20px; backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 15px; transition: transform 0.2s, border-color 0.2s; }
+        .chapter-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+        .chapter-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .chapter-num { font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 6px; background: rgba(255,255,255,0.05); color: #94a3b8; letter-spacing: 1px; }
+        
+        .chapter-card h3 { font-size: 1.15rem; color: var(--text); margin-top: 5px; }
+        .chapter-card p { font-size: 0.85rem; color: #94a3b8; line-height: 1.4; }
+
+        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; }
+        .btn-card { padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.85rem; font-weight: 600; text-align: center; text-decoration: none; transition: 0.2s; }
+        .btn-card:hover { background: rgba(255,255,255,0.1); }
+        .btn-card.active { background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: var(--accent); }
+
+        .btn-download { display: block; width: 100%; padding: 12px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 8px; color: white; font-size: 0.85rem; font-weight: bold; text-align: center; text-decoration: none; transition: 0.2s; }
+        .btn-download:hover { opacity: 0.9; transform: scale(1.01); }
     </style>
 </head>
 <body>
-    <nav class="navbar" style="border-bottom-color: var(--accent-science);">
-        <div class="container nav-container">
-            <a href="../index.html" class="nav-brand"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Academy Portal</a>
-            <div style="display: flex; align-items: center; gap: var(--space-md);">
-                <button onclick="AuthSystem.logout()" class="btn btn-outline" style="padding: 0.35rem 1rem;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+
+    <header>
+        <h1>Class 9 Science Curriculum</h1>
+        <p>Assamese Medium Curriculum & Interactive Portals</p>
+    </header>
+
+    <div class="container">
+
+        <!-- CHEMISTRY CHAPTERS -->
+        <div>
+            <h2 class="section-title" style="color: var(--chem);">🧪 Chemistry Chapters</h2>
+            <div class="grid">
+                <!-- Ch 1 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 01</span></div>
+                    <h3>Matter in Our Surroundings</h3>
+                    <p>States of matter, physical nature, characteristics of particles, and evaporation.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH1" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH1" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/motion-1d.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH1" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH1" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
+
+                <!-- Ch 2 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 02</span></div>
+                    <h3>Is Matter Around Us Pure?</h3>
+                    <p>Mixtures, solutions, physical and chemical changes, and separation techniques.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH2" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH2" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/uniform-motion.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH2" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH2" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
+
+                <!-- Ch 3 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 03</span></div>
+                    <h3>Atoms and Molecules</h3>
+                    <p>Laws of chemical combination, atoms, molecules, ions, and mole concept.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH3" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH3" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/average-speed.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH3" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH3" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
+
+                <!-- Ch 4 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 04</span></div>
+                    <h3>Structure of the Atom</h3>
+                    <p>Charged particles in matter, atomic models (Thomson, Rutherford, Bohr), and valency.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH4" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH4" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/acceleration.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH4" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH4" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
             </div>
         </div>
-    </nav>
 
-    <main class="container portal-layout">
-        <div class="toolbar animate-fade-up">
-            <div>
-                <h1 class="heading-display" style="font-size: 2.5rem; color: var(--text-primary);">Class 9 Science</h1>
-                <p style="color: var(--accent-science); font-weight: 500; font-family: var(--font-display);">Assamese Medium Curriculum</p>
-            </div>
-            <div class="glass-panel" style="padding: 0.5rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm);">
-                <i class="fas fa-search" style="color: var(--text-secondary);"></i>
-                <input type="text" placeholder="Search chapters..." style="background: transparent; border: none; color: #fff; outline: none; width: 200px;">
+        <!-- BIOLOGY CHAPTERS -->
+        <div>
+            <h2 class="section-title" style="color: var(--bio);">🌿 Biology Chapters</h2>
+            <div class="grid">
+                <!-- Ch 5 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 05</span></div>
+                    <h3>The Fundamental Unit of Life</h3>
+                    <p>Cell structure, plasma membrane, cell wall, nucleus, cytoplasm, and cell organelles.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH5" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH5" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/swim-velocity.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH5" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH5" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
+
+                <!-- Ch 6 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 06</span></div>
+                    <h3>Tissues</h3>
+                    <p>Plant and animal tissues, meristematic, permanent, epithelial, connective, and nervous tissues.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH6" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH6" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/farmer-field.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH6" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH6" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
+
+                <!-- Ch 7 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 07</span></div>
+                    <h3>Improvement in Food Resources</h3>
+                    <p>Crop variety improvement, production management, animal husbandry, and protection measures.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH7" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH7" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/kinematics-solver.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH7" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH7" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
             </div>
         </div>
 
-        <div class="chapter-grid animate-fade-up" style="animation-delay: 100ms;">
-            
-            <!-- Chapter 1 -->
-            <div class="glass-panel card" style="border-top: 3px solid var(--accent-science);">
-                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-science); margin-bottom: var(--space-xs);">CHAPTER 01</div>
-                <h2 class="heading-display" style="font-size: 1.3rem; margin-bottom: var(--space-xs);">Matter in Our Surroundings</h2>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">States of matter, physical nature, characteristics of particles, and evaporation.</p>
-                
-                <div class="module-grid">
-                    <a href="../viewer.html?file=ch1-notes.html&type=Notes&title=Chapter%201%20Notes&portal=class9" class="mod-btn"><i class="fas fa-book"></i> Full Notes</a>
-                    <a href="../viewer.html?file=ch1-map.html&type=Mind%20Map&title=Chapter%201%20Map&portal=class9" class="mod-btn"><i class="fas fa-sitemap"></i> Mind Map</a>
-                    <a href="../viewer.html?file=ch1-sim.html&type=Simulation&title=Matter%20Simulation&portal=class9" class="mod-btn" style="color: var(--accent-cyan);"><i class="fas fa-play"></i> Simulation</a>
-                    <a href="../viewer.html?file=ch1-quiz.html&type=Quiz&title=Chapter%201%20Quiz&portal=class9" class="mod-btn" style="color: var(--accent-warning);"><i class="fas fa-check-double"></i> Chapter Test</a>
+        <!-- PHYSICS & EARTH SCIENCE CHAPTERS -->
+        <div>
+            <h2 class="section-title" style="color: var(--phy);">⚡ Physics & Earth Science Chapters</h2>
+            <div class="grid">
+                <!-- Ch 8 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 08</span></div>
+                    <h3>Motion</h3>
+                    <p>Distance, displacement, velocity, acceleration, and graphical representations.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH8" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH8" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/motion-1d.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH8" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH8" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
                 </div>
-                <a href="#" class="btn btn-outline" style="width: 100%; margin-top: var(--space-md); padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-download"></i> Download PYQs & Important Qs</a>
-            </div>
 
-            <!-- Chapter 2 -->
-            <div class="glass-panel card" style="border-top: 3px solid var(--accent-science);">
-                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-science); margin-bottom: var(--space-xs);">CHAPTER 02</div>
-                <h2 class="heading-display" style="font-size: 1.3rem; margin-bottom: var(--space-xs);">Is Matter Around Us Pure</h2>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">Mixtures, solutions, physical and chemical changes, and separation techniques.</p>
-                
-                <div class="module-grid">
-                    <a href="#" class="mod-btn"><i class="fas fa-book"></i> Full Notes</a>
-                    <a href="#" class="mod-btn"><i class="fas fa-sitemap"></i> Mind Map</a>
-                    <a href="#" class="mod-btn" style="color: var(--accent-cyan);"><i class="fas fa-play"></i> Simulation</a>
-                    <a href="#" class="mod-btn" style="color: var(--accent-warning);"><i class="fas fa-check-double"></i> Chapter Test</a>
+                <!-- Ch 9 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 09</span></div>
+                    <h3>Force and Laws of Motion</h3>
+                    <p>Balanced and unbalanced forces, Newton's laws of motion, and conservation of momentum.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH9" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH9" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/equations-of-motion.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH9" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH9" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
                 </div>
-                <a href="#" class="btn btn-outline" style="width: 100%; margin-top: var(--space-md); padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-download"></i> Download PYQs & Important Qs</a>
-            </div>
 
-            <!-- Chapter 8 (Physics portion example) -->
-            <div class="glass-panel card" style="border-top: 3px solid var(--accent-science);">
-                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-science); margin-bottom: var(--space-xs);">CHAPTER 08</div>
-                <h2 class="heading-display" style="font-size: 1.3rem; margin-bottom: var(--space-xs);">Motion</h2>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">Distance, displacement, velocity, acceleration, and graphical representations.</p>
-                
-                <div class="module-grid">
-                    <a href="#" class="mod-btn"><i class="fas fa-book"></i> Full Notes</a>
-                    <a href="#" class="mod-btn"><i class="fas fa-sitemap"></i> Mind Map</a>
-                    <a href="#" class="mod-btn" style="color: var(--accent-cyan);"><i class="fas fa-play"></i> Simulation</a>
-                    <a href="#" class="mod-btn" style="color: var(--accent-warning);"><i class="fas fa-check-double"></i> Chapter Test</a>
+                <!-- Ch 10 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 10</span></div>
+                    <h3>Gravitation</h3>
+                    <p>Universal law of gravitation, free fall, mass, weight, and thrust and pressure.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH10" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH10" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/farmer-field.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH10" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH10" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
                 </div>
-                <a href="#" class="btn btn-outline" style="width: 100%; margin-top: var(--space-md); padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-download"></i> Download PYQs & Important Qs</a>
-            </div>
 
+                <!-- Ch 11 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 11</span></div>
+                    <h3>Work and Energy</h3>
+                    <p>Work done, kinetic and potential energy, law of conservation of energy, and power.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH11" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH11" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/velocity-time-area.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH11" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH11" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
+
+                <!-- Ch 12 -->
+                <div class="chapter-card">
+                    <div class="chapter-header"><span class="chapter-num">CHAPTER 12</span></div>
+                    <h3>Sound</h3>
+                    <p>Production and propagation of sound, wave characteristics, reflection, and human ear.</p>
+                    <div class="action-grid">
+                        <a href="YOUR_DRIVE_LINK_NOTES_CH12" class="btn-card" target="_blank">Full Notes</a>
+                        <a href="YOUR_DRIVE_LINK_MINDMAP_CH12" class="btn-card" target="_blank">Mind Map</a>
+                        <a href="../simulations/distance-time-graph.html" class="btn-card active" target="_blank">Simulation</a>
+                        <a href="YOUR_DRIVE_LINK_TEST_CH12" class="btn-card" target="_blank">Chapter Test</a>
+                    </div>
+                    <a href="YOUR_DRIVE_LINK_PYQ_CH12" class="btn-download" target="_blank">DOWNLOAD PYQS & IMPORTANT Qs</a>
+                </div>
+            </div>
         </div>
-    </main>
 
-    <script src="../assets/js/auth.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            AuthSystem.verifyAccess('class9');
-        });
-    </script>
+    </div>
 </body>
 </html>
