@@ -6,11 +6,13 @@ class SecurityGatekeeper {
 
         this.config = {
             bsc: {
-                hash: '4c9d26c38201522d5e01e71080ed04350168f9f333a79a46fbb35bef8e44dc42', // Passcode: Jugita
+                // Pre-computed SHA-256 hash for: "jugita baruah"
+                hash: '1b141d8e12d09ec9560f64ee531584c3c3917409247d4834e0626b911762c953', 
                 redirect: repoBase + '/portal-physics/index.html'
             },
             class9: {
-                hash: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', // Passcode: 123456
+                // Pre-computed SHA-256 hash for: "@class9science"
+                hash: 'e6a8d8e573187c3b1713e5066914bc8a1ef982760fb2655eddf85523497d394b', 
                 redirect: repoBase + '/portal-science/index.html'
             }
         };
@@ -28,7 +30,10 @@ class SecurityGatekeeper {
         const target = this.config[portalId];
         if (!target) return false;
 
-        const inputHash = await this.encodePassword(password);
+        // Clean input by removing accidental leading/trailing spaces
+        const cleanPassword = password ? password.trim() : '';
+
+        const inputHash = await this.encodePassword(cleanPassword);
         if (inputHash === target.hash) {
             sessionStorage.setItem(`access_granted_${portalId}`, 'true');
             sessionStorage.setItem('active_session_type', portalId);
