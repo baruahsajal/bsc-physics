@@ -1,694 +1,201 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Notes Library - BSc Physics</title>
+    <title>Physics Notes Library | FYUGP</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.7;
-            color: #1a202c;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            background-attachment: fixed;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(102, 126, 234, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            list-style: none;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 10px 18px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 140px 20px 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        /* Semester Cards */
         .semester-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            gap: var(--space-xl);
         }
-
-        .semester-card {
-            background: white;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            border-top: 5px solid #667eea;
-        }
-
-        .semester-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
-        }
-
-        .semester-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .semester-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .semester-card h3 {
-            color: #2d3748;
-            font-size: 1.8rem;
-        }
-
-        /* Course Section */
         .course-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.02);
+            border-left: 4px solid var(--accent-physics);
+            padding: var(--space-md);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-md);
+            transition: var(--transition-fast);
         }
-
         .course-section:hover {
-            transform: translateX(5px);
-            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
-            border-left-color: #764ba2;
+            background: rgba(189, 0, 255, 0.05);
+            transform: translateX(4px);
         }
-
-        .course-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .course-code {
-            font-weight: 700;
-            color: #667eea;
-            font-size: 0.9rem;
-        }
-
-        .course-name {
-            color: #2d3748;
-            font-size: 1.2rem;
-            font-weight: 600;
-            flex-grow: 1;
-            margin-left: 10px;
-        }
-
-        .download-btn, .view-btn {
-            display: inline-block;
-            padding: 8px 16px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .download-btn:hover, .view-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Unit Section */
         .unit-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .unit-header {
-            font-size: 1.1rem;
-            color: #764ba2;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 5px;
-        }
-
-        .unit-content {
-            min-height: 100px;
-            padding: 10px;
-            border: 1px dashed #e2e8f0;
-            border-radius: 5px;
-            background: #f9fafb;
-        }
-
-        /* Status Badge */
-        .status-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-
-        .status-completed {
-            background: #c6f6d5;
-            color: #22543d;
-        }
-
-        .status-progress {
-            background: #fef5e7;
-            color: #92400e;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            color: white;
-            padding: 40px 20px;
-            margin-top: 80px;
-            text-align: center;
-        }
-
-        footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .semester-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .course-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .course-name {
-                margin-left: 0;
-                margin-top: 5px;
-            }
+            background: rgba(0,0,0,0.2);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-sm);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="index.html">🏠 Home</a></li>
-            <li><a href="notes.html">📚 Notes</a></li>
-            <li><a href="about.html">👤 About</a></li>
-            <li><a href="index.html#syllabus">📖 Syllabus</a></li>
-            <li><a href="index.html#contact">📞 Contact</a></li>
-        </ul>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-atom" style="color: var(--accent-cyan);"></i>
+                Physics Portal
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="notes.html" class="nav-link active">Notes Library</a></li>
+                <li><a href="common-courses.html" class="nav-link">Common Courses</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>📚 Physics Notes Library</h1>
-        <p>Comprehensive study materials for BSc Physics (FYUGP 2024-2025)</p>
-    </section>
+    <main class="container" style="padding-top: 8rem; padding-bottom: var(--space-3xl);">
+        <header style="text-align: center; margin-bottom: var(--space-3xl);">
+            <h1 class="heading-display text-gradient" style="font-size: 3rem; margin-bottom: var(--space-sm);">Physics Notes Library</h1>
+            <p class="heading-rajdhani" style="color: var(--text-secondary); font-size: 1.25rem;">Comprehensive study materials for B.Sc Physics (FYUGP)</p>
+        </header>
 
-    <!-- Main Container -->
-    <div class="container">
-
-        <!-- Semester 1 -->
         <div class="semester-grid">
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">1️⃣</span>
-                    <div>
-                        <h3>Semester 1</h3>
-                        <span class="status-badge status-completed">Completed</span>
-                    </div>
+            <!-- Semester 1 -->
+            <div class="glass-panel card animate-fade-up">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: var(--space-md);">
+                    <h2 class="heading-display" style="font-size: 1.75rem;">Semester 1</h2>
+                    <span class="badge badge-completed">Completed</span>
                 </div>
 
-                <!-- Course 1: Mathematical Physics & Mechanics -->
                 <div class="course-section">
-                    <div class="course-header">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm);">
                         <div>
-                            <span class="course-code">PHY0100104</span>
-                            <span class="course-name">Mathematical Physics & Mechanics</span>
+                            <div style="color: var(--accent-physics); font-weight: 600; font-size: 0.85rem;">PHY0100104</div>
+                            <div style="font-weight: 600;">Mathematical Physics & Mechanics</div>
                         </div>
-                        <a href="#" class="download-btn">📥 Download Notes</a>
+                        <a href="#" class="btn btn-outline" style="padding: 4px 12px; font-size: 0.75rem;"><i class="fas fa-download"></i> DL</a>
                     </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Vector Calculus</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit II: Curvilinear Coordinates</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit III: Dirac Delta Function</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
+                    <div class="unit-section">Unit I: Vector Calculus</div>
+                    <div class="unit-section">Unit II: Curvilinear Coordinates</div>
                 </div>
 
-                <!-- Course 2: AI in Physics (SWAYAM) -->
-                <div class="course-section">
-                    <div class="course-header">
+                <div class="course-section" style="border-left-color: var(--accent-cyan);">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm);">
                         <div>
-                            <span class="course-code">SEC</span>
-                            <span class="course-name">AI in Physics (SWAYAM)</span>
-                        </div>
-                        <a href="#" class="download-btn">📥 Download Notes</a>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Introduction to AI</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
+                            <div style="color: var(--accent-cyan); font-weight: 600; font-size: 0.85rem;">SEC (SWAYAM)</div>
+                            <div style="font-weight: 600;">AI in Physics</div>
                         </div>
                     </div>
-                    <!-- Add more units as needed -->
+                    <div class="unit-section">Unit I: Introduction to AI</div>
                 </div>
             </div>
 
             <!-- Semester 2 -->
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">2️⃣</span>
-                    <div>
-                        <h3>Semester 2</h3>
-                        <span class="status-badge status-completed">Completed</span>
-                    </div>
+            <div class="glass-panel card animate-fade-up" style="animation-delay: 100ms;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: var(--space-md);">
+                    <h2 class="heading-display" style="font-size: 1.75rem;">Semester 2</h2>
+                    <span class="badge badge-completed">Completed</span>
                 </div>
 
-                <!-- Course 1: Mathematical Physics, Electricity & Magnetism -->
                 <div class="course-section">
-                    <div class="course-header">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm);">
                         <div>
-                            <span class="course-code">PHY0200104</span>
-                            <span class="course-name">Mathematical Physics, Electricity & Magnetism</span>
-                        </div>
-                        <a href="#" class="download-btn">📥 Download Notes</a>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Differential Equations</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
+                            <div style="color: var(--accent-physics); font-weight: 600; font-size: 0.85rem;">PHY0200104</div>
+                            <div style="font-weight: 600;">Electricity & Magnetism</div>
                         </div>
                     </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit II: Matrices</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div class="unit-section">Unit I: Differential Equations</div>
                 </div>
-
-                <!-- Course 2: Basic Workshop Skills -->
-                <div class="course-section">
-                    <div class="course-header">
+                
+                <div class="course-section" style="border-left-color: var(--accent-cyan);">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm);">
                         <div>
-                            <span class="course-code">SEC</span>
-                            <span class="course-name">Basic Workshop Skills in Physics & Electronics</span>
-                        </div>
-                        <a href="#" class="download-btn">📥 Download Notes</a>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Workshop Safety and Tools</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
+                            <div style="color: var(--accent-cyan); font-weight: 600; font-size: 0.85rem;">SEC</div>
+                            <div style="font-weight: 600;">Basic Workshop Skills</div>
                         </div>
                     </div>
-                    <!-- Add more units as needed -->
+                    <div class="unit-section">Unit I: Workshop Safety</div>
                 </div>
             </div>
 
             <!-- Semester 3 -->
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">3️⃣</span>
-                    <div>
-                        <h3>Semester 3</h3>
-                        <span class="status-badge status-progress">In Progress</span>
-                    </div>
+            <div class="glass-panel card animate-fade-up" style="animation-delay: 200ms; border: 1px solid var(--accent-cyan);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: var(--space-md);">
+                    <h2 class="heading-display" style="font-size: 1.75rem; color: var(--accent-cyan);">Semester 3</h2>
+                    <span class="badge badge-progress">In Progress</span>
                 </div>
 
-                <!-- Course 1: Waves & Optics -->
                 <div class="course-section">
-                    <div class="course-header">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm);">
                         <div>
-                            <span class="course-code">PHY0300104</span>
-                            <span class="course-name">Waves & Optics</span>
+                            <div style="color: var(--accent-physics); font-weight: 600; font-size: 0.85rem;">PHY0300104</div>
+                            <div style="font-weight: 600;">Waves & Optics</div>
                         </div>
-                        <a href="waves-optics.html" class="view-btn">📝 View Notes</a>
+                        <a href="#" class="btn btn-primary" style="padding: 4px 12px; font-size: 0.75rem;"><i class="fas fa-play"></i> View</a>
                     </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Superposition of Harmonic Oscillations</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit II: Wave Motion</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit III: Velocity of Waves</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div class="unit-section">Unit I: Superposition of Harmonic Oscillations</div>
                 </div>
-
-                <!-- Course 2: Electromagnetic Theory -->
+                
                 <div class="course-section">
-                    <div class="course-header">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm);">
                         <div>
-                            <span class="course-code">PHY0300204</span>
-                            <span class="course-name">Electromagnetic Theory</span>
-                        </div>
-                        <a href="#" class="view-btn">📝 View Notes</a>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Electrostatics</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
+                            <div style="color: var(--accent-physics); font-weight: 600; font-size: 0.85rem;">PHY0300204</div>
+                            <div style="font-weight: 600;">Electromagnetic Theory</div>
                         </div>
                     </div>
-                    <!-- Add more units as needed -->
+                    <div class="unit-section">Unit I: Electrostatics</div>
                 </div>
             </div>
 
             <!-- Semester 4 -->
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">4️⃣</span>
-                    <div>
-                        <h3>Semester 4</h3>
-                        <span class="status-badge status-progress">Upcoming</span>
-                    </div>
+            <div class="glass-panel card animate-fade-up" style="animation-delay: 300ms; opacity: 0.7; pointer-events: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: var(--space-md);">
+                    <h2 class="heading-display" style="font-size: 1.75rem;">Semester 4</h2>
+                    <span class="badge badge-locked">Upcoming</span>
                 </div>
-
-                <!-- Course 1: Classical Mechanics -->
                 <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0400104</span>
-                            <span class="course-name">Classical Mechanics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Lagrangian Approach</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div style="font-weight: 600;">Classical Mechanics</div>
                 </div>
-
-                <!-- Course 2: Quantum Mechanics-I -->
                 <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0400204</span>
-                            <span class="course-name">Quantum Mechanics-I</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Wave-Particle Duality</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
-                </div>
-
-                <!-- Course 3: Analog Electronics -->
-                <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0400304</span>
-                            <span class="course-name">Analog Electronics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Diodes and Transistors</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
-                </div>
-
-                <!-- Course 4: Mathematical Physics -->
-                <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0400404</span>
-                            <span class="course-name">Mathematical Physics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Complex Variables</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div style="font-weight: 600;">Quantum Mechanics-I</div>
                 </div>
             </div>
-
+            
             <!-- Semester 5 -->
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">5️⃣</span>
-                    <div>
-                        <h3>Semester 5</h3>
-                        <span class="status-badge status-progress">Upcoming</span>
-                    </div>
+            <div class="glass-panel card animate-fade-up" style="animation-delay: 400ms; opacity: 0.7; pointer-events: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: var(--space-md);">
+                    <h2 class="heading-display" style="font-size: 1.75rem;">Semester 5</h2>
+                    <span class="badge badge-locked">Upcoming</span>
                 </div>
-
-                <!-- Course 1: Atomic & Molecular Physics -->
                 <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0500104</span>
-                            <span class="course-name">Atomic & Molecular Physics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Atomic Spectra</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div style="font-weight: 600;">Atomic & Molecular Physics</div>
                 </div>
-
-                <!-- Course 2: Condensed Matter Physics -->
                 <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0500204</span>
-                            <span class="course-name">Condensed Matter Physics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Crystal Structure</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
-                </div>
-
-                <!-- Course 3: Heat & Thermodynamics -->
-                <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0500304</span>
-                            <span class="course-name">Heat & Thermodynamics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Laws of Thermodynamics</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div style="font-weight: 600;">Condensed Matter Physics</div>
                 </div>
             </div>
 
             <!-- Semester 6 -->
-            <div class="semester-card">
-                <div class="semester-header">
-                    <span class="semester-icon">6️⃣</span>
-                    <div>
-                        <h3>Semester 6</h3>
-                        <span class="status-badge status-progress">Upcoming</span>
-                    </div>
+            <div class="glass-panel card animate-fade-up" style="animation-delay: 500ms; opacity: 0.7; pointer-events: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: var(--space-md);">
+                    <h2 class="heading-display" style="font-size: 1.75rem;">Semester 6</h2>
+                    <span class="badge badge-locked">Upcoming</span>
                 </div>
-
-                <!-- Course 1: Nuclear & Particle Physics -->
                 <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0600104</span>
-                            <span class="course-name">Nuclear & Particle Physics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Nuclear Structure</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div style="font-weight: 600;">Nuclear & Particle Physics</div>
                 </div>
-
-                <!-- Course 2: Digital Electronics -->
                 <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0600204</span>
-                            <span class="course-name">Digital Electronics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Logic Gates</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
-                </div>
-
-                <!-- Course 3: Astronomy & Astrophysics -->
-                <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0600304</span>
-                            <span class="course-name">Astronomy & Astrophysics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Solar System</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
-                </div>
-
-                <!-- Course 4: Statistical Mechanics -->
-                <div class="course-section">
-                    <div class="course-header">
-                        <div>
-                            <span class="course-code">PHY0600404</span>
-                            <span class="course-name">Statistical Mechanics</span>
-                        </div>
-                    </div>
-                    <div class="unit-section">
-                        <h4 class="unit-header">Unit I: Foundations of Statistical Mechanics</h4>
-                        <div class="unit-content">
-                            <!-- Add your notes here -->
-                        </div>
-                    </div>
-                    <!-- Add more units as needed -->
+                    <div style="font-weight: 600;">Astronomy & Astrophysics</div>
                 </div>
             </div>
+
         </div>
+    </main>
 
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Physics Notes Portal | Created by BSc Physics Student</p>
-        <p style="margin-top: 10px;">
-            <a href="mailto:sajalbaruah51@gmail.com">Email</a> | 
-            <a href="https://wa.me/919678092519" target="_blank">WhatsApp</a>
-        </p>
+    <footer class="footer">
+        <div class="container" style="text-align: center; color: var(--text-muted);">
+            <p>&copy; 2026 Physics Notes Portal | Created by Sajal Barua</p>
+        </div>
     </footer>
 
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
