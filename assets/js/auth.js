@@ -6,7 +6,7 @@ class SecurityGatekeeper {
 
         this.config = {
             bsc: {
-                hash: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', // Passcode: 123456
+                hash: '4c9d26c38201522d5e01e71080ed04350168f9f333a79a46fbb35bef8e44dc42', // Passcode: jugita
                 redirect: repoBase + '/portal-physics/index.html'
             },
             class9: {
