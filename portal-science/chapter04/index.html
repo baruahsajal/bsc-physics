@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chapter 4: Structure of the Atom (পৰমাণুৰ গঠন) - S.Baruah Academy</title>
+    <style>
+        :root {
+            --bg: #020617;
+            --panel: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --accent: #a855f7; /* Chemistry Purple */
+            --border: rgba(255, 255, 255, 0.1);
+            --chem: #a855f7;
+            --highlight: #facc15;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        header { text-align: center; margin-bottom: 30px; max-width: 800px; width: 100%; }
+        header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
+        header p { color: #94a3b8; font-size: 1rem; }
+
+        .module-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+
+        /* Navigation Bar inside Module */
+        .module-nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+        .nav-tab { padding: 10px 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; color: #94a3b8; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .nav-tab.active { background: var(--accent); color: #020617; border-color: var(--accent); }
+
+        /* Content Panels */
+        .content-panel { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 25px; backdrop-filter: blur(10px); }
+        .content-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .content-panel h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .content-panel h3 { color: var(--highlight); margin: 20px 0 10px 0; font-size: 1.1rem; }
+        .content-panel p, .content-panel li { line-height: 1.6; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 10px; }
+        .content-panel ul { padding-left: 20px; }
+
+        /* Interactive Grid Cards */
+        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px; }
+        .sim-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 8px; transition: 0.2s; }
+        .sim-card:hover { border-color: var(--accent); transform: translateY(-2px); background: rgba(168, 85, 247, 0.05); }
+        .sim-card h4 { color: var(--accent); font-size: 1.05rem; }
+        .sim-card p { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+
+        .btn-back { display: inline-block; margin-bottom: 20px; padding: 8px 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 6px; color: var(--text); text-decoration: none; font-size: 0.85rem; }
+        .btn-back:hover { background: rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="module-container">
+        <a href="../index.html" class="btn-back">← Back to Portal Dashboard</a>
+
+        <header>
+            <h1>Chapter 4: Structure of the Atom (পৰমাণুৰ গঠন)</h1>
+            <p>Class 9 Science • SEBA / ASSEB Curriculum & Interactive Simulations</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="module-nav">
+            <div class="nav-tab active" onclick="switchTab('notes')">Full Notes (টোকা)</div>
+            <div class="nav-tab" onclick="switchTab('simulations')">Simulations (পৰীক্ষণ)</div>
+            <div class="nav-tab" onclick="switchTab('formulas')">Key Concepts (মূল ধাৰণা)</div>
+            <div class="nav-tab" onclick="switchTab('numericals')">Q & A (প্ৰশ্নোত্তৰ)</div>
+            <div class="nav-tab" onclick="switchTab('downloads')">Downloads (ডাউনলোড)</div>
+        </div>
+
+        <!-- 1. Notes Panel -->
+        <div id="notes" class="content-panel active">
+            <h2>Comprehensive Chapter Notes (সম্পূৰ্ণ পাঠটোকা)</h2>
+
+            <h3>1. Subatomic Particles (উপপাৰমাণৱিক কণা)</h3>
+            <p>পৰমাণু অবিভাজ্য নহয়। ই তিনিবিধ মূল উপপাৰমাণৱিক কণাৰে গঠিত:</p>
+            <ul>
+                <li><strong>ইলেক্ট্ৰন (Electron, $e^-$):</strong> ঋণাত্মক আধানযুক্ত কণা। ইয়াক জে. জে. থমছনে আৱিষ্কাৰ কৰিছিল।</li>
+                <li><strong>প্ৰ'টন (Proton, $p^+$):</strong> ধনাত্মক আধানযুক্ত কণা। ইয়াক ই. গ'ল্ডষ্টেইনে আৱিষ্কাৰ কৰিছিল।</li>
+                <li><strong>নিউট্ৰন (Neutron, $n$):</strong> আধানবিহীন (নিৰপেক্ষ) কণা। ইয়াক জে. চাডউইকে আৱিষ্কাৰ কৰিছিল।</li>
+            </ul>
+
+            <h3>2. Atomic Models (পৰমাণুৰ আৰ্হি)</h3>
+            <ul>
+                <li><strong>থমছনৰ আৰ্হি (Thomson's Model):</strong> তেওঁৰ মতে পৰমাণু এটা ধনাত্মক আধানযুক্ত গোলক আৰু ইলেক্ট্ৰনবোৰ তাত সোমাই থাকে (তৰমুজৰ দৰে)।</li>
+                <li><strong>ৰাডাৰফ'ৰ্ডৰ আৰ্হি (Rutherford's Model):</strong> আলফা ($ \alpha $) কণাৰ বিচ্ছুৰণ পৰীক্ষাৰ জৰিয়তে তেওঁ প্ৰমাণ কৰিলে যে পৰমাণুৰ কেন্দ্ৰত এটা সৰু, গধুৰ আৰু ধনাত্মক আধানযুক্ত কেন্দ্ৰ (Nucleus) আছে। ইলেক্ট্ৰনবোৰে কেন্দ্ৰটোৰ চাৰিওফালে ঘূৰি থাকে।</li>
+                <li><strong>ব'ৰৰ আৰ্হি (Bohr's Model):</strong> নীলছ ব'ৰে দেখুৱালে যে ইলেক্ট্ৰনবোৰে কিছুমান নিৰ্দিষ্ট কক্ষপথতহে (Discrete Orbits) ঘূৰি থাকে আৰু এইবোৰত ঘূৰি থাকোঁতে সিহঁতে শক্তি বিকিৰণ নকৰে।</li>
+            </ul>
+
+            <h3>3. Valency (যোজ্যতা)</h3>
+            <p>পৰমাণু এটাৰ আটাইতকৈ বাহিৰৰ কক্ষপথত থকা ইলেক্ট্ৰনবোৰক যোজক ইলেক্ট্ৰন (Valence Electrons) বোলে। পৰমাণু এটাই নিজৰ বাহিৰতম কক্ষপথটো সম্পূৰ্ণ কৰিবলৈ যিমান সংখ্যক ইলেক্ট্ৰন গ্ৰহণ, ত্যাগ বা ভাগ-বতৰা কৰে, তাকে তাৰ যোজ্যতা বোলে।</p>
+
+            <h3>4. Isotopes and Isobars (সমস্থানিক আৰু সমভাৰীয়)</h3>
+            <p><strong>সমস্থানিক (Isotopes):</strong> একে পাৰমাণৱিক সংখ্যা কিন্তু বেলেগ বেলেগ ভৰ সংখ্যা থকা একেটা মৌলৰ পৰমাণুসমূহ (যেনে: কাৰ্বনৰ $^{12}\text{C}$ আৰু $^{14}\text{C}$)।<br>
+            <strong>সমভাৰীয় (Isobars):</strong> বেলেগ বেলেগ পাৰমাণৱিক সংখ্যা কিন্তু একে ভৰ সংখ্যা থকা বেলেগ বেলেগ মৌলৰ পৰমাণুসমূহ (যেনে: আৰ্গন আৰু কেলচিয়াম, দুয়োটাৰ ভৰ সংখ্যা 40)।</p>
+        </div>
+
+        <!-- 2. Simulations Panel -->
+        <div id="simulations" class="content-panel">
+            <h2>Interactive Chemistry Simulations (পৰীক্ষণসমূহ)</h2>
+            <p>Explore concept-based interactive visual simulations built for the Atomic Structure chapter:</p>
+
+            <div class="sim-grid">
+                <a href="../../simulations/rutherford-scattering.html" class="sim-card" target="_blank">
+                    <h4>1. Rutherford Scattering</h4>
+                    <p>Fire alpha particles at gold foil and observe the deflections.</p>
+                </a>
+                <a href="../../simulations/build-an-atom.html" class="sim-card" target="_blank">
+                    <h4>2. Build an Atom</h4>
+                    <p>Drag protons, neutrons, and electrons to build specific elements.</p>
+                </a>
+                <a href="../../simulations/bohr-model.html" class="sim-card" target="_blank">
+                    <h4>3. Bohr Model Animation</h4>
+                    <p>Visualize electron shells (K, L, M, N) and energy levels.</p>
+                </a>
+                <a href="../../simulations/isotopes-mass.html" class="sim-card" target="_blank">
+                    <h4>4. Isotopes & Atomic Mass</h4>
+                    <p>Mix different isotopes to see how average atomic mass is calculated.</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 3. Formulas Panel -->
+        <div id="formulas" class="content-panel">
+            <h2>Key Concepts & Formulas (মূল ধাৰণা আৰু সূত্ৰ)</h2>
+            <p>Important rules for atomic structure and electronic configuration:</p>
+            <ul>
+                <li><strong>পাৰমাণৱিক সংখ্যা (Atomic Number, $Z$):</strong> পৰমাণু এটাৰ কেন্দ্ৰত থকা প্ৰ'টনৰ সংখ্যা।<br>
+                $Z = \text{প্ৰ'টনৰ সংখ্যা}$</li>
+                <li><strong>ভৰ সংখ্যা (Mass Number, $A$):</strong> পৰমাণুৰ কেন্দ্ৰত থকা প্ৰ'টন আৰু নিউট্ৰনৰ মুঠ সংখ্যা।<br>
+                $A = \text{প্ৰ'টনৰ সংখ্যা} + \text{নিউট্ৰনৰ সংখ্যা}$</li>
+                <li><strong>ইলেক্ট্ৰন বিতৰণৰ সূত্ৰ (Bohr-Bury Scheme):</strong> যিকোনো কক্ষপথত থাকিব পৰা সৰ্বোচ্চ ইলেক্ট্ৰনৰ সংখ্যা $2n^2$ সূত্ৰেৰে নিৰ্ণয় কৰা হয় (য'ত $n$ = কক্ষপথৰ সংখ্যা: 1, 2, 3...)।</li>
+                <li>সৰ্ববহিঃস্থ কক্ষপথত সৰ্বোচ্চ 8 টা ইলেক্ট্ৰন থাকিব পাৰে।</li>
+            </ul>
+        </div>
+
+        <!-- 4. Numericals Panel -->
+        <div id="numericals" class="content-panel">
+            <h2>Q & A / Problem Practice (প্ৰশ্নোত্তৰ)</h2>
+            <p><strong>Example Problem 1:</strong> ছ'ডিয়াম (Na) পৰমাণুৰ ইলেক্ট্ৰনীয় বিন্যাস আৰু যোজ্যতা নিৰ্ণয় কৰা। (পাৰমাণৱিক সংখ্যা = 11)</p>
+            <p><strong>Solution:</strong><br>
+            ছ'ডিয়ামৰ পাৰমাণৱিক সংখ্যা ($Z$) = 11<br>
+            গতিকে, ইলেক্ট্ৰনৰ সংখ্যা = 11<br><br>
+            <strong>ইলেক্ট্ৰনীয় বিন্যাস (Electronic Configuration):</strong><br>
+            K-কক্ষ (1st shell): 2<br>
+            L-কক্ষ (2nd shell): 8<br>
+            M-কক্ষ (3rd shell): 1<br>
+            ইলেক্ট্ৰনীয় বিন্যাস = 2, 8, 1<br><br>
+            <strong>যোজ্যতা (Valency):</strong><br>
+            যিহেতু ইয়াৰ বাহিৰতম কক্ষপথত 1 টা ইলেক্ট্ৰন আছে, ছ'ডিয়ামে সুস্থিৰ হ'বলৈ এই ইলেক্ট্ৰনটো ত্যাগ কৰিব।<br>
+            গতিকে, ছ'ডিয়ামৰ যোজ্যতা = 1</p>
+
+            <hr style="border: 1px solid var(--border); margin: 20px 0;">
+
+            <p><strong>Example Problem 2:</strong> এটা পৰমাণুৰ ভৰ সংখ্যা 23 আৰু পাৰমাণৱিক সংখ্যা 11। পৰমাণুটোত কিমানটা নিউট্ৰন আছে?</p>
+            <p><strong>Solution:</strong><br>
+            আমি জানো যে, ভৰ সংখ্যা ($A$) = প্ৰ'টনৰ সংখ্যা + নিউট্ৰনৰ সংখ্যা<br>
+            আৰু, পাৰমাণৱিক সংখ্যা ($Z$) = প্ৰ'টনৰ সংখ্যা = 11<br><br>
+            $23 = 11 + \text{নিউট্ৰনৰ সংখ্যা}$<br>
+            $\text{নিউট্ৰনৰ সংখ্যা} = 23 - 11 = 12$<br><br>
+            <strong>উত্তৰ:</strong> পৰমাণুটোত 12 টা নিউট্ৰন আছে।</p>
+        </div>
+
+        <!-- 5. Downloads Panel -->
+        <div id="downloads" class="content-panel">
+            <h2>Download Study Materials (ডাউনলোড শাখা)</h2>
+            <p>Access offline PDF notes and important resources directly via Google Drive links:</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                <li><a href="YOUR_DRIVE_LINK_NOTES_CH4" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Chapter 4 Full Notes (PDF)</a></li>
+                <li><a href="YOUR_DRIVE_LINK_PYQ_CH4" class="sim-card" target="_blank" style="padding: 12px; font-weight: bold; color: var(--accent);">📥 Download Previous Years Questions & Solutions (PDF)</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
