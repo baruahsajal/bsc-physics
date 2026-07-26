@@ -3,1181 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Portal - The Fundamental Science</title>
-    <!-- Futuristic Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* --- DARK FUTURISTIC THEME --- */
-        :root {
-            --bg-color: #0a0a0f;
-            --card-bg: #13131f;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0b0;
-            --accent-cyan: #00f3ff;
-            --accent-green: #00ff9d;
-            --accent-purple: #bd00ff;
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            line-height: 1.7;
-            color: var(--text-primary);
-            background-color: var(--bg-color);
-            overflow-x: hidden;
-        }
-
-        /* Futuristic Grid Background */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03), rgba(0, 255, 157, 0.03));
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Animated Particles */
-        body::after {
-            content: '';
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-image: radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.05) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0, 243, 255, 0.2);
-            border-bottom: 2px solid var(--accent-cyan);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            list-style: none;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav li {
-            margin: 0 5px;
-        }
-
-        nav a {
-            color: var(--accent-cyan);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 10px 18px;
-            border-radius: 30px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border: 1px solid transparent;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        nav a:hover {
-            background: rgba(0, 243, 255, 0.1);
-            border-color: var(--accent-cyan);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 243, 255, 0.3);
-            text-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
-            color: white;
-            padding: 140px 20px 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 3px solid var(--accent-cyan);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
-            animation: heroGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes heroGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.7; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan);
-            animation: fadeInDown 1s ease;
-            letter-spacing: 2px;
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent-cyan);
-        }
-
-        .hero .subtitle {
-            font-size: 1.4rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s both;
-            color: var(--accent-green);
-        }
-
-        .physics-symbol {
-            font-size: 5rem;
-            margin: 20px 0;
-            animation: rotate3d 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px var(--accent-cyan));
-        }
-
-        @keyframes rotate3d {
-            0%, 100% { transform: perspective(400px) rotateY(0deg); }
-            50% { transform: perspective(400px) rotateY(180deg); }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* --- CONTAINER --- */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        /* --- SECTION STYLING --- */
-        section {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            margin: 40px 0;
-            padding: 50px 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: var(--glass-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        section::before {
-            content: attr(data-symbol);
-            position: absolute;
-            font-size: 15rem;
-            opacity: 0.03;
-            right: -50px;
-            top: -50px;
-            font-weight: bold;
-            pointer-events: none;
-            color: var(--accent-cyan);
-        }
-
-        section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-green), var(--accent-purple));
-            box-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.3);
-            border-color: rgba(0, 243, 255, 0.3);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 35px;
-        }
-
-        .section-icon {
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: iconPulse 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px var(--accent-cyan));
-        }
-
-        @keyframes iconPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        h2 {
-            color: var(--accent-cyan);
-            font-size: 2.5rem;
-            font-weight: 700;
-            flex: 1;
-            position: relative;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        h3 {
-            color: var(--accent-green);
-            font-size: 1.8rem;
-            margin: 30px 0 20px 0;
-            font-weight: 600;
-            text-shadow: 0 0 5px rgba(0, 255, 157, 0.3);
-        }
-
-        p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin: 15px 0;
-        }
-
-        /* --- CARDS GRID --- */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .card {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(0, 255, 157, 0.1));
-            padding: 40px 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.2) 0%, transparent 70%);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-
-        .card:hover::before {
-            opacity: 1;
-            top: -100%;
-            right: -100%;
-        }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.4);
-            border-color: var(--accent-cyan);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-            filter: drop-shadow(0 0 10px var(--accent-cyan));
-        }
-
-        .card h3 {
-            color: var(--accent-cyan);
-            margin: 0 0 15px 0;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            color: var(--text-primary);
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        /* --- MODERN TABLE --- */
-        .modern-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin: 40px 0;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-        }
-
-        .modern-table thead {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(0, 255, 157, 0.2));
-            border-bottom: 2px solid var(--accent-cyan);
-        }
-
-        .modern-table th {
-            color: var(--accent-cyan);
-            padding: 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .modern-table td {
-            padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            vertical-align: top;
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-        }
-
-        .modern-table tbody tr {
-            transition: all 0.3s ease;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .modern-table tbody tr:nth-child(even) {
-            background: rgba(0, 243, 255, 0.03);
-        }
-
-        .modern-table tbody tr:hover {
-            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), rgba(0, 255, 157, 0.1));
-            transform: scale(1.01);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-        }
-
-        .modern-table td:first-child {
-            font-weight: 700;
-            color: var(--accent-cyan);
-        }
-
-        /* --- QUOTE BOX --- */
-        .quote-modern {
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(189, 0, 255, 0.1));
-            padding: 35px 40px;
-            margin: 30px 0;
-            border-left: 6px solid var(--accent-cyan);
-            border-radius: 16px;
-            position: relative;
-            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2);
-        }
-
-        .quote-modern::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 4rem;
-            color: rgba(0, 243, 255, 0.2);
-            font-family: Georgia, serif;
-        }
-
-        .quote-modern p {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--text-primary);
-            margin-bottom: 15px;
-            padding-left: 30px;
-        }
-
-        .quote-author {
-            text-align: right;
-            font-weight: 700;
-            color: var(--accent-green);
-            font-size: 1.1rem;
-        }
-
-        /* --- STATS GRID --- */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .stat-box {
-            text-align: center;
-            padding: 35px 20px;
-            background: rgba(0, 243, 255, 0.05);
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 243, 255, 0.3);
-        }
-
-        .stat-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 243, 255, 0.4);
-            border-color: var(--accent-cyan);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* --- RESOURCES SECTION --- */
-        .resource-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-
-        .resource-item {
-            background: rgba(0, 243, 255, 0.05);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-green);
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .resource-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 25px rgba(0, 243, 255, 0.3);
-            background: rgba(0, 243, 255, 0.1);
-        }
-
-        .resource-item h4 {
-            color: var(--accent-cyan);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .resource-item a {
-            color: var(--accent-green);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .resource-item a:hover {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-            color: var(--text-primary);
-            padding: 60px 20px 30px;
-            margin-top: 80px;
-            position: relative;
-            overflow: hidden;
-            border-top: 3px solid var(--accent-cyan);
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green), var(--accent-purple));
-            box-shadow: 0 0 20px var(--accent-cyan);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h4 {
-            color: var(--accent-cyan);
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin: 12px 0;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-cyan);
-            transform: translateX(5px);
-            text-shadow: 0 0 10px var(--accent-cyan);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            nav a {
-                font-size: 0.8rem;
-                padding: 8px 12px;
-            }
-
-            .physics-symbol {
-                font-size: 3rem;
-            }
-        }
-    </style>
+    <title>Physics Portal | Sajal Barua</title>
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Fixed Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">⚛️ Home</a></li>
-            <li><a href="notes.html">📚 Notes</a></li>  
-            <li><a href="common courses.html">📚 Common Course</a></li>
-li><a href="mdc3.html">📚 mdc3</a></li>
-            <li><a href="about.html">👤 About</a></li>
-            <li><a href="#about">📖 About</a></li>
-            <li><a href="#importance">✨ Importance</a></li>
-            <li><a href="#branches">🔬 Branches</a></li>
-            <li><a href="#syllabus">📚 Syllabus</a></li>
-            <li><a href="#research">🧪 Research</a></li>
-            <li><a href="#careers">💼 Careers</a></li>
-            <li><a href="#resources">📖 Resources</a></li>
-            <li><a href="#quotes">💭 Quotes</a></li>
-            <li><a href="#contact">📞 Contact</a></li>
-        </ul>
-    </nav>
-<!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="physics-symbol">⚛️</div>
-            <h1>The World of Physics</h1>
-            <p class="subtitle">Exploring the Fundamental Laws Governing Our Universe</p>
-            <div class="quote-modern" style="background: rgba(0, 243, 255, 0.1); border-color: var(--accent-cyan); max-width: 800px; margin: 40px auto;">
-                <p style="color: white; padding-left: 0;">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
-                <p class="quote-author" style="color: var(--accent-green);">— Dan Brown</p>
-            </div>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-atom pulse-slow" style="color: var(--accent-cyan);"></i>
+                Physics Portal
+            </a>
+            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none;"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="notes.html" class="nav-link">Notes Library</a></li>
+                <li><a href="common-courses.html" class="nav-link">Common Courses</a></li>
+                <li><a href="mdc3.html" class="nav-link">MDC-3</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
 
-    <!-- Main Container -->
-    <div class="container">
-
-        <!-- About Physics Section -->
-        <section id="about" data-symbol="∫">
-            <div class="section-header">
-                <span class="section-icon">∫</span>
-                <h2>What is Physics?</h2>
-            </div>
-            <p>
-                Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale. 
-                From the quantum realm of subatomic particles to the cosmic expanse of galaxies, physics provides the mathematical 
-                and conceptual framework for comprehending matter, energy, space, and time.
-            </p>
-            <p>
-                It serves as the foundation upon which all natural sciences are built, bridging theoretical knowledge with 
-                practical applications that define our modern technological civilization. Physics not only explains 
-                natural phenomena but also enables us to predict, control, and harness the forces of nature.
-            </p>
-
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Fundamental Forces</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Possibilities</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Nobel Prizes</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">3×10⁸</div>
-                    <div class="stat-label">Speed of Light (m/s)</div>
+    <main>
+        <section class="section" style="min-height: 100vh; display: flex; align-items: center; padding-top: 6rem;">
+            <div class="container" style="text-align: center;">
+                <i class="fas fa-satellite-dish pulse-slow" style="font-size: 4rem; color: var(--accent-physics); margin-bottom: var(--space-lg);"></i>
+                <h1 class="heading-display text-gradient animate-fade-up" style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: var(--space-md);">The World of Physics</h1>
+                <p class="heading-rajdhani animate-fade-up" style="animation-delay: 100ms; font-size: 1.5rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto var(--space-2xl);">Exploring the Fundamental Laws Governing Our Universe.</p>
+                
+                <div class="glass-panel animate-fade-up" style="animation-delay: 200ms; max-width: 800px; margin: 0 auto; padding: var(--space-xl); border-left: 4px solid var(--accent-cyan);">
+                    <p style="font-size: 1.25rem; font-style: italic; margin-bottom: var(--space-md);">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
+                    <p class="heading-display" style="color: var(--accent-cyan); text-align: right;">- Dan Brown</p>
                 </div>
             </div>
         </section>
 
-        <!-- Importance Section -->
-        <section id="importance" data-symbol="E=mc²">
-            <div class="section-header">
-                <span class="section-icon">⚡</span>
-                <h2>The Importance of Physics</h2>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card">
-                    <span class="card-icon">💻</span>
-                    <h3>Technological Innovation</h3>
-                    <p>Physics drives technological progress that defines modern civilization.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🌱</span>
-                    <h3>Solving Global Challenges</h3>
-                    <p>Physics plays a crucial role in addressing climate change, developing renewable energy technologies, and creating sustainable solutions for humanity's future.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🏗️</span>
-                    <h3>Economic Progress</h3>
-                    <p>Physics generates fundamental knowledge needed for technological advances that drive economic growth, create industries, and improve quality of life worldwide.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🏥</span>
-                    <h3>Medical Breakthroughs</h3>
-                    <p>MRI scanners, radiation therapy, and medical imaging all stem from physics principles, revolutionizing healthcare and saving millions of lives.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🚀</span>
-                    <h3>Space Exploration</h3>
-                    <p>Physics enables rocket propulsion, satellite technology, and our understanding of the cosmos, pushing the boundaries of human exploration.</p>
+        <section id="about" class="section">
+            <div class="container">
+                <div class="glass-panel card animate-fade-up">
+                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xl);">
+                        <i class="fas fa-brain" style="font-size: 2.5rem; color: var(--accent-cyan);"></i>
+                        <h2 class="heading-display" style="font-size: 2rem;">What is Physics?</h2>
+                    </div>
+                    <p style="margin-bottom: var(--space-md); font-size: 1.125rem;">Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale. From the quantum realm of subatomic particles to the cosmic expanse of galaxies, physics provides the mathematical and conceptual framework for comprehending matter, energy, space, and time.</p>
+                    <p style="font-size: 1.125rem;">It serves as the foundation upon which all natural sciences are built, bridging theoretical knowledge with practical applications that define our modern technological civilization.</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-lg); margin-top: var(--space-2xl);">
+                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
+                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">4</div>
+                            <div style="color: var(--text-secondary);">Fundamental Forces</div>
+                        </div>
+                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
+                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">∞</div>
+                            <div style="color: var(--text-secondary);">Possibilities</div>
+                        </div>
+                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
+                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">100+</div>
+                            <div style="color: var(--text-secondary);">Nobel Prizes</div>
+                        </div>
+                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
+                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">3×10⁸</div>
+                            <div style="color: var(--text-secondary);">Speed of Light (m/s)</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Branches Section -->
-        <section id="branches" data-symbol="Ψ">
-            <div class="section-header">
-                <span class="section-icon">🔬</span>
-                <h2>Major Branches of Physics</h2>
-            </div>
-
-            <table class="modern-table">
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Branch</th>
-                        <th>Description</th>
-                        <th>Key Topics</th>
-                        <th>Applications</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-size: 2rem;">⚙️</td>
-                        <td><strong>Classical Mechanics</strong></td>
-                        <td>Study of motion and forces on macroscopic objects</td>
-                        <td>Newton's Laws, Energy, Momentum, Rotational Dynamics</td>
-                        <td>Engineering, Robotics, Aerospace</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">⚡</td>
-                        <td><strong>Electromagnetism</strong></td>
-                        <td>Study of electric and magnetic fields and their interactions</td>
-                        <td>Maxwell's Equations, EM Waves, Circuits</td>
-                        <td>Electronics, Communications, Power Generation</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">∿</td>
-                        <td><strong>Quantum Mechanics</strong></td>
-                        <td>Physics at atomic and subatomic scales</td>
-                        <td>Wave-Particle Duality, Uncertainty Principle, Schrödinger Equation</td>
-                        <td>Semiconductors, Quantum Computing, Nanotechnology</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">🌡️</td>
-                        <td><strong>Thermodynamics</strong></td>
-                        <td>Study of heat, energy transfer, and entropy</td>
-                        <td>Laws of Thermodynamics, Statistical Mechanics</td>
-                        <td>Engines, Refrigeration, Energy Systems</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">🌈</td>
-                        <td><strong>Optics</strong></td>
-                        <td>Study of light and its properties</td>
-                        <td>Reflection, Refraction, Interference, Polarization</td>
-                        <td>Lasers, Fiber Optics, Telescopes, Cameras</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">☢️</td>
-                        <td><strong>Nuclear Physics</strong></td>
-                        <td>Study of atomic nuclei and nuclear reactions</td>
-                        <td>Radioactivity, Fission, Fusion, Nuclear Models</td>
-                        <td>Nuclear Power, Medical Imaging, Radiotherapy</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">🌠</td>
-                        <td><strong>Astrophysics</strong></td>
-                        <td>Physics of celestial objects and the universe</td>
-                        <td>Stars, Galaxies, Black Holes, Cosmology</td>
-                        <td>Space Exploration, Astronomy, Cosmology</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">💎</td>
-                        <td><strong>Condensed Matter</strong></td>
-                        <td>Physics of solid and liquid matter</td>
-                        <td>Semiconductors, Superconductivity, Crystal Structure</td>
-                        <td>Materials Science, Electronics, Nanotechnology</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">🎯</td>
-                        <td><strong>Particle Physics</strong></td>
-                        <td>Study of elementary particles and fundamental forces</td>
-                        <td>Standard Model, Higgs Boson, Quarks, Leptons</td>
-                        <td>Fundamental Research, Accelerators</td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 2rem;">🌀</td>
-                        <td><strong>Relativity</strong></td>
-                        <td>Study of spacetime, gravity, and high-speed motion</td>
-                        <td>Special Relativity, General Relativity, Spacetime Curvature</td>
-                        <td>GPS, Gravitational Waves, Cosmology</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Syllabus Section -->
-        <section id="syllabus" data-symbol="∇">
-            <div class="section-header">
-                <span class="section-icon">📚</span>
-                <h2>Course Syllabus & Curriculum</h2>
-            </div>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">
-                <strong>FYUGP Program - Physics Department</strong><br>
-                <span style="color: var(--accent-green);">2024 and 2025 Batch</span>
-            </p>
-
-            <table class="modern-table">
-                <thead>
-                    <tr>
-                        <th>Semester</th>
-                        <th>Major Courses</th>
-                        <th>Minor Courses</th>
-                        <th>SEC</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>First</td>
-                        <td>PHY0100104 - Mathematical Physics & Mechanics</td>
-                        <td>PHY0100104 - Mathematical Physics & Mechanics</td>
-                        <td>AI in Physics (SWAYAM)</td>
-                    </tr>
-                    <tr>
-                        <td>Second</td>
-                        <td>PHY0200104 - Mathematical Physics, Electricity & Magnetism</td>
-                        <td>PHY0200104 - Mathematical Physics, Electricity & Magnetism</td>
-                        <td>Basic Workshop Skills in Physics & Electronics</td>
-                    </tr>
-                    <tr>
-                        <td>Third</td>
-                        <td>PHY0300104 - Waves & Optics<br>PHY0300204 - Electromagnetic Theory</td>
-                        <td>PHY0300104 - Waves & Optics</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>Fourth</td>
-                        <td>PHY0400104 - Classical Mechanics<br>PHY0400204 - Quantum Mechanics-I<br>
-                            PHY0400304 - Analog Electronics<br>PHY0400404 - Mathematical Physics</td>
-                        <td>PHY0400304 - Analog Electronics</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>Fifth</td>
-                        <td>PHY0500104 - Atomic & Molecular Physics<br>PHY0500204 - Condensed Matter Physics<br>
-                            PHY0500304 - Heat & Thermodynamics</td>
-                        <td>PHY0500304 - Heat & Thermodynamics</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>Sixth</td>
-                        <td>PHY0600104 - Nuclear & Particle Physics<br>PHY0600204 - Digital Electronics<br>
-                            PHY0600304 - Astronomy & Astrophysics<br>PHY0600404 - Statistical Mechanics</td>
-                        <td>PHY0600204 - Digital Electronics</td>
-                        <td>—</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Research Areas Section -->
-        <section id="research" data-symbol="λ">
-            <div class="section-header">
-                <span class="section-icon">🧪</span>
-                <h2>Active Research Areas</h2>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card">
-                    <span class="card-icon">🔮</span>
-                    <h3>Quantum Computing</h3>
-                    <p>Developing quantum algorithms, error correction, and building scalable quantum computers that could revolutionize computation.</p>
+        <section id="branches" class="section">
+            <div class="container">
+                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xl);">
+                    <i class="fas fa-code-branch" style="font-size: 2.5rem; color: var(--accent-physics);"></i>
+                    <h2 class="heading-display" style="font-size: 2rem;">Major Branches</h2>
                 </div>
-
-                <div class="card">
-                    <span class="card-icon">🌑</span>
-                    <h3>Dark Matter & Energy</h3>
-                    <p>Investigating the mysterious components that make up 95% of the universe, using advanced detectors and theoretical models.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">⚛️</span>
-                    <h3>Nanotechnology</h3>
-                    <p>Manipulating matter at the atomic level to create revolutionary materials, devices, and applications in medicine and electronics.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🌊</span>
-                    <h3>Plasma Physics</h3>
-                    <p>Studying the fourth state of matter for fusion energy, space physics, and industrial applications.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🔗</span>
-                    <h3>Condensed Matter</h3>
-                    <p>Exploring superconductors, topological materials, and quantum materials for next-generation technologies.</p>
-                </div>
-
-                <div class="card">
-                    <span class="card-icon">🌐</span>
-                    <h3>Gravitational Waves</h3>
-                    <p>Detecting and analyzing ripples in spacetime to unlock secrets of black holes, neutron stars, and the early universe.</p>
-                </div>
+                
+                <table class="modern-table animate-fade-up">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Description</th>
+                            <th>Key Topics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: var(--accent-cyan); font-weight: 600;">Classical Mechanics</td>
+                            <td>Study of motion and forces on macroscopic objects</td>
+                            <td>Newton's Laws, Energy, Momentum</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--accent-cyan); font-weight: 600;">Electromagnetism</td>
+                            <td>Electric and magnetic fields and their interactions</td>
+                            <td>Maxwell's Equations, EM Waves, Circuits</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--accent-cyan); font-weight: 600;">Quantum Mechanics</td>
+                            <td>Physics at atomic and subatomic scales</td>
+                            <td>Wave-Particle Duality, Schrödinger Equation</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--accent-cyan); font-weight: 600;">Thermodynamics</td>
+                            <td>Study of heat, energy transfer, and entropy</td>
+                            <td>Laws of Thermodynamics, Statistical Mechanics</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
-<!-- Career Paths Section -->
-        <section id="careers" data-symbol="ℏ">
-            <div class="section-header">
-                <span class="section-icon">💼</span>
-                <h2>Career Opportunities in Physics</h2>
-            </div>
+    </main>
 
-            <h3>🚀 Research & Academia</h3>
-            <div class="resource-list">
-                <div class="resource-item">
-                    <h4>Research Scientist</h4>
-                    <p>Conduct cutting-edge research in universities, national labs, and research institutions. Pursue PhD and postdoctoral positions.</p>
+    <footer class="footer">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
+                <div>
+                    <h4 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-md);">Physics Portal</h4>
+                    <p style="color: var(--text-secondary);">Your gateway to understanding the fundamental laws of the universe. Designed for Gauhati University students.</p>
                 </div>
-                <div class="resource-item">
-                    <h4>Professor/Lecturer</h4>
-                    <p>Teach physics at universities and colleges while conducting research and mentoring students.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>ISRO/DRDO Scientist</h4>
-                    <p>Join India's premier space and defense research organizations. Work on satellites, missiles, and advanced technologies.</p>
-                </div>
-            </div>
-
-            <h3>🏭 Industry & Technology</h3>
-            <div class="resource-list">
-                <div class="resource-item">
-                    <h4>Data Scientist</h4>
-                    <p>Apply physics analytical skills to big data, machine learning, and AI applications in tech companies.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Electronics Engineer</h4>
-                    <p>Design circuits, semiconductors, and electronic systems for various industries.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Optical Engineer</h4>
-                    <p>Work on lasers, fiber optics, imaging systems, and photonics technologies.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Materials Scientist</h4>
-                    <p>Develop new materials for aerospace, energy, and manufacturing sectors.</p>
-                </div>
-            </div>
-
-            <h3>💡 Specialized Fields</h3>
-            <div class="resource-list">
-                <div class="resource-item">
-                    <h4>Medical Physicist</h4>
-                    <p>Work in hospitals with radiation therapy, medical imaging, and diagnostic equipment.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Astrophysicist</h4>
-                    <p>Study celestial phenomena, work with telescopes, and analyze astronomical data.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Quantum Engineer</h4>
-                    <p>Develop quantum computers, quantum communication systems, and quantum sensors.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Energy Consultant</h4>
-                    <p>Work on renewable energy, nuclear power, and sustainable energy solutions.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Resources Section -->
-        <section id="resources" data-symbol="α">
-            <div class="section-header">
-                <span class="section-icon">📖</span>
-                <h2>Learning Resources & Study Materials</h2>
-            </div>
-
-            <h3>📚 Recommended Textbooks</h3>
-            <div class="resource-list">
-                <div class="resource-item">
-                    <h4>Classical Mechanics</h4>
-                    <p>• "Classical Mechanics" by H. Goldstein<br>
-                       • "Introduction to Classical Mechanics" by David Morin</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Quantum Mechanics</h4>
-                    <p>• "Introduction to Quantum Mechanics" by David J. Griffiths<br>
-                       • "Principles of Quantum Mechanics" by R. Shankar</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Electromagnetism</h4>
-                    <p>• "Introduction to Electrodynamics" by David J. Griffiths<br>
-                       • "The Feynman Lectures on Physics" Vol. 2</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Mathematical Physics</h4>
-                    <p>• "Mathematical Methods for Physicists" by Arfken & Weber<br>
-                       • "Mathematics for Physics" by Michael Stone</p>
-                </div>
-            </div>
-
-            <h3>🌐 Online Learning Platforms</h3>
-            <div class="resource-list">
-                <div class="resource-item">
-                    <h4>MIT OpenCourseWare</h4>
-                    <p>Free physics courses from MIT, including video lectures and problem sets.</p>
-                    <a href="https://ocw.mit.edu" target="_blank">Visit MIT OCW →</a>
-                </div>
-                <div class="resource-item">
-                    <h4>Khan Academy</h4>
-                    <p>Comprehensive physics tutorials covering mechanics, electricity, and modern physics.</p>
-                    <a href="https://www.khanacademy.org/science/physics" target="_blank">Visit Khan Academy →</a>
-                </div>
-                <div class="resource-item">
-                    <h4>SWAYAM</h4>
-                    <p>Indian government's online learning platform with physics courses from IITs and universities.</p>
-                    <a href="https://swayam.gov.in" target="_blank">Visit SWAYAM →</a>
-                </div>
-                <div class="resource-item">
-                    <h4>arXiv.org</h4>
-                    <p>Free repository of research papers in physics and related fields.</p>
-                    <a href="https://arxiv.org/list/physics/recent" target="_blank">Visit arXiv →</a>
-                </div>
-            </div>
-
-            <h3>🔧 Simulation & Tools</h3>
-            <div class="resource-list">
-                <div class="resource-item">
-                    <h4>PhET Simulations</h4>
-                    <p>Interactive physics simulations from University of Colorado Boulder.</p>
-                    <a href="https://phet.colorado.edu" target="_blank">Visit PhET →</a>
-                </div>
-                <div class="resource-item">
-                    <h4>Python for Physics</h4>
-                    <p>Learn computational physics using NumPy, SciPy, and Matplotlib libraries.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>Mathematica/MATLAB</h4>
-                    <p>Powerful tools for mathematical modeling and visualization in physics.</p>
-                </div>
-                <div class="resource-item">
-                    <h4>LaTeX</h4>
-                    <p>Professional typesetting system for physics papers and equations.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quotes Section -->
-        <section id="quotes" data-symbol="π">
-            <div class="section-header">
-                <span class="section-icon">💭</span>
-                <h2>Wisdom from Great Physicists</h2>
-            </div>
-
-            <div class="quote-modern">
-                <p>"The first principle is that you must not fool yourself – and you are the easiest person to fool."</p>
-                <p class="quote-author">— Richard Feynman</p>
-            </div>
-
-            <div class="quote-modern">
-                <p>"No one must think that Newton's great creation can be overthrown in any real sense by this or by any other theory. His clear and wide ideas will forever retain their significance as the foundation on which our modern conceptions of physics have been built."</p>
-                <p class="quote-author">— Albert Einstein</p>
-            </div>
-
-            <div class="quote-modern">
-                <p>"It is the facts that matter, not the proofs. Physics can progress without the proofs, but we can't go on without the facts."</p>
-                <p class="quote-author">— Richard Feynman</p>
-            </div>
-
-            <div class="quote-modern">
-                <p>"Everything is theoretically impossible, until it is done."</p>
-                <p class="quote-author">— Robert A. Heinlein</p>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>⚛️ Physics Portal</h4>
-                    <p>Your gateway to understanding the fundamental laws of the universe.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Physics</a></li>
-                        <li><a href="#branches">Branches</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#resources">Resources</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Study Materials</h4>
-                    <ul class="footer-links">
-                        <li><a href="notes.html">Course Notes</a></li>
-                        <li><a href="common courses.html">Common Courses</a></li>
-                        <li><a href="#syllabus">Syllabus</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Me</a></li>
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Instagram</a></li>
+                <div>
+                    <h4 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-md);">Quick Links</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
+                        <li><a href="about.html" class="nav-link" style="padding: 0;">About Me</a></li>
+                        <li><a href="notes.html" class="nav-link" style="padding: 0;">Course Notes</a></li>
+                        <li><a href="common-courses.html" class="nav-link" style="padding: 0;">Common Courses</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2025 Physics Portal | Created by B.Sc. Physics Student | Powered by Passion for Science</p>
+            <div style="text-align: center; padding-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);">
+                <p>&copy; 2026 Physics Portal | Built by Sajal Barua</p>
             </div>
         </div>
     </footer>
 
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
-
-    
-        
