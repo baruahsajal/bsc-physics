@@ -1,68 +1,101 @@
-class SecurityGatekeeper {
-    constructor() {
-        const isGitHubPages = window.location.hostname.includes('github.io');
-        this.repoBase = isGitHubPages ? '/bsc-physics' : '';
+// Import Firebase directly from Google's web server (CDN)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signOut 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-        // SECURITY UPGRADE: Passwords are now stored as SHA-256 hashes, not plain text.
-        this.config = {
-            bsc: {
-                // Hash for: jugita baruah
-                hash: '16104f21db7c822ff607d7211bf7386bf9a0980bd089069d3092289cb3ee6499', 
-                redirect: this.repoBase + '/portal-physics/index.html'
-            },
-            class9: {
-                // Hash for: @class9science
-                hash: '6ed7819ceab97df05e26715bf8d022b7c7c34b172a6b22b64d1f56b3e390c58e',
-                redirect: this.repoBase + '/portal-science/index.html'
-            }
-        };
-    }
+// YOUR EXACT FIREBASE CONFIGURATION
+const firebaseConfig = {
+  apiKey: "AIzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg",
+  authDomain: "bsc-physics-a7cfd.firebaseapp.com",
+  projectId: "bsc-physics-a7cfd",
+  storageBucket: "bsc-physics-a7cfd.firebasestorage.app",
+  messagingSenderId: "639494268585",
+  appId: "1:639494268585:web:abb551d7eadf1c6477abb8",
+  measurementId: "G-JBF3T794JV"
+};
 
-    // NEW: Helper function to securely scramble the password input
-    async hashPassword(password) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(password);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-    async authenticate(portalId, password) {
-        const cleanInput = password ? password.trim().toLowerCase() : '';
-        if (!cleanInput) return false;
+// Check if running on GitHub Pages to handle folder paths correctly
+const isGitHubPages = window.location.hostname.includes('github.io');
+const repoBase = isGitHubPages ? '/bsc-physics' : '';
 
-        // Scramble what the user typed to see if it matches our saved hashes
-        const inputHash = await this.hashPassword(cleanInput);
+// 1. Switch between Login and Sign Up tabs
+document.querySelectorAll('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+        document.getElementById(e.target.getAttribute('data-target')).classList.add('active');
+    });
+});
 
-        // Auto-detect portal based on the password hash
-        let targetKey = portalId;
-        if (inputHash === this.config.bsc.hash) targetKey = 'bsc';
-        if (inputHash === this.config.class9.hash) targetKey = 'class9';
-
-        const target = this.config[targetKey];
-        if (!target) return false;
-
-        // Compare the hashes instead of plain text
-        if (inputHash === target.hash) {
-            sessionStorage.setItem(`access_granted_${targetKey}`, 'true');
-            sessionStorage.setItem('active_session_type', targetKey);
-            window.location.href = target.redirect;
-            return true;
+// 2. Sign Up Button Logic (Registers student in Firebase)
+const btnSignup = document.getElementById('btn-signup');
+if (btnSignup) {
+    btnSignup.addEventListener('click', async () => {
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        
+        if (!email || !password) {
+            alert("Please enter both an email and a password.");
+            return;
         }
-        return false;
-    }
 
-    verifyAccess(portalId) {
-        const hasAccess = sessionStorage.getItem(`access_granted_${portalId}`) === 'true';
-        if (!hasAccess) {
-            window.location.href = this.repoBase + `/request-access.html?target=${portalId}&reason=unauthorized`;
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            alert("Success! Your account has been registered. You can now log in.");
+            document.querySelector('[data-target="login"]').click(); // Switch to login tab automatically
+        } catch (error) {
+            alert("Registration Error: " + error.message);
         }
-    }
-
-    logout() {
-        sessionStorage.clear();
-        window.location.href = this.repoBase + '/index.html';
-    }
+    });
 }
 
-const AuthSystem = new SecurityGatekeeper();
+// 3. Log In Button Logic
+const btnLogin = document.getElementById('btn-login');
+if (btnLogin) {
+    btnLogin.addEventListener('click', async () => {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const portal = document.getElementById('login-portal').value;
+
+        if (!email || !password) {
+            alert("Please enter your email and password.");
+            return;
+        }
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            // Redirect based on selected portal dropdown
+            window.location.href = portal === 'bsc' 
+                ? `${repoBase}/portal-physics/index.html` 
+                : `${repoBase}/portal-science/index.html`;
+        } catch (error) {
+            alert("Invalid email or password.");
+        }
+    });
+}
+
+// 4. Security Check (verifies user is logged in before letting them see content)
+export function verifyAccess() {
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            window.location.href = repoBase + '/index.html'; // Redirect to home page if not logged in
+        }
+    });
+}
+
+// 5. Logout Function
+export function logoutUser() {
+    signOut(auth).then(() => {
+        window.location.href = repoBase + '/index.html';
+    });
+}
