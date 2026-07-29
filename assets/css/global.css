@@ -1,97 +1,289 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+/* ==========================================================================
+   FUTURISTIC EDUCATIONAL OPERATING SYSTEM - GLOBAL STYLES
+   File: assets/css/global.css
+   Architecture: Command HUD / Glassmorphism / Cyberpunk Aesthetic
+   ========================================================================== */
 
+/* ----------------------------------------------------------------------
+   1. FONT IMPORTS
+   ---------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+/* ----------------------------------------------------------------------
+   2. CSS RESET & BASE STYLES
+   ---------------------------------------------------------------------- */
 *, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    height: 100%;
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-base);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-sans);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    line-height: var(--line-height-base);
+    overflow: hidden; /* Locked for 3-column independent scrolling */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    position: relative;
 }
 
-/* Global Futuristic Background */
+/* ----------------------------------------------------------------------
+   3. FUTURISTIC BACKGROUND EFFECTS
+   ---------------------------------------------------------------------- */
+/* Deep Space & Neon Glows */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: 
-    linear-gradient(rgba(5, 5, 8, 0) 50%, rgba(0, 0, 0, 0.4) 50%),
-    radial-gradient(circle at 15% 30%, rgba(0, 243, 255, 0.04), transparent 30%),
-    radial-gradient(circle at 85% 70%, rgba(189, 0, 255, 0.04), transparent 30%);
-  background-size: 100% 4px, 100% 100%, 100% 100%;
-  z-index: -1;
-  pointer-events: none;
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: 
+        linear-gradient(rgba(5, 5, 8, 0) 50%, rgba(0, 0, 0, 0.4) 50%),
+        radial-gradient(circle at 15% 30%, rgba(0, 243, 255, 0.05), transparent 35%),
+        radial-gradient(circle at 85% 70%, rgba(189, 0, 255, 0.05), transparent 35%);
+    background-size: 100% 4px, 100% 100%, 100% 100%;
+    z-index: var(--z-negative);
+    pointer-events: none;
 }
 
-/* Layout Utilities */
+/* Dynamic Cyberpunk Scanlines overlay */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 243, 255, var(--scanline-opacity)) 2px,
+        rgba(0, 243, 255, var(--scanline-opacity)) 4px
+    );
+    z-index: var(--z-hud-overlay);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ----------------------------------------------------------------------
+   4. CUSTOM HUD SCROLLBARS
+   ---------------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 243, 255, 0.2);
+    border-radius: var(--radius-full);
+    transition: var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+/* ----------------------------------------------------------------------
+   5. HUD LAYOUT ARCHITECTURE (3-Column Grid)
+   ---------------------------------------------------------------------- */
 .container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
 }
 
-.section {
-  padding: var(--space-3xl) 0;
-  position: relative;
+/* Master Grid Layout */
+.portal-layout {
+    display: grid;
+    grid-template-columns: var(--hud-sidebar-left) 1fr var(--hud-sidebar-right);
+    gap: var(--space-xl);
+    align-items: start;
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+    height: calc(100vh - var(--hud-nav-height));
+    overflow: hidden;
 }
 
-/* Typography Utilities */
+/* Left Panel: Navigation & Missions */
+.sidebar-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    height: 100%;
+    overflow-y: auto;
+    padding-right: var(--space-xs);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 243, 255, 0.2) transparent;
+}
+
+/* Center Panel: Main Viewport */
+.center-viewport {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: var(--space-sm);
+    padding-bottom: var(--space-3xl);
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* Right Panel: Telemetry & XP */
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    height: 100%;
+    overflow-y: auto;
+    padding-right: var(--space-xs);
+    scrollbar-width: none; /* Hide scrollbar for cleaner look */
+}
+.sidebar-right::-webkit-scrollbar {
+    display: none;
+}
+
+/* Layout Media Queries */
+@media (max-width: 1300px) {
+    .portal-layout {
+        grid-template-columns: 260px 1fr;
+    }
+    .sidebar-right {
+        display: none; /* Hide telemetry on smaller screens */
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        overflow-y: auto; /* Return scrolling to body for mobile */
+    }
+    .portal-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+        padding-top: var(--space-md);
+    }
+    .sidebar-left {
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: var(--space-sm);
+    }
+    .center-viewport {
+        height: auto;
+        overflow-y: visible;
+    }
+}
+
+/* ----------------------------------------------------------------------
+   6. TYPOGRAPHY UTILITIES
+   ---------------------------------------------------------------------- */
 .text-gradient {
-  background: var(--grad-physics);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+    background: var(--grad-physics);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .text-gradient-science {
-  background: var(--grad-science);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+    background: var(--grad-science);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-danger {
+    background: var(--grad-danger);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .heading-display {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
 .heading-rajdhani {
-  font-family: var(--font-rajdhani);
-  font-weight: 600;
-  line-height: 1.2;
+    font-family: var(--font-rajdhani);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    letter-spacing: 0.05em;
 }
 
-/* Animations */
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.text-neon-cyan {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+/* ----------------------------------------------------------------------
+   7. GLOBAL ANIMATIONS
+   ---------------------------------------------------------------------- */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
 @keyframes pulseGlow {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3)); }
-  50% { filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.6)); }
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3)); }
+    50% { filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.6)); }
+}
+
+@keyframes holographicSweep {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes blinkHUD {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
 
 .animate-fade-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .pulse-slow {
-  animation: pulseGlow 4s ease-in-out infinite;
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.indicator-blink {
+    animation: blinkHUD 2s infinite;
+}
+
+/* Staggered animation delays for UI loading sequences */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Global visibility helper */
+.hidden {
+    display: none !important;
 }
