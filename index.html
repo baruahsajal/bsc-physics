@@ -2,156 +2,239 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Portal | Sajal Barua</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>S.Baruah OS | Physics Portal</title>
+    
+    <!-- CSS Architecture -->
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    
+    <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Top Command Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="nav-brand">
-                <i class="fas fa-atom pulse-slow" style="color: var(--accent-cyan);"></i>
-                Physics Portal
+                <i class="fa fa-atom pulse-slow" style="color: var(--accent-cyan);"></i>
+                SYS.TERMINAL // PHYSICS
             </a>
-            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none;"><i class="fas fa-bars"></i></button>
+            
+            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
+                <i class="fa fa-bars"></i>
+            </button>
+            
             <ul class="nav-links" id="nav-links">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="notes.html" class="nav-link">Notes Library</a></li>
-                <li><a href="common-courses.html" class="nav-link">Common Courses</a></li>
-                <li><a href="mdc3.html" class="nav-link">MDC-3</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="index.html" class="nav-link active">Main Uplink</a></li>
+                <li><a href="notes.html" class="nav-link">Databanks</a></li>
+                <li><a href="common-courses.html" class="nav-link">MDC-3</a></li>
+                <li><a href="about.html" class="nav-link">Creator</a></li>
                 <li>
                     <a href="request-access.html" class="btn btn-outline" style="margin-left: var(--space-md); padding: 0.4rem 1rem;">
-                        Student Login <i class="fas fa-lock"></i>
+                        Authenticate <i class="fas fa-lock"></i>
                     </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <main>
-        <section class="section" style="min-height: 100vh; display: flex; align-items: center; padding-top: 6rem;">
-            <div class="container" style="text-align: center;">
+    <!-- 3-Column Command HUD Layout -->
+    <div class="container portal-layout">
+        
+        <!-- LEFT SIDEBAR: System Navigation & Controls -->
+        <aside class="sidebar-left animate-fade-up">
+            <div class="glass-panel" style="padding: var(--space-md); margin-bottom: var(--space-md);">
+                <h3 class="heading-display" style="font-size: 1rem; color: var(--text-primary); margin-bottom: var(--space-sm);">System Status</h3>
+                <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                    <i class="fas fa-circle indicator-blink" style="color: var(--accent-success); font-size: 0.6rem;"></i>
+                    <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-success);">UPLINK ESTABLISHED</span>
+                </div>
+            </div>
+
+            <div class="glass-panel" style="padding: var(--space-md); flex-grow: 1;">
+                <h3 class="heading-display" style="font-size: 1rem; color: var(--text-secondary); margin-bottom: var(--space-md);">Quick Launch</h3>
+                <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                    <a href="portal-physics/index.html" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-physics); font-family: var(--font-rajdhani); text-transform: uppercase;">
+                        <i class="fas fa-satellite-dish" style="margin-right: 8px; color: var(--accent-physics);"></i> B.Sc Physics
+                    </a>
+                    <a href="portal-science/index.html" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-science); font-family: var(--font-rajdhani); text-transform: uppercase;">
+                        <i class="fas fa-microscope" style="margin-right: 8px; color: var(--accent-science);"></i> Class 9 Science
+                    </a>
+                    <a href="simulations/index.html" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-cyan); font-family: var(--font-rajdhani); text-transform: uppercase;">
+                        <i class="fas fa-flask" style="margin-right: 8px; color: var(--accent-cyan);"></i> Simulations Hub
+                    </a>
+                </div>
+
+                <div style="margin-top: var(--space-xl);">
+                    <h3 class="heading-display" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-sm);">HUD Theme Protocol</h3>
+                    <div style="display: flex; gap: var(--space-xs);">
+                        <button class="btn btn-outline" data-theme="cyberpunk" style="padding: 0.3rem 0.6rem; font-size: 0.7rem;">CYBER</button>
+                        <button class="btn btn-outline" data-theme="matrix" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; border-color: #00ff41; color: #00ff41;">MTRX</button>
+                        <button class="btn btn-outline" data-theme="mars" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; border-color: #ff4b4b; color: #ff4b4b;">MARS</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER VIEWPORT: Main Landing Content -->
+        <main class="center-viewport">
+            
+            <!-- Hero Banner -->
+            <section class="glass-panel card animate-fade-up delay-100" style="text-align: center; padding: var(--space-3xl) var(--space-xl); background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 70%);">
                 <i class="fas fa-satellite-dish pulse-slow" style="font-size: 4rem; color: var(--accent-physics); margin-bottom: var(--space-lg);"></i>
-                <h1 class="heading-display text-gradient animate-fade-up" style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: var(--space-md);">The World of Physics</h1>
-                <p class="heading-rajdhani animate-fade-up" style="animation-delay: 100ms; font-size: 1.5rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto var(--space-xl);">Exploring the Fundamental Laws Governing Our Universe.</p>
+                <h1 class="heading-display text-gradient" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: var(--space-md);">The World of Physics</h1>
+                <p class="heading-rajdhani" style="font-size: 1.5rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto var(--space-xl);">Exploring the Fundamental Laws Governing Our Universe.</p>
                 
-                <!-- NEW PORTAL ACCESS BUTTONS -->
-                <div class="animate-fade-up" style="animation-delay: 150ms; display: flex; gap: var(--space-md); justify-content: center; margin-bottom: var(--space-2xl); flex-wrap: wrap;">
+                <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
                     <a href="request-access.html?target=bsc" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
-                        <i class="fas fa-satellite-dish"></i> B.Sc. Physics Portal
+                        <i class="fa fa-satellite-dish"></i> B.Sc. Physics Portal
                     </a>
                     <a href="request-access.html?target=class9" class="btn btn-outline" style="padding: 0.75rem 1.5rem; font-size: 1rem; border-color: var(--accent-science); color: var(--accent-science);">
                         <i class="fas fa-microscope"></i> Class 9 Academy
                     </a>
                 </div>
-                
-                <div class="glass-panel animate-fade-up" style="animation-delay: 200ms; max-width: 800px; margin: 0 auto; padding: var(--space-xl); border-left: 4px solid var(--accent-cyan);">
-                    <p style="font-size: 1.25rem; font-style: italic; margin-bottom: var(--space-md);">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
-                    <p class="heading-display" style="color: var(--accent-cyan); text-align: right;">- Dan Brown</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="about" class="section">
-            <div class="container">
-                <div class="glass-panel card animate-fade-up">
-                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xl);">
-                        <i class="fas fa-brain" style="font-size: 2.5rem; color: var(--accent-cyan);"></i>
-                        <h2 class="heading-display" style="font-size: 2rem;">What is Physics?</h2>
+            <!-- Info Section: What is Physics? -->
+            <section class="glass-panel card animate-fade-up delay-200">
+                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
+                    <i class="fa fa-brain" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                    <h2 class="heading-display" style="font-size: 1.75rem;">System Overview: Physics</h2>
+                </div>
+                <p style="margin-bottom: var(--space-md); font-size: 1.1rem; color: var(--text-secondary);">Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale. From the quantum realm of subatomic particles to the cosmic expanse of galaxies, physics provides the mathematical and conceptual framework for comprehending matter, energy, space, and time.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-md); margin-top: var(--space-xl);">
+                    <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
+                        <div class="heading-display text-gradient" style="font-size: 2rem;">4</div>
+                        <div style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-weight: 600;">Fundamental Forces</div>
                     </div>
-                    <p style="margin-bottom: var(--space-md); font-size: 1.125rem;">Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale. From the quantum realm of subatomic particles to the cosmic expanse of galaxies, physics provides the mathematical and conceptual framework for comprehending matter, energy, space, and time.</p>
-                    <p style="font-size: 1.125rem;">It serves as the foundation upon which all natural sciences are built, bridging theoretical knowledge with practical applications that define our modern technological civilization.</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-lg); margin-top: var(--space-2xl);">
-                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
-                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">4</div>
-                            <div style="color: var(--text-secondary);">Fundamental Forces</div>
-                        </div>
-                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
-                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">∞</div>
-                            <div style="color: var(--text-secondary);">Possibilities</div>
-                        </div>
-                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
-                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">100+</div>
-                            <div style="color: var(--text-secondary);">Nobel Prizes</div>
-                        </div>
-                        <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
-                            <div class="heading-display text-gradient" style="font-size: 2.5rem;">3×10⁸</div>
-                            <div style="color: var(--text-secondary);">Speed of Light (m/s)</div>
-                        </div>
+                    <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
+                        <div class="heading-display text-gradient" style="font-size: 2rem;">&infin;</div>
+                        <div style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-weight: 600;">Possibilities</div>
+                    </div>
+                    <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
+                        <div class="heading-display text-gradient" style="font-size: 2rem;">3×10⁸</div>
+                        <div style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-weight: 600;">Speed of Light (m/s)</div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="branches" class="section">
-            <div class="container">
-                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xl);">
-                    <i class="fas fa-code-branch" style="font-size: 2.5rem; color: var(--accent-physics);"></i>
-                    <h2 class="heading-display" style="font-size: 2rem;">Major Branches</h2>
+            <!-- Branches of Physics Data Table -->
+            <section class="glass-panel card animate-fade-up delay-300">
+                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
+                    <i class="fas fa-code-branch" style="font-size: 2rem; color: var(--accent-physics);"></i>
+                    <h2 class="heading-display" style="font-size: 1.75rem;">Major Branches Directory</h2>
                 </div>
-                
-                <table class="modern-table animate-fade-up">
-                    <thead>
-                        <tr>
-                            <th>Branch</th>
-                            <th>Description</th>
-                            <th>Key Topics</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="color: var(--accent-cyan); font-weight: 600;">Classical Mechanics</td>
-                            <td>Study of motion and forces on macroscopic objects</td>
-                            <td>Newton's Laws, Energy, Momentum</td>
-                        </tr>
-                        <tr>
-                            <td style="color: var(--accent-cyan); font-weight: 600;">Electromagnetism</td>
-                            <td>Electric and magnetic fields and their interactions</td>
-                            <td>Maxwell's Equations, EM Waves, Circuits</td>
-                        </tr>
-                        <tr>
-                            <td style="color: var(--accent-cyan); font-weight: 600;">Quantum Mechanics</td>
-                            <td>Physics at atomic and subatomic scales</td>
-                            <td>Wave-Particle Duality, Schrödinger Equation</td>
-                        </tr>
-                        <tr>
-                            <td style="color: var(--accent-cyan); font-weight: 600;">Thermodynamics</td>
-                            <td>Study of heat, energy transfer, and entropy</td>
-                            <td>Laws of Thermodynamics, Statistical Mechanics</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div style="overflow-x: auto;">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Branch Module</th>
+                                <th>Description</th>
+                                <th>Key Parameters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--accent-cyan); font-weight: 600;">Classical Mechanics</td>
+                                <td>Study of motion and forces on macroscopic objects</td>
+                                <td class="font-mono" style="font-size: 0.85rem;">Newton's Laws, Energy</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-cyan); font-weight: 600;">Electromagnetism</td>
+                                <td>Electric and magnetic fields and their interactions</td>
+                                <td class="font-mono" style="font-size: 0.85rem;">Maxwell's Eq, EM Waves</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-cyan); font-weight: 600;">Quantum Mechanics</td>
+                                <td>Physics at atomic and subatomic scales</td>
+                                <td class="font-mono" style="font-size: 0.85rem;">Schrödinger Eq, Wave-Particle</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--accent-cyan); font-weight: 600;">Thermodynamics</td>
+                                <td>Study of heat, energy transfer, and entropy</td>
+                                <td class="font-mono" style="font-size: 0.85rem;">Laws of Thermo, Entropy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <div class="glass-panel animate-fade-up delay-400" style="padding: var(--space-lg); border-left: 4px solid var(--accent-cyan); background: rgba(0, 243, 255, 0.05);">
+                <p style="font-size: 1.1rem; font-style: italic; margin-bottom: var(--space-sm); color: var(--text-primary);">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
+                <p class="heading-display" style="color: var(--accent-cyan); text-align: right; font-size: 0.9rem;">- Dan Brown</p>
             </div>
-        </section>
-    </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
-                <div>
-                    <h4 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-md);">Physics Portal</h4>
-                    <p style="color: var(--text-secondary);">Your gateway to understanding the fundamental laws of the universe. Designed for Gauhati University students.</p>
-                </div>
-                <div>
-                    <h4 class="heading-display" style="color: var(--accent-cyan); margin-bottom: var(--space-md);">Quick Links</h4>
-                    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-sm);">
-                        <li><a href="about.html" class="nav-link" style="padding: 0;">About Me</a></li>
-                        <li><a href="notes.html" class="nav-link" style="padding: 0;">Course Notes</a></li>
-                        <li><a href="common-courses.html" class="nav-link" style="padding: 0;">Common Courses</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center; padding-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);">
-                <p>&copy; 2026 Physics Portal | Built by Sajal Barua</p>
-            </div>
-        </div>
-    </footer>
+            <!-- Footer specific to the center viewport -->
+            <footer style="text-align: center; padding-top: var(--space-xl); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
+                <p>&copy; 2026 S.Baruah Academy OS | Built by Sajal Barua</p>
+            </footer>
 
-    <script src="assets/js/main.js"></script>
+        </main>
+
+        <!-- RIGHT SIDEBAR: Telemetry & Network Health -->
+        <aside class="sidebar-right animate-fade-up delay-100">
+            <!-- Clock Widget -->
+            <div class="hud-stat-box">
+                <div class="hud-stat-title">Local Time</div>
+                <div id="telemetry-clock" class="hud-stat-value neon">--:--:--</div>
+                <div id="telemetry-date" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">CYCLE ----.--.--</div>
+            </div>
+
+            <!-- Guest/User XP Widget -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-physics);">
+                <div class="hud-stat-title">Network clearance</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-xs);">
+                    <div class="hud-stat-value" style="color: var(--accent-physics);">LVL <span id="telemetry-level">1</span></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"><span id="telemetry-xp">0</span> XP</div>
+                </div>
+                <div class="progress-container">
+                    <div id="telemetry-progress-bar" class="progress-fill" style="width: 0%; background: var(--accent-physics); box-shadow: var(--shadow-glow-physics);"></div>
+                </div>
+            </div>
+
+            <!-- Server Health Widget -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-science);">
+                <div class="hud-stat-title">Server Telemetry</div>
+                <div style="display: flex; flex-direction: column; gap: var(--space-xs); margin-top: var(--space-xs);">
+                    <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">CPU LOAD:</span>
+                        <span id="telemetry-cpu" style="color: var(--text-primary);">--%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">MEM ALLOC:</span>
+                        <span id="telemetry-mem" style="color: var(--text-primary);">--%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">UPLINK PING:</span>
+                        <span id="telemetry-ping" style="color: var(--accent-science);">--ms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Log -->
+            <div class="glass-panel" style="padding: var(--space-md); flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 class="heading-display" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Activity Log</h3>
+                <div id="telemetry-activity-log" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 4px;">
+                    <!-- Logs injected by telemetry.js -->
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: var(--space-md);">Awaiting events...</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/mobile.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/telemetry.js"></script>
+    
+    <!-- ES Modules (Firebase Auth & Sync) -->
+    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/firebase.js"></script>
 </body>
 </html>
