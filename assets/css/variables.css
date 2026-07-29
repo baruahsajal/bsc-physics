@@ -1,63 +1,139 @@
+/* ==========================================================================
+   FUTURISTIC EDUCATIONAL OPERATING SYSTEM - DESIGN SYSTEM VARIABLES
+   File: assets/css/variables.css
+   Architecture: Command HUD / Glassmorphism / Cyberpunk Aesthetic
+   ========================================================================== */
+
 :root {
-  /* Core Palette */
-  --bg-base: #050508;
-  --bg-surface: #0f1016;
-  --bg-glass: rgba(15, 16, 22, 0.65);
-  --bg-glass-hover: rgba(25, 26, 35, 0.8);
-  
-  /* Accents */
-  --accent-cyan: #00f3ff;
-  --accent-physics: #bd00ff;
-  --accent-science: #00ff9d;
-  --accent-danger: #ef4444;
-  --accent-success: #10b981;
-  --accent-warning: #f59e0b;
+    /* ----------------------------------------------------------------------
+       1. CORE COLOR PALETTE (Deep Space & Neon)
+       ---------------------------------------------------------------------- */
+    /* Backgrounds */
+    --bg-base: #050508;                     /* Deepest Black/Navy for infinite space feel */
+    --bg-surface: #0f1016;                  /* Elevated panel background */
+    --bg-surface-elevated: #161821;         /* Highly elevated elements */
+    
+    /* Glassmorphism Backgrounds */
+    --bg-glass: rgba(15, 16, 22, 0.65);     /* Standard HUD glass */
+    --bg-glass-hover: rgba(25, 26, 35, 0.85); /* Hover state for interactive glass */
+    --bg-glass-heavy: rgba(5, 5, 8, 0.85);  /* Heavy blur overlay */
+    --bg-glass-light: rgba(0, 243, 255, 0.03); /* Subtle tint for active areas */
 
-  /* Typography Colors */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #475569;
+    /* Neon Accents */
+    --accent-cyan: #00f3ff;                 /* Primary Holographic / Tech Accent */
+    --accent-physics: #bd00ff;              /* Physics / Deep Science Purple */
+    --accent-science: #00ff9d;              /* Biology / Chemistry Green */
+    --accent-danger: #ef4444;               /* Warning / Error / Locked */
+    --accent-warning: #f59e0b;              /* Progress / Caution */
+    --accent-success: #10b981;              /* Completed / Verified */
 
-  /* Gradients */
-  --grad-physics: linear-gradient(135deg, var(--accent-cyan), var(--accent-physics));
-  --grad-science: linear-gradient(135deg, var(--accent-cyan), var(--accent-science));
-  --grad-glass: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
-  
-  /* Borders & Shadows */
-  --border-glass: 1px solid rgba(255, 255, 255, 0.08);
-  --border-glow: 1px solid rgba(0, 243, 255, 0.3);
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glow-cyan: 0 0 20px rgba(0, 243, 255, 0.2);
+    /* Typography Colors */
+    --text-primary: #f8fafc;                /* High contrast white */
+    --text-secondary: #94a3b8;              /* Muted blue-grey for standard text */
+    --text-muted: #475569;                  /* Inactive / background text */
+    --text-inverse: #050508;                /* For text on bright neon backgrounds */
 
-  /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Orbitron', sans-serif;
-  --font-mono: 'Fira Code', 'Courier New', monospace;
-  --font-rajdhani: 'Rajdhani', sans-serif;
+    /* ----------------------------------------------------------------------
+       2. GRADIENTS & OVERLAYS
+       ---------------------------------------------------------------------- */
+    --grad-physics: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-physics) 100%);
+    --grad-science: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-science) 100%);
+    --grad-danger: linear-gradient(135deg, #ff4b4b 0%, var(--accent-danger) 100%);
+    --grad-glass: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+    --grad-scanline: linear-gradient(to bottom, rgba(0, 243, 255, 0) 50%, rgba(0, 243, 255, 0.02) 50%);
+    
+    /* ----------------------------------------------------------------------
+       3. BORDERS & GLOW EFFECTS (HUD Aesthetics)
+       ---------------------------------------------------------------------- */
+    /* Structural Borders */
+    --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+    --border-glass-strong: 1px solid rgba(255, 255, 255, 0.15);
+    --border-glow: 1px solid rgba(0, 243, 255, 0.3);
+    --border-glow-physics: 1px solid rgba(189, 0, 255, 0.3);
+    
+    /* Shadows & Neon Drops */
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glass-elevated: 0 12px 48px rgba(0, 0, 0, 0.6);
+    --shadow-glow-cyan: 0 0 20px rgba(0, 243, 255, 0.2);
+    --shadow-glow-cyan-strong: 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 10px rgba(0, 243, 255, 0.1);
+    --shadow-glow-physics: 0 0 20px rgba(189, 0, 255, 0.2);
+    --shadow-glow-science: 0 0 20px rgba(0, 255, 157, 0.2);
+    
+    /* ----------------------------------------------------------------------
+       4. TYPOGRAPHY SYSTEM
+       ---------------------------------------------------------------------- */
+    /* Font Families */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Orbitron', sans-serif;             /* Primary HUD Headings */
+    --font-rajdhani: 'Rajdhani', sans-serif;            /* Secondary Tech Headings / Telemetry */
+    --font-mono: 'Fira Code', 'Courier New', monospace; /* Code, Formulas, Data readouts */
+    
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-base: 1.6;
+    --line-height-relaxed: 1.8;
 
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2.5rem;
-  --space-2xl: 4rem;
-  --space-3xl: 6rem;
-
-  /* Radii */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1.25rem;
-  --radius-full: 9999px;
-
-  /* Z-Index */
-  --z-base: 1;
-  --z-nav: 100;
-  --z-dropdown: 200;
-  --z-modal: 1000;
-
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    /* ----------------------------------------------------------------------
+       5. SPACING & LAYOUT SYSTEM
+       ---------------------------------------------------------------------- */
+    /* Base Spacing Scale */
+    --space-xs: 0.25rem;    /* 4px */
+    --space-sm: 0.5rem;     /* 8px */
+    --space-md: 1rem;       /* 16px */
+    --space-lg: 1.5rem;     /* 24px */
+    --space-xl: 2.5rem;     /* 40px */
+    --space-2xl: 4rem;      /* 64px */
+    --space-3xl: 6rem;      /* 96px */
+    --space-4xl: 8rem;      /* 128px */
+    
+    /* Grid System Dimensions */
+    --hud-sidebar-left: 280px;
+    --hud-sidebar-right: 300px;
+    --hud-nav-height: 4.5rem;
+    --container-max-width: 1600px; /* Expanded for massive 3-column layout */
+    
+    /* ----------------------------------------------------------------------
+       6. RADII & SHAPING (Tech cuts & curves)
+       ---------------------------------------------------------------------- */
+    --radius-xs: 0.125rem;  /* 2px */
+    --radius-sm: 0.375rem;  /* 6px */
+    --radius-md: 0.75rem;   /* 12px */
+    --radius-lg: 1.25rem;   /* 20px */
+    --radius-full: 9999px;  /* Pills / Circles */
+    
+    /* ----------------------------------------------------------------------
+       7. ANIMATION & TRANSITIONS
+       ---------------------------------------------------------------------- */
+    /* Durations & Easings */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* ----------------------------------------------------------------------
+       8. Z-INDEX LAYERING (3D Space)
+       ---------------------------------------------------------------------- */
+    --z-negative: -1;
+    --z-base: 1;
+    --z-elevated: 10;
+    --z-nav: 100;
+    --z-hud-overlay: 150;
+    --z-dropdown: 200;
+    --z-modal-backdrop: 900;
+    --z-modal: 1000;
+    --z-notifications: 2000;
+    
+    /* ----------------------------------------------------------------------
+       9. EFFECTS & FILTERS
+       ---------------------------------------------------------------------- */
+    --blur-hud: blur(12px);
+    --blur-heavy: blur(24px);
+    --scanline-opacity: 0.03;
 }
