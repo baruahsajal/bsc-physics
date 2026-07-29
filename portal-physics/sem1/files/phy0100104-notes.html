@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PHY0100104 - Mathematical Physics & Mechanics</title>
+    
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="../../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../assets/css/components.css">
+    
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Payload-Specific Styles for Iframe Rendering */
+        body {
+            background-color: var(--bg-surface);
+            padding: var(--space-xl) var(--space-lg);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at top right, rgba(0, 243, 255, 0.03), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(189, 0, 255, 0.03), transparent 40%);
+        }
+        
+        .document-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .doc-header {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-md);
+        }
+        
+        .section-title {
+            color: var(--accent-cyan);
+            border-left: 4px solid var(--accent-cyan);
+            padding-left: var(--space-md);
+            margin: var(--space-xl) 0 var(--space-md) 0;
+            font-size: 1.5rem;
+        }
+
+        .subsection-title {
+            color: var(--text-primary);
+            margin: var(--space-lg) 0 var(--space-sm) 0;
+            font-family: var(--font-rajdhani);
+            font-size: 1.25rem;
+        }
+        
+        .definition-box {
+            background: rgba(0, 243, 255, 0.05);
+            border-left: 3px solid var(--accent-cyan);
+            padding: var(--space-md);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: var(--space-md) 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Override MathJax styles for dark mode compatibility */
+        .MathJax {
+            color: var(--accent-science) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-container">
+        
+        <!-- Document Header -->
+        <header class="doc-header">
+            <span class="badge badge-system" style="margin-bottom: var(--space-sm);">UNIT 1: VECTOR CALCULUS</span>
+            <h1 class="heading-display" style="font-size: 2.5rem; color: var(--text-primary);">Mathematical Physics & Mechanics</h1>
+            <p style="font-family: var(--font-mono); color: var(--accent-physics); margin-top: var(--space-xs);">Course Code: PHY0100104 | B.Sc. Physics FYUGP</p>
+        </header>
+
+        <!-- Section 1 -->
+        <section>
+            <h2 class="heading-display section-title">1. Vector Differentiation</h2>
+            <p>In physics, we frequently deal with quantities that vary in space and time. A field is a physical quantity associated with every point in a region of space. We classify these into <strong>Scalar Fields</strong> (e.g., temperature, electric potential) and <strong>Vector Fields</strong> (e.g., electric field, gravitational field).</p>
+            
+            <h3 class="subsection-title">1.1 The Del Operator ($\nabla$)</h3>
+            <p>The vector differential operator $\nabla$ (read as "del" or "nabla") is central to vector calculus. In Cartesian coordinates, it is defined as:</p>
+            
+            <div class="formula-box">
+                $$ \nabla = \hat{i} \frac{\partial}{\partial x} + \hat{j} \frac{\partial}{\partial y} + \hat{k} \frac{\partial}{\partial z} $$
+            </div>
+            
+            <p>The operator itself does not have a physical meaning unless it acts upon a scalar or vector function.</p>
+        </section>
+
+        <!-- Section 2 -->
+        <section>
+            <h2 class="heading-display section-title">2. Gradient, Divergence, and Curl</h2>
+            
+            <h3 class="subsection-title">2.1 Gradient of a Scalar Field</h3>
+            <div class="definition-box">
+                <strong>Definition:</strong> The gradient of a scalar field $\phi(x,y,z)$ is a vector field that represents the maximum rate of change of the scalar field. It points in the direction of the steepest ascent.
+            </div>
+            <p>Mathematically, it is expressed as:</p>
+            <div class="formula-box">
+                $$ \text{grad } \phi = \nabla \phi = \hat{i} \frac{\partial \phi}{\partial x} + \hat{j} \frac{\partial \phi}{\partial y} + \hat{k} \frac{\partial \phi}{\partial z} $$
+            </div>
+            <p><strong>Physical Significance:</strong> In conservative force fields, the force is the negative gradient of potential energy: $\vec{F} = -\nabla U$.</p>
+
+            <h3 class="subsection-title">2.2 Divergence of a Vector Field</h3>
+            <div class="definition-box">
+                <strong>Definition:</strong> The divergence of a vector field $\vec{A}$ at a point represents the net outward flux of the field per unit volume around that point.
+            </div>
+            <p>If $\vec{A} = A_x \hat{i} + A_y \hat{j} + A_z \hat{k}$, then the divergence is a scalar quantity:</p>
+            <div class="formula-box">
+                $$ \text{div } \vec{A} = \nabla \cdot \vec{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z} $$
+            </div>
+            <p>If $\nabla \cdot \vec{A} = 0$, the vector field is called <strong>solenoidal</strong> (e.g., Magnetic fields: $\nabla \cdot \vec{B} = 0$).</p>
+
+            <h3 class="subsection-title">2.3 Curl of a Vector Field</h3>
+            <div class="definition-box">
+                <strong>Definition:</strong> The curl of a vector field $\vec{A}$ represents the rotation or the angular velocity of the field at a point.
+            </div>
+            <p>It is evaluated as the determinant:</p>
+            <div class="formula-box" style="overflow-x: auto;">
+                $$ \nabla \times \vec{A} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ A_x & A_y & A_z \end{vmatrix} $$
+            </div>
+            <p>If $\nabla \times \vec{A} = 0$, the vector field is called <strong>irrotational</strong> (e.g., Electrostatic fields). A conservative force is always irrotational.</p>
+        </section>
+
+        <!-- Section 3 -->
+        <section>
+            <h2 class="heading-display section-title" style="border-left-color: var(--accent-physics); color: var(--accent-physics);">3. Fundamental Theorems of Vector Integration</h2>
+            
+            <h3 class="subsection-title">3.1 Gauss's Divergence Theorem</h3>
+            <p>This theorem relates a volume integral of the divergence of a vector field to a surface integral of the vector field over the closed boundary of the volume.</p>
+            <div class="formula-box">
+                $$ \iiint_V (\nabla \cdot \vec{A}) \, dV = \iint_S \vec{A} \cdot d\vec{S} $$
+            </div>
+
+            <h3 class="subsection-title">3.2 Stokes' Theorem</h3>
+            <p>Stokes' theorem connects the surface integral of the curl of a vector field over an open surface $S$ to the line integral of the vector field along the closed curve $C$ bounding the surface.</p>
+            <div class="formula-box">
+                $$ \iint_S (\nabla \times \vec{A}) \cdot d\vec{S} = \oint_C \vec{A} \cdot d\vec{l} $$
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: var(--space-3xl); padding-top: var(--space-xl); border-top: 1px solid rgba(255,255,255,0.05);">
+            <p style="font-family: var(--font-mono); font-size: 0.8rem; opacity: 0.5;">END OF DOCUMENT // DATABANK SECURE</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
