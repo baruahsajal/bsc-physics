@@ -1,3 +1,11 @@
+/**
+ * ==========================================================================
+ * FUTURISTIC EDUCATIONAL OPERATING SYSTEM - SECURITY & AUTH MODULE
+ * File: assets/js/auth.js
+ * Architecture: ES6 Module / Firebase Auth v10
+ * ==========================================================================
+ */
+
 // Import Firebase directly from Google's web server (CDN)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { 
@@ -8,94 +16,155 @@ import {
     signOut 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// YOUR EXACT FIREBASE CONFIGURATION
+// EXACT FIREBASE CONFIGURATION PROVIDED
 const firebaseConfig = {
-  apiKey: "AIzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg",
-  authDomain: "bsc-physics-a7cfd.firebaseapp.com",
-  projectId: "bsc-physics-a7cfd",
-  storageBucket: "bsc-physics-a7cfd.firebasestorage.app",
-  messagingSenderId: "639494268585",
-  appId: "1:639494268585:web:abb551d7eadf1c6477abb8",
-  measurementId: "G-JBF3T794JV"
+    apiKey: "AlzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg",
+    authDomain: "bsc-physics-a7cfd.firebaseapp.com",
+    projectId: "bsc-physics-a7cfd",
+    storageBucket: "bsc-physics-a7cfd.firebasestorage.app",
+    messagingSenderId: "639494268585",
+    appId: "1:639494268585:web:abb551d7eadf1c6477abb8",
+    measurementId: "G-JBF3T794JV"
 };
 
-// Initialize Firebase
+// Initialize Firebase Application
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Check if running on GitHub Pages to handle folder paths correctly
-const isGitHubPages = window.location.hostname.includes('github.io');
-const repoBase = isGitHubPages ? '/bsc-physics' : '';
-
-// 1. Switch between Login and Sign Up tabs
-document.querySelectorAll('.auth-tab').forEach(tab => {
-    tab.addEventListener('click', (e) => {
-        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        e.target.classList.add('active');
-        document.getElementById(e.target.getAttribute('data-target')).classList.add('active');
-    });
-});
-
-// 2. Sign Up Button Logic (Registers student in Firebase)
-const btnSignup = document.getElementById('btn-signup');
-if (btnSignup) {
-    btnSignup.addEventListener('click', async () => {
-        const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
+class AuthenticationSystem {
+    constructor() {
+        this.auth = auth;
         
-        if (!email || !password) {
-            alert("Please enter both an email and a password.");
-            return;
-        }
+        // Handle folder paths correctly for GitHub Pages deployment
+        this.isGitHubPages = window.location.hostname.includes('github.io');
+        this.repoBase = this.isGitHubPages ? '/bsc-physics' : '';
 
+        this.init();
+    }
+
+    /**
+     * Initializes the Authentication System
+     */
+    init() {
+        // Expose globally so inline scripts or non-module scripts can access it
+        window.AuthSystem = this;
+
+        // Listen for global state changes to track user authentication status
+        onAuthStateChanged(this.auth, (user) => {
+            if (user) {
+                console.log('[SECURITY] Valid session detected. Clearance granted.');
+                if (window.AppCore) window.AppCore.setState('isAuthenticated', true);
+            } else {
+                console.log('[SECURITY] No active session. Clearance revoked.');
+                if (window.AppCore) window.AppCore.setState('isAuthenticated', false);
+            }
+        });
+    }
+
+    /**
+     * Authenticates a user using the Cyberpunk "Passcode" interface.
+     * Maps the portal selection to a specific secure email address to work with Firebase Auth.
+     * 
+     * @param {string} portal - 'bsc' or 'class9'
+     * @param {string} passcode - The student's assigned password
+     * @returns {boolean} True if successful, false otherwise
+     */
+    async authenticate(portal, passcode) {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            alert("Success! Your account has been registered. You can now log in.");
-            document.querySelector('[data-target="login"]').click(); // Switch to login tab automatically
-        } catch (error) {
-            alert("Registration Error: " + error.message);
-        }
-    });
-}
+            if (window.AppCore) {
+                window.AppCore.notify('Decrypting credentials... Standby.', 'info');
+            }
 
-// 3. Log In Button Logic
-const btnLogin = document.getElementById('btn-login');
-if (btnLogin) {
-    btnLogin.addEventListener('click', async () => {
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        const portal = document.getElementById('login-portal').value;
+            // Map portal IDs to generic institutional emails for the HUD passcode aesthetic
+            const emailMap = {
+                'bsc': 'student@bsc-physics.edu',
+                'class9': 'student@class9-science.edu'
+            };
+            
+            const email = emailMap[portal] || 'student@bsc-physics.edu';
 
-        if (!email || !password) {
-            alert("Please enter your email and password.");
-            return;
-        }
+            // Attempt Firebase login
+            await signInWithEmailAndPassword(this.auth, email, passcode);
+            
+            if (window.AppCore) {
+                window.AppCore.notify('Access Granted. Rerouting to portal...', 'success');
+            }
 
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
             // Redirect based on selected portal dropdown
-            window.location.href = portal === 'bsc' 
-                ? `${repoBase}/portal-physics/index.html` 
-                : `${repoBase}/portal-science/index.html`;
+            setTimeout(() => {
+                window.location.href = portal === 'bsc' 
+                    ? `${this.repoBase}/portal-physics/index.html` 
+                    : `${this.repoBase}/index.html`; // Class 9 portal route
+            }, 800);
+            
+            return true;
+
         } catch (error) {
-            alert("Invalid email or password.");
+            console.error('[SECURITY] Authentication Failed:', error.message);
+            if (window.AppCore) {
+                window.AppCore.notify('Access Denied: Invalid passcode or clearance level.', 'danger');
+            }
+            return false;
         }
-    });
+    }
+
+    /**
+     * Security Check: Verifies the user is logged in before letting them see protected content.
+     * Redirects to the request-access (login) page if unauthorized.
+     * 
+     * @param {string} target - The portal being accessed, used for redirect parameters
+     */
+    verifyAccess(target = 'bsc') {
+        onAuthStateChanged(this.auth, (user) => {
+            if (!user) {
+                console.warn(`[SECURITY] Unauthorized access attempt to ${target}. Redirecting to login.`);
+                window.location.href = `${this.repoBase}/request-access.html?target=${target}&reason=unauthorized`;
+            }
+        });
+    }
+
+    /**
+     * Registers a new student account (Used internally or via an expanded signup form)
+     * 
+     * @param {string} email - Student email
+     * @param {string} password - Secure password
+     */
+    async registerStudent(email, password) {
+        try {
+            await createUserWithEmailAndPassword(this.auth, email, password);
+            console.log('[SECURITY] New student clearance established.');
+            return { success: true };
+        } catch (error) {
+            console.error('[SECURITY] Registration Error:', error.message);
+            return { success: false, error: error.message };
+        }
+    }
+
+    /**
+     * Logs the current user out and redirects to the main public interface
+     */
+    logout() {
+        if (window.AppCore) {
+            window.AppCore.notify('Initiating secure logout sequence...', 'warning');
+        }
+
+        signOut(this.auth).then(() => {
+            setTimeout(() => {
+                window.location.href = `${this.repoBase}/index.html`;
+            }, 500);
+        }).catch((error) => {
+            console.error('[SECURITY] Logout Error:', error);
+            if (window.AppCore) {
+                window.AppCore.notify('Logout sequence failed.', 'danger');
+            }
+        });
+    }
 }
 
-// 4. Security Check (verifies user is logged in before letting them see content)
-export function verifyAccess() {
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            window.location.href = repoBase + '/index.html'; // Redirect to home page if not logged in
-        }
-    });
-}
+// Instantiate and expose to window for modules that cannot use import/export
+const authSystemInstance = new AuthenticationSystem();
+window.AuthSystem = authSystemInstance;
 
-// 5. Logout Function
-export function logoutUser() {
-    signOut(auth).then(() => {
-        window.location.href = repoBase + '/index.html';
-    });
-}
+// Also export as a standard ES Module
+export default authSystemInstance;
+export { auth };
