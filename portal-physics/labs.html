@@ -2,90 +2,212 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratory Platform | B.Sc. Physics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Physics Laboratory Hub | S.Baruah OS</title>
+    
+    <!-- CSS Architecture -->
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/components.css">
+    
+    <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        .portal-layout { display: grid; grid-template-columns: 260px 1fr; gap: var(--space-xl); align-items: start; padding-top: var(--space-xl); padding-bottom: var(--space-3xl); }
-        .sidebar { position: sticky; top: 6rem; display: flex; flex-direction: column; gap: var(--space-sm); }
-        .nav-item { padding: var(--space-sm) var(--space-md); border-radius: var(--radius-md); color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: var(--space-md); font-weight: 500; transition: var(--transition-fast); border-left: 3px solid transparent; }
-        .nav-item:hover, .nav-item.active { background: rgba(189, 0, 255, 0.1); color: var(--accent-physics); border-left-color: var(--accent-physics); }
-        .lab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: var(--space-lg); }
-        .lab-controls { display: flex; gap: var(--space-sm); margin-top: var(--space-md); }
-        @media (max-width: 900px) {
-            .portal-layout { grid-template-columns: 1fr; }
-            .sidebar { position: relative; top: 0; flex-direction: row; overflow-x: auto; }
-            .nav-item { white-space: nowrap; }
+        .lab-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); 
+            gap: var(--space-lg); 
+        }
+        .lab-controls { 
+            display: flex; 
+            gap: var(--space-sm); 
+            margin-top: var(--space-md); 
         }
     </style>
 </head>
 <body>
-    <nav class="navbar" style="border-bottom-color: var(--accent-physics);">
+    
+    <!-- Top Command Navigation -->
+    <nav class="navbar" style="border-bottom-color: rgba(189, 0, 255, 0.3);">
         <div class="container nav-container">
-            <a href="index.html" class="nav-brand"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Lab Hub</a>
-            <button onclick="AuthSystem.logout()" class="btn btn-outline" style="padding: 0.35rem 1rem;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-arrow-left" style="font-size: 1rem; color: var(--text-secondary);"></i>
+                <i class="fa fa-flask pulse-slow" style="color: var(--accent-physics); margin-left: var(--space-xs);"></i>
+                LABORATORY HUB
+            </a>
+            
+            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
+                <i class="fa fa-bars"></i>
+            </button>
+            
+            <div id="nav-links" style="display: flex; align-items: center; gap: var(--space-md);">
+                <!-- Search HUD -->
+                <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm); border-color: rgba(189, 0, 255, 0.3);">
+                    <i class="fa fa-search" style="color: var(--text-secondary);"></i>
+                    <input type="text" placeholder="Query experiments..." style="background: transparent; border: none; color: #fff; outline: none; width: 180px; font-family: var(--font-mono); font-size: 0.85rem;">
+                    <span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">CTRL+K</span>
+                </div>
+                
+                <button onclick="window.AuthSystem.logout()" class="btn btn-danger" style="padding: 0.35rem 1rem; font-size: 0.75rem;">
+                    <i class="fas fa-power-off"></i> Disconnect
+                </button>
+            </div>
         </div>
     </nav>
 
-    <main class="container portal-layout">
-        <aside class="sidebar glass-panel animate-fade-up">
-            <a href="index.html" class="nav-item"><i class="fas fa-th-large"></i> Semester Dashboard</a>
-            <a href="labs.html" class="nav-item active"><i class="fas fa-flask"></i> Laboratory Hub</a>
-            <a href="#" class="nav-item"><i class="fas fa-square-root-variable"></i> Formula Sheets</a>
-            <a href="#" class="nav-item"><i class="fas fa-file-pdf"></i> Question Banks (PYQ)</a>
+    <!-- 3-Column Command HUD Layout -->
+    <div class="container portal-layout">
+        
+        <!-- LEFT SIDEBAR: Resource Center -->
+        <aside class="sidebar-left animate-fade-up delay-100">
+            <div class="glass-panel" style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
+                <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Resource Center</h3>
+                <span class="badge badge-system" style="margin-top: var(--space-xs);"><i class="fas fa-shield-check"></i> Authenticated</span>
+            </div>
+            
+            <!-- Navigation Directory -->
+            <a href="index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-th-large"></i> Semester Dashboard
+            </a>
+            <a href="labs.html" class="nav-item active" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--accent-physics); background: rgba(189, 0, 255, 0.1); border-left: 3px solid var(--accent-physics); text-decoration: none; font-weight: 600;">
+                <i class="fas fa-flask"></i> Laboratory Hub
+            </a>
+            <a href="#" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-square-root-variable"></i> Formula Sheets
+            </a>
+            <a href="#" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-file-pdf"></i> Question Banks (PYQ)
+            </a>
+            <a href="../simulations/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-laptop-code"></i> Simulation Center
+            </a>
         </aside>
 
-        <section class="animate-fade-up" style="animation-delay: 100ms;">
-            <header style="margin-bottom: var(--space-xl);">
-                <h1 class="heading-display" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Physics Laboratory</h1>
-                <p style="color: var(--text-secondary);">Interactive experiments, observation sheets, and viva preparation.</p>
+        <!-- CENTER VIEWPORT: Laboratory Matrix -->
+        <main class="center-viewport animate-fade-up delay-200">
+            <header style="margin-bottom: var(--space-sm);">
+                <h1 class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Physics Laboratory</h1>
+                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em;">Interactive experiments, observation sheets, and viva preparation.</p>
             </header>
 
             <div class="lab-grid">
-                <div class="glass-panel card">
+                
+                <!-- Experiment 01 -->
+                <div class="glass-panel card animate-fade-up delay-100">
                     <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm);">
-                        <span class="badge" style="background: rgba(0, 243, 255, 0.1); color: var(--accent-cyan); border: 1px solid var(--accent-cyan);">Mechanics</span>
+                        <span class="badge badge-system">Mechanics</span>
                         <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">EXP-01</span>
                     </div>
                     <h2 class="heading-display" style="font-size: 1.25rem; margin-bottom: var(--space-xs);">Compound Pendulum</h2>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">Determine the value of 'g' and radius of gyration using a bar pendulum.</p>
+                    
                     <div class="lab-controls">
-                        <a href="../viewer.html?file=files/exp1-manual.html&type=Practical%20Manual&title=Compound%20Pendulum&portal=bsc" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-book-open"></i> Manual</a>
-                        <a href="../viewer.html?file=files/exp1-sim.html&type=Simulation&title=Pendulum%20Simulation&portal=bsc" class="btn btn-primary" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-play"></i> Simulate</a>
+                        <a href="../viewer.html?file=files/exp1-manual.html&type=Practical%20Manual&title=Compound%20Pendulum&portal=bsc" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;">
+                            <i class="fas fa-book-open"></i> Manual
+                        </a>
+                        <a href="../viewer.html?file=files/exp1-sim.html&type=Simulation&title=Pendulum%20Simulation&portal=bsc" class="btn btn-primary" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;">
+                            <i class="fa fa-play"></i> Simulate
+                        </a>
                     </div>
+                    
                     <div class="lab-controls" style="margin-top: var(--space-xs);">
-                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);"><i class="fas fa-table"></i> Obs. Sheet</a>
-                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);"><i class="fas fa-comments"></i> Viva Qs</a>
+                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);">
+                            <i class="fas fa-table"></i> Obs. Sheet
+                        </a>
+                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);">
+                            <i class="fas fa-comments"></i> Viva Qs
+                        </a>
                     </div>
                 </div>
 
-                <div class="glass-panel card">
+                <!-- Experiment 02 -->
+                <div class="glass-panel card animate-fade-up delay-200">
                     <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm);">
-                        <span class="badge" style="background: rgba(0, 243, 255, 0.1); color: var(--accent-cyan); border: 1px solid var(--accent-cyan);">Optics</span>
+                        <span class="badge badge-system">Optics</span>
                         <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">EXP-02</span>
                     </div>
                     <h2 class="heading-display" style="font-size: 1.25rem; margin-bottom: var(--space-xs);">Spectrometer Prism</h2>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; flex-grow: 1;">Determine the refractive index of the material of a prism using a spectrometer.</p>
+                    
                     <div class="lab-controls">
-                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-book-open"></i> Manual</a>
-                        <a href="#" class="btn btn-primary" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;"><i class="fas fa-play"></i> Simulate</a>
+                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;">
+                            <i class="fas fa-book-open"></i> Manual
+                        </a>
+                        <a href="#" class="btn btn-primary" style="flex: 1; padding: 0.4rem; font-size: 0.75rem;">
+                            <i class="fa fa-play"></i> Simulate
+                        </a>
                     </div>
+                    
                     <div class="lab-controls" style="margin-top: var(--space-xs);">
-                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);"><i class="fas fa-table"></i> Obs. Sheet</a>
-                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);"><i class="fas fa-comments"></i> Viva Qs</a>
+                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);">
+                            <i class="fas fa-table"></i> Obs. Sheet
+                        </a>
+                        <a href="#" class="btn btn-outline" style="flex: 1; padding: 0.4rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.2); color: var(--text-secondary);">
+                            <i class="fas fa-comments"></i> Viva Qs
+                        </a>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
 
-    <script src="../assets/js/auth.js"></script>
-    <script>
+                <!-- Future Experiment Placeholder -->
+                <div class="glass-panel card animate-fade-up delay-300" style="opacity: 0.6; pointer-events: none; border: 1px dashed rgba(255,255,255,0.2);">
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column; gap: var(--space-sm);">
+                        <i class="fas fa-plus-circle" style="font-size: 2rem; color: var(--text-muted);"></i>
+                        <span style="font-family: var(--font-rajdhani); color: var(--text-muted); text-transform: uppercase;">Awaiting New Modules</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- RIGHT SIDEBAR: Telemetry Panel -->
+        <aside class="sidebar-right animate-fade-up delay-300">
+            <!-- Time / Date -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-cyan);">
+                <div class="hud-stat-title">Physics OS Time</div>
+                <div id="telemetry-clock" class="hud-stat-value neon">--:--:--</div>
+                <div id="telemetry-date" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">CYCLE ----.--.--</div>
+            </div>
+
+            <!-- XP Progress -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-physics);">
+                <div class="hud-stat-title">Scholar Rank</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-xs);">
+                    <div class="hud-stat-value" style="color: var(--accent-physics);">LVL <span id="telemetry-level">1</span></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"><span id="telemetry-xp">0</span> XP</div>
+                </div>
+                <div class="progress-container">
+                    <div id="telemetry-progress-bar" class="progress-fill" style="width: 0%; background: var(--accent-physics); box-shadow: var(--shadow-glow-physics);"></div>
+                </div>
+            </div>
+
+            <!-- Global Activity Log -->
+            <div class="glass-panel" style="padding: var(--space-md); flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 class="heading-display" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Laboratory Log</h3>
+                <div id="telemetry-activity-log" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 4px;">
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: var(--space-md);">Awaiting events...</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="../assets/js/core.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/mobile.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/telemetry.js"></script>
+    
+    <!-- Security verification -->
+    <script type="module">
+        import authSystemInstance from '../assets/js/auth.js';
         document.addEventListener('DOMContentLoaded', () => {
-            AuthSystem.verifyAccess('bsc');
+            // Protect this route
+            authSystemInstance.verifyAccess('bsc');
+            // Log entry point
+            if(window.AppCore) window.AppCore.notify('Laboratory Hub initialized.', 'info');
         });
     </script>
 </body>
