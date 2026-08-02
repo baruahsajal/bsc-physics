@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Class 9 Biology Archives | S.Baruah OS</title>
+    
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    
+    <!-- FontAwesome Icons for HUD Graphics -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+        
+        .resource-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-sm);
+            padding: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            transition: var(--transition-fast);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        
+        .resource-card:hover {
+            background: rgba(255, 184, 0, 0.05);
+            border-color: rgba(255, 184, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255, 184, 0, 0.2);
+        }
+        
+        .resource-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Top Command Navigation -->
+    <nav class="navbar" style="border-bottom-color: rgba(255, 184, 0, 0.3);">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-brand">
+                <i class="fas fa-arrow-left" style="font-size: 1rem; color: var(--text-secondary);"></i>
+                <i class="fa fa-dna pulse-slow" style="color: var(--accent-warning); margin-left: var(--space-xs);"></i>
+                CLASS 9 BIOLOGY
+            </a>
+            
+            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
+                <i class="fa fa-bars"></i>
+            </button>
+            
+            <div id="nav-links" style="display: flex; align-items: center; gap: var(--space-md);">
+                <!-- Search HUD -->
+                <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm); border-color: rgba(255, 184, 0, 0.3);">
+                    <i class="fa fa-search" style="color: var(--text-secondary);"></i>
+                    <input type="text" placeholder="Search modules..." style="background: transparent; border: none; color: #fff; outline: none; width: 160px; font-family: var(--font-mono); font-size: 0.85rem;">
+                    <span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">CTRL+K</span>
+                </div>
+                
+                <button onclick="window.AuthSystem.logout()" class="btn btn-danger" style="padding: 0.35rem 1rem; font-size: 0.75rem;">
+                    <i class="fas fa-power-off"></i> Disconnect
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3-Column Command HUD Layout -->
+    <div class="container portal-layout">
+        
+        <!-- LEFT SIDEBAR: Resource Center -->
+        <aside class="sidebar-left animate-fade-up delay-100">
+            <div class="glass-panel" style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
+                <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Science Matrix</h3>
+                <span class="badge badge-system" style="margin-top: var(--space-xs); background: rgba(255, 184, 0, 0.15); color: var(--accent-warning); border-color: var(--accent-warning);">Active Branch</span>
+            </div>
+            
+            <!-- Navigation Directory -->
+            <a href="../index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-th-large"></i> Academy HQ
+            </a>
+            <a href="../physics/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-atom"></i> Physics Databanks
+            </a>
+            <a href="../chemistry/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-flask"></i> Chemistry Labs
+            </a>
+            <a href="index.html" class="nav-item active" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--accent-warning); background: rgba(255, 184, 0, 0.1); border-left: 3px solid var(--accent-warning); text-decoration: none; font-weight: 600;">
+                <i class="fas fa-dna"></i> Biology Archives
+            </a>
+        </aside>
+
+        <!-- CENTER VIEWPORT: Content Matrix -->
+        <main class="center-viewport animate-fade-up delay-200">
+            <header style="margin-bottom: var(--space-sm);">
+                <h1 class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Class 9 Biology</h1>
+                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em;">Cellular structures, biological tissues, and living organisms.</p>
+            </header>
+
+            <!-- Chapter 1 -->
+            <div class="glass-panel card" style="margin-bottom: var(--space-lg); border-left: 4px solid var(--accent-warning);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+                    <h2 class="heading-display" style="font-size: 1.25rem; color: var(--text-primary);">Chapter 5: The Fundamental Unit of Life</h2>
+                    <span class="badge badge-system" style="background: rgba(255, 184, 0, 0.15); color: var(--accent-warning);">NCERT Unit</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Discovery of cells, cell theory, plasma membrane, cell wall, nucleus, cytoplasm, and cell organelles.</p>
+                
+                <div class="module-grid">
+                    <a href="../../viewer.html?file=portal-science/biology/files/cell-notes.html&type=Chapter%20Notes&title=Cell%20Notes&portal=class9" class="resource-card">
+                        <div class="resource-icon" style="color: var(--accent-warning);"><i class="fas fa-book"></i></div>
+                        <div>
+                            <div class="heading-rajdhani" style="font-size: 1.1rem;">Chapter Notes</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">HTML FORMAT</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="glass-panel card" style="margin-bottom: var(--space-lg); border-left: 4px solid var(--accent-warning);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+                    <h2 class="heading-display" style="font-size: 1.25rem; color: var(--text-primary);">Chapter 6: Tissues</h2>
+                    <span class="badge badge-system" style="background: rgba(255, 184, 0, 0.15); color: var(--accent-warning);">NCERT Unit</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Plant and animal tissues, meristematic and permanent tissues, epithelial, connective, muscular, and nervous tissues.</p>
+                
+                <div class="module-grid">
+                    <a href="#" class="resource-card" style="opacity: 0.7;">
+                        <div class="resource-icon" style="color: var(--accent-warning);"><i class="fas fa-book"></i></div>
+                        <div>
+                            <div class="heading-rajdhani" style="font-size: 1.1rem;">Chapter Notes</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">PENDING UPLOAD</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR: Telemetry Panel -->
+        <aside class="sidebar-right animate-fade-up delay-300">
+            <!-- Time / Date -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-warning);">
+                <div class="hud-stat-title">Academy OS Time</div>
+                <div id="telemetry-clock" class="hud-stat-value neon">--:--:--</div>
+                <div id="telemetry-date" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">CYCLE ----.--.--</div>
+            </div>
+
+            <!-- XP Progress -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-warning);">
+                <div class="hud-stat-title">Scholar Rank</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-xs);">
+                    <div class="hud-stat-value" style="color: var(--accent-warning);">LVL <span id="telemetry-level">1</span></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"><span id="telemetry-xp">0</span> XP</div>
+                </div>
+                <div class="progress-container">
+                    <div id="telemetry-progress-bar" class="progress-fill" style="width: 0%; background: var(--accent-warning); box-shadow: 0 0 10px rgba(255, 184, 0, 0.5);"></div>
+                </div>
+            </div>
+
+            <!-- Global Activity Log -->
+            <div class="glass-panel" style="padding: var(--space-md); flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 class="heading-display" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Biology Log</h3>
+                <div id="telemetry-activity-log" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 4px;">
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: var(--space-md);">Awaiting events...</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="../../assets/js/core.js"></script>
+    <script src="../../assets/js/theme.js"></script>
+    <script src="../../assets/js/mobile.js"></script>
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/animations.js"></script>
+    <script src="../../assets/js/search.js"></script>
+    <script src="../../assets/js/telemetry.js"></script>
+    
+    <!-- Security verification -->
+    <script type="module">
+        import authSystemInstance from '../../assets/js/auth.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            // Protect this route for Class 9 portal
+            authSystemInstance.verifyAccess('class9');
+            // Log entry point
+            if(window.AppCore) window.AppCore.notify('Class 9 Biology Archives loaded.', 'info');
+        });
+    </script>
+</body>
+</html>
