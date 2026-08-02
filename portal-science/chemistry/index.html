@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Class 9 Physics - Motion Formula Reference Sheet</title>
+    
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="../../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../../assets/css/global.css">
+    <link rel="stylesheet" href="../../../assets/css/components.css">
+    
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        body {
+            background-color: var(--bg-surface);
+            padding: var(--space-xl) var(--space-lg);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at top right, rgba(0, 243, 255, 0.03), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(0, 255, 157, 0.03), transparent 40%);
+        }
+        
+        .document-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .doc-header {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-md);
+        }
+        
+        .section-title {
+            color: var(--accent-cyan);
+            border-left: 4px solid var(--accent-cyan);
+            padding-left: var(--space-md);
+            margin: var(--space-xl) 0 var(--space-md) 0;
+            font-size: 1.5rem;
+        }
+
+        .formula-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .formula-table th, .formula-table td {
+            padding: var(--space-md);
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .formula-table th {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--accent-science);
+            font-family: var(--font-rajdhani);
+            font-size: 1.1rem;
+        }
+
+        .formula-table td {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .MathJax {
+            color: var(--accent-science) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-container">
+        
+        <!-- Document Header -->
+        <header class="doc-header">
+            <span class="badge badge-system" style="margin-bottom: var(--space-sm); background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan); border-color: var(--accent-cyan);">QUICK REFERENCE</span>
+            <h1 class="heading-display" style="font-size: 2.5rem; color: var(--text-primary);">Motion Formula Sheet</h1>
+            <p style="font-family: var(--font-mono); color: var(--accent-cyan); margin-top: var(--space-xs);">Course Code: SCI-PHY-01 | Class 9 Science Academy</p>
+        </header>
+
+        <!-- Section 1 -->
+        <section>
+            <h2 class="heading-display section-title">Core Kinematic Parameters</h2>
+            <p>Summary of fundamental formulas required for solving numerical problems related to rectilinear motion.</p>
+            
+            <table class="formula-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Formula</th>
+                        <th>SI Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Speed ($v$)</strong></td>
+                        <td>$$v = \frac{s}{t}$$</td>
+                        <td>$\text{m/s}$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Velocity ($v$)</strong></td>
+                        <td>$$v = \frac{\text{Displacement}}{\text{Time}}$$</td>
+                        <td>$\text{m/s}$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Acceleration ($a$)</strong></td>
+                        <td>$$a = \frac{v - u}{t}$$</td>
+                        <td>$\text{m/s}^2$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average Speed</strong></td>
+                        <td>$$\text{Total Distance} / \text{Total Time}$$</td>
+                        <td>$\text{m/s}$</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 2 -->
+        <section>
+            <h2 class="heading-display section-title" style="border-left-color: var(--accent-science); color: var(--accent-science);">Equations of Uniformly Accelerated Motion</h2>
+            <table class="formula-table">
+                <thead>
+                    <tr>
+                        <th>Equation Name</th>
+                        <th>Formula Expression</th>
+                        <th>Variables Related</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Velocity-Time Relation</strong></td>
+                        <td>$$v = u + at$$</td>
+                        <td>Velocity, Time, Acceleration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Position-Time Relation</strong></td>
+                        <td>$$s = ut + \frac{1}{2}at^2$$</td>
+                        <td>Displacement, Time, Acceleration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Position-Velocity Relation</strong></td>
+                        <td>$$v^2 = u^2 + 2as$$</td>
+                        <td>Velocity, Displacement, Acceleration</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div style="text-align: center; margin-top: var(--space-3xl); padding-top: var(--space-xl); border-top: 1px solid rgba(255,255,255,0.05);">
+            <p style="font-family: var(--font-mono); font-size: 0.8rem; opacity: 0.5;">END OF REFERENCE SHEET // DATABANK SECURE</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
