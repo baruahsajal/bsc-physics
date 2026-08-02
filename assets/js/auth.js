@@ -62,28 +62,21 @@ class AuthenticationSystem {
     }
 
     /**
-     * Authenticates a user using the Cyberpunk "Passcode" interface.
-     * Maps the portal selection to a specific secure email address to work with Firebase Auth.
+     * Authenticates a user using custom email and passcode inputs.
+     * Supports accounts like harshborah600@gmail.com and sajalbaruah65@gmail.com.
      * 
      * @param {string} portal - 'bsc' or 'class9'
+     * @param {string} email - The student's email address
      * @param {string} passcode - The student's assigned password
      * @returns {boolean} True if successful, false otherwise
      */
-    async authenticate(portal, passcode) {
+    async authenticate(portal, email, passcode) {
         try {
             if (window.AppCore) {
                 window.AppCore.notify('Decrypting credentials... Standby.', 'info');
             }
 
-            // Map portal IDs to generic institutional emails for the HUD passcode aesthetic
-            const emailMap = {
-                'bsc': 'student@bsc-physics.edu',
-                'class9': 'student@class9-science.edu'
-            };
-            
-            const email = emailMap[portal] || 'student@bsc-physics.edu';
-
-            // Attempt Firebase login
+            // Attempt Firebase login with the provided custom email and passcode
             await signInWithEmailAndPassword(this.auth, email, passcode);
             
             if (window.AppCore) {
@@ -102,7 +95,7 @@ class AuthenticationSystem {
         } catch (error) {
             console.error('[SECURITY] Authentication Failed:', error.message);
             if (window.AppCore) {
-                window.AppCore.notify('Access Denied: Invalid passcode or clearance level.', 'danger');
+                window.AppCore.notify('Access Denied: Invalid email, passcode or clearance level.', 'danger');
             }
             return false;
         }
@@ -124,7 +117,7 @@ class AuthenticationSystem {
     }
 
     /**
-     * Registers a new student account (Used internally or via an expanded signup form)
+     * Registers a new student account
      * 
      * @param {string} email - Student email
      * @param {string} password - Secure password
