@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Class 9 Science Academy | S.Baruah OS</title>
-    
+    <title>Class 9 Science & Math Academy | S.Baruah OS</title>
+
     <!-- CSS Architecture -->
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/components.css">
-    
+
     <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         .module-grid { 
             display: grid; 
@@ -47,20 +47,20 @@
     </style>
 </head>
 <body>
-    
+
     <!-- Top Command Navigation -->
     <nav class="navbar" style="border-bottom-color: rgba(0, 255, 157, 0.3);">
         <div class="container nav-container">
             <a href="../index.html" class="nav-brand">
                 <i class="fas fa-arrow-left" style="font-size: 1rem; color: var(--text-secondary);"></i>
                 <i class="fa fa-microscope pulse-slow" style="color: var(--accent-science); margin-left: var(--space-xs);"></i>
-                CLASS 9 SCIENCE HQ
+                CLASS 9 ACADEMY HQ
             </a>
-            
+
             <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
                 <i class="fa fa-bars"></i>
             </button>
-            
+
             <div id="nav-links" style="display: flex; align-items: center; gap: var(--space-md);">
                 <!-- Search HUD -->
                 <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm); border-color: rgba(0, 255, 157, 0.3);">
@@ -68,7 +68,7 @@
                     <input type="text" placeholder="Query databanks..." style="background: transparent; border: none; color: #fff; outline: none; width: 180px; font-family: var(--font-mono); font-size: 0.85rem;">
                     <span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">CTRL+K</span>
                 </div>
-                
+
                 <button onclick="window.AuthSystem.logout()" class="btn btn-danger" style="padding: 0.35rem 1rem; font-size: 0.75rem;">
                     <i class="fas fa-power-off"></i> Disconnect
                 </button>
@@ -78,14 +78,14 @@
 
     <!-- 3-Column Command HUD Layout -->
     <div class="container portal-layout">
-        
+
         <!-- LEFT SIDEBAR: Resource Center -->
         <aside class="sidebar-left animate-fade-up delay-100">
             <div class="glass-panel" style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
                 <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Academy Center</h3>
                 <span class="badge badge-system" style="margin-top: var(--space-xs); background: rgba(0, 255, 157, 0.15); color: var(--accent-science); border-color: var(--accent-science);"><i class="fas fa-shield-check"></i> Authenticated</span>
             </div>
-            
+
             <!-- Navigation Directory -->
             <a href="index.html" class="nav-item active" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--accent-science); background: rgba(0, 255, 157, 0.1); border-left: 3px solid var(--accent-science); text-decoration: none; font-weight: 600;">
                 <i class="fas fa-th-large"></i> Syllabus Matrix
@@ -99,19 +99,41 @@
             <a href="biology/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
                 <i class="fas fa-dna"></i> Biology Archives
             </a>
+            <!-- NEW: Mathematics Branch -->
+            <a href="mathematics/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-calculator" style="color: #ec4899;"></i> Mathematics Hub
+            </a>
         </aside>
 
         <!-- CENTER VIEWPORT: Syllabus Matrix -->
         <main class="center-viewport animate-fade-up delay-200">
             <header style="margin-bottom: var(--space-sm);">
-                <h1 class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Class 9 Science Modules</h1>
-                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em;">NCERT Curriculum & Fundamental Science Training Protocols</p>
+                <h1 class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Class 9 Modules</h1>
+                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em;">NCERT Curriculum & Fundamental Training Protocols</p>
             </header>
 
             <div class="module-grid">
                 
+                <!-- NEW: Unit 4: Mathematics -->
+                <div class="glass-panel card animate-fade-up delay-100" style="border-top: 3px solid #ec4899;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h2 class="heading-display" style="font-size: 1.25rem;">Mathematics Modules</h2>
+                        <span class="badge badge-system" style="background: rgba(236, 72, 153, 0.15); color: #ec4899; border-color: #ec4899;">Active</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div>
+                                <div class="subject-code" style="color: #ec4899;">MATH-01</div>
+                                <div class="subject-name">Number Systems & Polynomials</div>
+                            </div>
+                            <a href="mathematics/index.html" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.75rem; border-color: #ec4899; color: #ec4899;"><i class="fas fa-calculator"></i></a>
+                        </li>
+                    </ul>
+                    <a href="mathematics/index.html" class="btn btn-outline" style="width: 100%; border-color: #ec4899; color: #ec4899;">Access Math Hub</a>
+                </div>
+
                 <!-- Unit 1: Physics -->
-                <div class="glass-panel card animate-fade-up delay-100" style="border-top: 3px solid var(--accent-science);">
+                <div class="glass-panel card animate-fade-up delay-150" style="border-top: 3px solid var(--accent-science);">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
                         <h2 class="heading-display" style="font-size: 1.25rem;">Physics Modules</h2>
                         <span class="badge badge-completed">Active</span>
@@ -214,7 +236,7 @@
     <script src="../assets/js/search.js"></script>
     <script src="../assets/js/dashboard.js"></script>
     <script src="../assets/js/telemetry.js"></script>
-    
+
     <!-- Security verification -->
     <script type="module">
         import authSystemInstance from '../assets/js/auth.js';
@@ -222,7 +244,7 @@
             // Protect this route for Class 9 portal
             authSystemInstance.verifyAccess('class9');
             // Log entry point
-            if(window.AppCore) window.AppCore.notify('Class 9 Science Academy Dashboard accessed.', 'success');
+            if(window.AppCore) window.AppCore.notify('Class 9 Science & Math Academy Dashboard accessed.', 'success');
         });
     </script>
 </body>
