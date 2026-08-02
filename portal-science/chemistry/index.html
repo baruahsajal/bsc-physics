@@ -3,180 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Class 9 Physics - Motion Formula Reference Sheet</title>
+    <title>Class 9 Chemistry Databanks | S.Baruah OS</title>
     
     <!-- CSS Architecture -->
-    <link rel="stylesheet" href="../../../assets/css/variables.css">
-    <link rel="stylesheet" href="../../../assets/css/global.css">
-    <link rel="stylesheet" href="../../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
     
-    <!-- MathJax for LaTeX Rendering -->
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- FontAwesome Icons for HUD Graphics -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body {
-            background-color: var(--bg-surface);
-            padding: var(--space-xl) var(--space-lg);
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at top right, rgba(0, 243, 255, 0.03), transparent 40%),
-                radial-gradient(circle at bottom left, rgba(0, 255, 157, 0.03), transparent 40%);
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-md);
         }
         
-        .document-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .doc-header {
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: var(--space-2xl);
-            padding-bottom: var(--space-md);
-        }
-        
-        .section-title {
-            color: var(--accent-cyan);
-            border-left: 4px solid var(--accent-cyan);
-            padding-left: var(--space-md);
-            margin: var(--space-xl) 0 var(--space-md) 0;
-            font-size: 1.5rem;
-        }
-
-        .formula-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: var(--space-md) 0;
-            background: rgba(0, 0, 0, 0.3);
+        .resource-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-sm);
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .formula-table th, .formula-table td {
             padding: var(--space-md);
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            transition: var(--transition-fast);
+            text-decoration: none;
+            color: var(--text-primary);
         }
-
-        .formula-table th {
-            background: rgba(0, 255, 157, 0.1);
-            color: var(--accent-science);
-            font-family: var(--font-rajdhani);
-            font-size: 1.1rem;
+        
+        .resource-card:hover {
+            background: rgba(0, 243, 255, 0.05);
+            border-color: rgba(0, 243, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-cyan);
         }
-
-        .formula-table td {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        p {
-            margin-bottom: var(--space-md);
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .MathJax {
-            color: var(--accent-science) !important;
+        
+        .resource-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
 <body>
-
-    <div class="document-container">
-        
-        <!-- Document Header -->
-        <header class="doc-header">
-            <span class="badge badge-system" style="margin-bottom: var(--space-sm); background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan); border-color: var(--accent-cyan);">QUICK REFERENCE</span>
-            <h1 class="heading-display" style="font-size: 2.5rem; color: var(--text-primary);">Motion Formula Sheet</h1>
-            <p style="font-family: var(--font-mono); color: var(--accent-cyan); margin-top: var(--space-xs);">Course Code: SCI-PHY-01 | Class 9 Science Academy</p>
-        </header>
-
-        <!-- Section 1 -->
-        <section>
-            <h2 class="heading-display section-title">Core Kinematic Parameters</h2>
-            <p>Summary of fundamental formulas required for solving numerical problems related to rectilinear motion.</p>
+    
+    <!-- Top Command Navigation -->
+    <nav class="navbar" style="border-bottom-color: rgba(0, 243, 255, 0.3);">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-brand">
+                <i class="fas fa-arrow-left" style="font-size: 1rem; color: var(--text-secondary);"></i>
+                <i class="fa fa-flask pulse-slow" style="color: var(--accent-cyan); margin-left: var(--space-xs);"></i>
+                CLASS 9 CHEMISTRY
+            </a>
             
-            <table class="formula-table">
-                <thead>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Formula</th>
-                        <th>SI Unit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Speed ($v$)</strong></td>
-                        <td>$$v = \frac{s}{t}$$</td>
-                        <td>$\text{m/s}$</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Velocity ($v$)</strong></td>
-                        <td>$$v = \frac{\text{Displacement}}{\text{Time}}$$</td>
-                        <td>$\text{m/s}$</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Acceleration ($a$)</strong></td>
-                        <td>$$a = \frac{v - u}{t}$$</td>
-                        <td>$\text{m/s}^2$</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Average Speed</strong></td>
-                        <td>$$\text{Total Distance} / \text{Total Time}$$</td>
-                        <td>$\text{m/s}$</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Section 2 -->
-        <section>
-            <h2 class="heading-display section-title" style="border-left-color: var(--accent-science); color: var(--accent-science);">Equations of Uniformly Accelerated Motion</h2>
-            <table class="formula-table">
-                <thead>
-                    <tr>
-                        <th>Equation Name</th>
-                        <th>Formula Expression</th>
-                        <th>Variables Related</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Velocity-Time Relation</strong></td>
-                        <td>$$v = u + at$$</td>
-                        <td>Velocity, Time, Acceleration</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Position-Time Relation</strong></td>
-                        <td>$$s = ut + \frac{1}{2}at^2$$</td>
-                        <td>Displacement, Time, Acceleration</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Position-Velocity Relation</strong></td>
-                        <td>$$v^2 = u^2 + 2as$$</td>
-                        <td>Velocity, Displacement, Acceleration</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <div style="text-align: center; margin-top: var(--space-3xl); padding-top: var(--space-xl); border-top: 1px solid rgba(255,255,255,0.05);">
-            <p style="font-family: var(--font-mono); font-size: 0.8rem; opacity: 0.5;">END OF REFERENCE SHEET // DATABANK SECURE</p>
+            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
+                <i class="fa fa-bars"></i>
+            </button>
+            
+            <div id="nav-links" style="display: flex; align-items: center; gap: var(--space-md);">
+                <!-- Search HUD -->
+                <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm); border-color: rgba(0, 243, 255, 0.3);">
+                    <i class="fa fa-search" style="color: var(--text-secondary);"></i>
+                    <input type="text" placeholder="Search modules..." style="background: transparent; border: none; color: #fff; outline: none; width: 160px; font-family: var(--font-mono); font-size: 0.85rem;">
+                    <span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">CTRL+K</span>
+                </div>
+                
+                <button onclick="window.AuthSystem.logout()" class="btn btn-danger" style="padding: 0.35rem 1rem; font-size: 0.75rem;">
+                    <i class="fas fa-power-off"></i> Disconnect
+                </button>
+            </div>
         </div>
+    </nav>
 
+    <!-- 3-Column Command HUD Layout -->
+    <div class="container portal-layout">
+        
+        <!-- LEFT SIDEBAR: Resource Center -->
+        <aside class="sidebar-left animate-fade-up delay-100">
+            <div class="glass-panel" style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
+                <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Science Matrix</h3>
+                <span class="badge badge-system" style="margin-top: var(--space-xs); background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan); border-color: var(--accent-cyan);">Active Branch</span>
+            </div>
+            
+            <!-- Navigation Directory -->
+            <a href="../index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-th-large"></i> Academy HQ
+            </a>
+            <a href="../physics/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-atom"></i> Physics Databanks
+            </a>
+            <a href="index.html" class="nav-item active" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--accent-cyan); background: rgba(0, 243, 255, 0.1); border-left: 3px solid var(--accent-cyan); text-decoration: none; font-weight: 600;">
+                <i class="fas fa-flask"></i> Chemistry Labs
+            </a>
+            <a href="../biology/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-dna"></i> Biology Archives
+            </a>
+        </aside>
+
+        <!-- CENTER VIEWPORT: Content Matrix -->
+        <main class="center-viewport animate-fade-up delay-200">
+            <header style="margin-bottom: var(--space-sm);">
+                <h1 class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Class 9 Chemistry</h1>
+                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em;">Exploration of matter, atomic structure, and chemical interactions.</p>
+            </header>
+
+            <!-- Chapter 1 -->
+            <div class="glass-panel card" style="margin-bottom: var(--space-lg); border-left: 4px solid var(--accent-cyan);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+                    <h2 class="heading-display" style="font-size: 1.25rem; color: var(--text-primary);">Chapter 1: Matter in Our Surroundings</h2>
+                    <span class="badge badge-system" style="background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan);">NCERT Unit</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Physical nature of matter, characteristics of particles, states of matter, and evaporation principles.</p>
+                
+                <div class="module-grid">
+                    <a href="../../viewer.html?file=portal-science/chemistry/files/matter-notes.html&type=Chapter%20Notes&title=Matter%20Notes&portal=class9" class="resource-card">
+                        <div class="resource-icon" style="color: var(--accent-cyan);"><i class="fas fa-book"></i></div>
+                        <div>
+                            <div class="heading-rajdhani" style="font-size: 1.1rem;">Chapter Notes</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">HTML FORMAT</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="glass-panel card" style="margin-bottom: var(--space-lg); border-left: 4px solid var(--accent-cyan);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+                    <h2 class="heading-display" style="font-size: 1.25rem; color: var(--text-primary);">Chapter 2: Is Matter Around Us Pure</h2>
+                    <span class="badge badge-system" style="background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan);">NCERT Unit</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Mixtures, solutions, concentration, colloids, and physical vs. chemical changes.</p>
+                
+                <div class="module-grid">
+                    <a href="#" class="resource-card" style="opacity: 0.7;">
+                        <div class="resource-icon" style="color: var(--accent-cyan);"><i class="fas fa-book"></i></div>
+                        <div>
+                            <div class="heading-rajdhani" style="font-size: 1.1rem;">Chapter Notes</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">PENDING UPLOAD</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR: Telemetry Panel -->
+        <aside class="sidebar-right animate-fade-up delay-300">
+            <!-- Time / Date -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-cyan);">
+                <div class="hud-stat-title">Academy OS Time</div>
+                <div id="telemetry-clock" class="hud-stat-value neon">--:--:--</div>
+                <div id="telemetry-date" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">CYCLE ----.--.--</div>
+            </div>
+
+            <!-- XP Progress -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-cyan);">
+                <div class="hud-stat-title">Scholar Rank</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-xs);">
+                    <div class="hud-stat-value" style="color: var(--accent-cyan);">LVL <span id="telemetry-level">1</span></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"><span id="telemetry-xp">0</span> XP</div>
+                </div>
+                <div class="progress-container">
+                    <div id="telemetry-progress-bar" class="progress-fill" style="width: 0%; background: var(--accent-cyan); box-shadow: var(--shadow-glow-cyan);"></div>
+                </div>
+            </div>
+
+            <!-- Global Activity Log -->
+            <div class="glass-panel" style="padding: var(--space-md); flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 class="heading-display" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Chemistry Log</h3>
+                <div id="telemetry-activity-log" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 4px;">
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: var(--space-md);">Awaiting events...</div>
+                </div>
+            </div>
+        </aside>
     </div>
 
+    <!-- Core Scripts -->
+    <script src="../../assets/js/core.js"></script>
+    <script src="../../assets/js/theme.js"></script>
+    <script src="../../assets/js/mobile.js"></script>
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/animations.js"></script>
+    <script src="../../assets/js/search.js"></script>
+    <script src="../../assets/js/telemetry.js"></script>
+    
+    <!-- Security verification -->
+    <script type="module">
+        import authSystemInstance from '../../assets/js/auth.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            // Protect this route for Class 9 portal
+            authSystemInstance.verifyAccess('class9');
+            // Log entry point
+            if(window.AppCore) window.AppCore.notify('Class 9 Chemistry Databanks loaded.', 'info');
+        });
+    </script>
 </body>
 </html>
