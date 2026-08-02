@@ -2,205 +2,257 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Access | Educational Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secured Enclave // Access Terminal</title>
+    
+    <!-- CSS Architecture -->
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    
+    <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        .auth-container {
-            min-height: 100vh;
+        body {
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: var(--space-xl) var(--space-md);
-            background: radial-gradient(circle at top right, rgba(0, 243, 255, 0.05), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(189, 0, 255, 0.05), transparent 40%);
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, var(--bg-base) 80%);
+            overflow: hidden;
+            padding: var(--space-md);
         }
-        .auth-card {
+
+        .enclave-container {
             width: 100%;
-            max-width: 480px;
+            max-width: 460px;
+            background: var(--bg-glass-heavy);
+            backdrop-filter: var(--blur-heavy);
+            -webkit-backdrop-filter: var(--blur-heavy);
+            border: var(--border-glass-strong);
+            border-radius: var(--radius-lg);
             padding: var(--space-xl);
-            border-top: 3px solid var(--accent-cyan);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), var(--shadow-glow-cyan);
+            position: relative;
+            z-index: 10;
         }
-        .auth-tabs {
+
+        .enclave-tabs {
             display: flex;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: var(--space-lg);
         }
-        .auth-tab {
+
+        .enclave-tab {
             flex: 1;
-            text-align: center;
-            padding: var(--space-sm);
+            background: transparent;
+            border: none;
             color: var(--text-secondary);
             font-family: var(--font-display);
             font-size: 0.9rem;
+            padding: var(--space-sm) 0;
             cursor: pointer;
-            border-bottom: 2px solid transparent;
             transition: var(--transition-fast);
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
         }
-        .auth-tab.active {
+
+        .enclave-tab.active {
             color: var(--accent-cyan);
-            border-bottom-color: var(--accent-cyan);
         }
-        .tab-content { display: none; animation: fadeInUp 0.3s ease; }
-        .tab-content.active { display: block; }
-        .form-group { margin-bottom: var(--space-md); }
+
+        .enclave-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-cyan);
+            box-shadow: var(--shadow-glow-cyan);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+
         .form-label {
             display: block;
-            margin-bottom: var(--space-xs);
-            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
             color: var(--text-secondary);
+            margin-bottom: var(--space-xs);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        .form-control {
+
+        .form-input, .form-select {
             width: 100%;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem var(--space-md);
             color: var(--text-primary);
-            padding: 0.875rem 1rem;
-            border-radius: var(--radius-md);
-            font-family: var(--font-sans);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            outline: none;
             transition: var(--transition-fast);
         }
-        .form-control:focus {
-            outline: none;
+
+        .form-input:focus, .form-select:focus {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 0 3px rgba(0, 243, 255, 0.1);
+            box-shadow: var(--shadow-glow-cyan);
         }
-        #auth-alert {
+
+        .form-select option {
+            background: var(--bg-base);
+            color: var(--text-primary);
+        }
+
+        .tab-content {
             display: none;
-            padding: var(--space-sm);
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: var(--accent-danger);
-            border-radius: var(--radius-sm);
-            margin-bottom: var(--space-md);
-            font-size: 0.9rem;
-            text-align: center;
+        }
+
+        .tab-content.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="auth-container">
-        <div class="glass-panel auth-card animate-fade-up">
-            <div style="text-align: center; margin-bottom: var(--space-lg);">
-                <i class="fas fa-shield-alt pulse-slow" style="font-size: 2.5rem; color: var(--accent-cyan); margin-bottom: var(--space-md);"></i>
-                <h1 class="heading-display" style="font-size: 1.5rem; margin-bottom: var(--space-xs);">Secured Enclave</h1>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Authentication required to access educational resources.</p>
-            </div>
 
-            <div class="auth-tabs">
-                <div class="auth-tab active" data-target="login">Authenticate</div>
-                <div class="auth-tab" data-target="request">Request Access</div>
-            </div>
+    <div class="enclave-container animate-fade-up">
+        
+        <!-- Header Branding -->
+        <div style="text-align: center; margin-bottom: var(--space-lg);">
+            <i class="fas fa-shield-alt pulse-slow" style="font-size: 2.5rem; color: var(--accent-cyan); margin-bottom: var(--space-xs);"></i>
+            <h1 class="heading-display" style="font-size: 1.5rem; letter-spacing: 0.1em; color: var(--text-primary);">SECURED ENCLAVE</h1>
+            <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">Authentication required to access educational resources.</p>
+        </div>
 
-            <div id="auth-alert"></div>
+        <!-- Terminal Tabs -->
+        <div class="enclave-tabs">
+            <button class="enclave-tab active" data-target="auth-pane">Authenticate</button>
+            <button class="enclave-tab" data-target="request-pane">Request Access</button>
+        </div>
 
-            <div id="login" class="tab-content active">
+        <!-- TAB 1: AUTHENTICATION PANEL -->
+        <div id="auth-pane" class="tab-content active">
+            <form id="login-form">
                 <div class="form-group">
-                    <label class="form-label">Select Destination</label>
-                    <select id="login-portal" class="form-control">
+                    <label class="form-label" for="portal-select">Select Destination</label>
+                    <select id="portal-select" class="form-select">
                         <option value="bsc">B.Sc. Physics Ecosystem</option>
                         <option value="class9">Class 9 Science Academy</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Security Passcode</label>
-                    <input type="password" id="login-password" class="form-control" placeholder="Enter your assigned passcode">
-                </div>
-                <button id="btn-login" class="btn btn-primary" style="width: 100%; margin-top: var(--space-sm);">
-                    Unlock Portal <i class="fas fa-unlock"></i>
-                </button>
-                <div style="text-align: center; margin-top: var(--space-md);">
-                    <a href="index.html" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: none;"><i class="fas fa-arrow-left"></i> Return to Main Website</a>
-                </div>
-            </div>
 
-            <div id="request" class="tab-content">
-                <form action="https://api.web3forms.com/submit" method="POST" id="access-form">
-                    <input type="hidden" name="access_key" value="15f13211-3a69-4812-9a92-0d4bff3669d1">
-                    <input type="hidden" name="subject" value="New Portal Access Request">
-                    
-                    <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Institution / School</label>
-                        <input type="text" name="institution" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Target Module</label>
-                        <select name="module" class="form-control" required>
-                            <option value="B.Sc. Physics FYUGP">B.Sc. Physics FYUGP</option>
-                            <option value="Class 9 Science">Class 9 Science</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Purpose of Access</label>
-                        <textarea name="purpose" class="form-control" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-outline" style="width: 100%; margin-top: var(--space-sm);">
-                        Submit Application <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
+                <div class="form-group" style="margin-bottom: var(--space-xl);">
+                    <label class="form-label" for="passcode-input">Security Passcode</label>
+                    <input type="password" id="passcode-input" class="form-input" placeholder="Enter your assigned passcode" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; justify-content: center; font-size: 0.95rem;">
+                    Unlock Portal <i class="fas fa-lock-open" style="margin-left: 8px;"></i>
+                </button>
+            </form>
         </div>
+
+        <!-- TAB 2: REQUEST ACCESS PANEL -->
+        <div id="request-pane" class="tab-content">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key -->
+                <input type="hidden" name="apikey" value="15f13211-3a69-4812-9a92-0d4bff3669d1">
+                <input type="hidden" name="subject" value="New Portal Access Request">
+                <input type="hidden" name="redirect" value="https://api.web3forms.com/success">
+
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="name" class="form-input" placeholder="e.g., Rahul Sharma" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-input" placeholder="student@domain.edu" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Institution / School</label>
+                    <input type="text" name="institution" class="form-input" placeholder="e.g., Biswanath College" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Target Module</label>
+                    <select name="target_module" class="form-select">
+                        <option value="B.Sc Physics">B.Sc Physics Portal</option>
+                        <option value="Class 9 Science">Class 9 Science Academy</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: var(--space-xl);">
+                    <label class="form-label">Purpose of Access</label>
+                    <textarea name="message" class="form-input" rows="2" placeholder="Briefly state your requirement..." style="resize: none;" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-outline" style="width: 100%; padding: 0.75rem; justify-content: center; font-size: 0.95rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">
+                    Submit Application <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer Link Back -->
+        <div style="text-align: center; margin-top: var(--space-lg);">
+            <a href="index.html" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-muted)'">
+                &larr; Return to Main Website
+            </a>
+        </div>
+
     </div>
 
-    <script src="assets/js/auth.js"></script>
+    <!-- Core Scripts -->
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/animations.js"></script>
+    
+    <!-- Tab Switching Logic Script -->
     <script>
-        document.querySelectorAll('.auth-tab').forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                e.target.classList.add('active');
-                document.getElementById(e.target.getAttribute('data-target')).classList.add('active');
-                document.getElementById('auth-alert').style.display = 'none';
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.enclave-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.getAttribute('data-target');
+                    
+                    // Update active tab styles
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Update active panes
+                    document.querySelectorAll('.tab-content').forEach(pane => {
+                        pane.classList.remove('active');
+                    });
+                    document.getElementById(targetId).classList.add('active');
+                });
             });
-        });
 
-        document.getElementById('btn-login').addEventListener('click', async () => {
-            const portal = document.getElementById('login-portal').value;
-            const pass = document.getElementById('login-password').value;
-            const alertBox = document.getElementById('auth-alert');
-
-            if (!pass) {
-                alertBox.textContent = 'Passcode is required.';
-                alertBox.style.display = 'block';
-                return;
-            }
-
-            const success = await AuthSystem.authenticate(portal, pass);
-            if (!success) {
-                alertBox.textContent = 'Invalid credentials. Please request access if you do not have a passcode.';
-                alertBox.style.display = 'block';
-                document.getElementById('login-password').value = '';
+            // Handle Login Form Submission via AuthSystem
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const portal = document.getElementById('portal-select').value;
+                    const passcode = document.getElementById('passcode-input').value;
+                    
+                    if (window.AuthSystem) {
+                        await window.AuthSystem.authenticate(portal, passcode);
+                    } else {
+                        console.error('[SECURITY] AuthSystem module not loaded.');
+                    }
+                });
             }
         });
-
-        window.onload = () => {
-            const params = new URLSearchParams(window.location.search);
-            const target = params.get('target');
-            const reason = params.get('reason');
-            
-            if (target && document.getElementById('login-portal')) {
-                document.getElementById('login-portal').value = target;
-            }
-            if (reason === 'unauthorized') {
-                const alertBox = document.getElementById('auth-alert');
-                alertBox.textContent = 'Active session required. Please authenticate.';
-                alertBox.style.display = 'block';
-            }
-        };
     </script>
+    
+    <!-- Firebase Auth ES Module -->
+    <script type="module" src="assets/js/auth.js"></script>
 </body>
 </html>
