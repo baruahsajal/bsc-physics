@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Class 9 Chemistry Databanks | S.Baruah OS</title>
-    
+
     <!-- CSS Architecture -->
     <link rel="stylesheet" href="../../assets/css/variables.css">
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/components.css">
-    
+
     <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         .module-grid {
             display: grid;
@@ -20,7 +20,7 @@
             gap: var(--space-md);
             margin-top: var(--space-md);
         }
-        
+
         .resource-card {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -33,14 +33,14 @@
             text-decoration: none;
             color: var(--text-primary);
         }
-        
+
         .resource-card:hover {
             background: rgba(0, 243, 255, 0.05);
             border-color: rgba(0, 243, 255, 0.3);
             transform: translateY(-2px);
             box-shadow: var(--shadow-glow-cyan);
         }
-        
+
         .resource-icon {
             width: 48px;
             height: 48px;
@@ -54,7 +54,7 @@
     </style>
 </head>
 <body>
-    
+
     <!-- Top Command Navigation -->
     <nav class="navbar" style="border-bottom-color: rgba(0, 243, 255, 0.3);">
         <div class="container nav-container">
@@ -63,11 +63,11 @@
                 <i class="fa fa-flask pulse-slow" style="color: var(--accent-cyan); margin-left: var(--space-xs);"></i>
                 CLASS 9 CHEMISTRY
             </a>
-            
+
             <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
                 <i class="fa fa-bars"></i>
             </button>
-            
+
             <div id="nav-links" style="display: flex; align-items: center; gap: var(--space-md);">
                 <!-- Search HUD -->
                 <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm); border-color: rgba(0, 243, 255, 0.3);">
@@ -75,7 +75,7 @@
                     <input type="text" placeholder="Search modules..." style="background: transparent; border: none; color: #fff; outline: none; width: 160px; font-family: var(--font-mono); font-size: 0.85rem;">
                     <span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">CTRL+K</span>
                 </div>
-                
+
                 <button onclick="window.AuthSystem.logout()" class="btn btn-danger" style="padding: 0.35rem 1rem; font-size: 0.75rem;">
                     <i class="fas fa-power-off"></i> Disconnect
                 </button>
@@ -85,14 +85,14 @@
 
     <!-- 3-Column Command HUD Layout -->
     <div class="container portal-layout">
-        
+
         <!-- LEFT SIDEBAR: Resource Center -->
         <aside class="sidebar-left animate-fade-up delay-100">
             <div class="glass-panel" style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
                 <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Science Matrix</h3>
                 <span class="badge badge-system" style="margin-top: var(--space-xs); background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan); border-color: var(--accent-cyan);">Active Branch</span>
             </div>
-            
+
             <!-- Navigation Directory -->
             <a href="../index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
                 <i class="fas fa-th-large"></i> Academy HQ
@@ -105,6 +105,10 @@
             </a>
             <a href="../biology/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
                 <i class="fas fa-dna"></i> Biology Archives
+            </a>
+            <!-- NEW: Mathematics Branch -->
+            <a href="../mathematics/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-calculator" style="color: #ec4899;"></i> Mathematics Hub
             </a>
         </aside>
 
@@ -122,7 +126,7 @@
                     <span class="badge badge-system" style="background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan);">NCERT Unit</span>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.95rem;">Physical nature of matter, characteristics of particles, states of matter, and evaporation principles.</p>
-                
+
                 <div class="module-grid">
                     <a href="../../viewer.html?file=portal-science/chemistry/files/matter-notes.html&type=Chapter%20Notes&title=Matter%20Notes&portal=class9" class="resource-card">
                         <div class="resource-icon" style="color: var(--accent-cyan);"><i class="fas fa-book"></i></div>
@@ -141,7 +145,7 @@
                     <span class="badge badge-system" style="background: rgba(0, 243, 255, 0.15); color: var(--accent-cyan);">NCERT Unit</span>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.95rem;">Mixtures, solutions, concentration, colloids, and physical vs. chemical changes.</p>
-                
+
                 <div class="module-grid">
                     <a href="#" class="resource-card" style="opacity: 0.7;">
                         <div class="resource-icon" style="color: var(--accent-cyan);"><i class="fas fa-book"></i></div>
@@ -194,7 +198,7 @@
     <script src="../../assets/js/animations.js"></script>
     <script src="../../assets/js/search.js"></script>
     <script src="../../assets/js/telemetry.js"></script>
-    
+
     <!-- Security verification -->
     <script type="module">
         import authSystemInstance from '../../assets/js/auth.js';
