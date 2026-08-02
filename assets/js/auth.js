@@ -16,7 +16,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg", // FIXED: Changed 'Alza' to 'AIza'
+    apiKey: "AIzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg",
     authDomain: "bsc-physics-a7cfd.firebaseapp.com",
     projectId: "bsc-physics-a7cfd",
     storageBucket: "bsc-physics-a7cfd.firebasestorage.app",
@@ -76,10 +76,15 @@ class AuthenticationSystem {
                 window.AppCore.notify('Access Granted. Rerouting to portal...', 'success');
             }
 
+            // FIXED ROUTING LOGIC HERE
             setTimeout(() => {
-                window.location.href = portal === 'bsc' 
-                    ? `${this.repoBase}/portal-physics/index.html` 
-                    : `${this.repoBase}/index.html`;
+                if (portal === 'bsc') {
+                    window.location.href = `${this.repoBase}/portal-physics/index.html`;
+                } else if (portal === 'class9') {
+                    window.location.href = `${this.repoBase}/portal-science/index.html`;
+                } else {
+                    window.location.href = `${this.repoBase}/index.html`;
+                }
             }, 800);
 
             return true;
