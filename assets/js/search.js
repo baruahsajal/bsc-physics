@@ -19,7 +19,16 @@ class SearchSystem {
             { title: "Chapter 3: Atoms and Molecules", url: "/bsc-physics/portal-science/chapter03/index.html", tags: "chemistry, atoms, molecules, mole concept" },
             { title: "Chapter 12: Sound", url: "/bsc-physics/portal-science/chapter12/index.html", tags: "physics, sound, waves, frequency, amplitude" },
             { title: "Interactive Simulations Hub", url: "/bsc-physics/simulations/index.html", tags: "interactive, visual, simulations, physics, labs" },
-            { title: "Student Notes Library", url: "/bsc-physics/notes.html", tags: "pdf, notes, downloads, study material" }
+            { title: "Student Notes Library", url: "/bsc-physics/notes.html", tags: "pdf, notes, downloads, study material" },
+            
+            // NEW MATHEMATICS ROUTES
+            { title: "Class 9 Mathematics Hub", url: "/bsc-physics/portal-science/mathematics/index.html", tags: "math, mathematics, class 9, numbers, geometry" },
+            { title: "Math Fundamentals (Basics)", url: "/bsc-physics/portal-science/mathematics/basics/index.html", tags: "math, basics, fundamentals, concepts, theory" },
+            { title: "Math Standard Notes", url: "/bsc-physics/portal-science/mathematics/notes/index.html", tags: "math, notes, pdf, chapter notes" },
+            { title: "Math Practice Bank", url: "/bsc-physics/portal-science/mathematics/practice/index.html", tags: "math, practice, questions, worksheets, unsolved" },
+            { title: "Math Detailed Solutions", url: "/bsc-physics/portal-science/mathematics/solutions/index.html", tags: "math, solutions, answers, solved, keys" },
+            { title: "Math Chapter 1: Number Systems", url: "/bsc-physics/portal-science/mathematics/index.html", tags: "math, rational, irrational, numbers" },
+            { title: "Math Chapter 2: Polynomials", url: "/bsc-physics/portal-science/mathematics/index.html", tags: "math, variables, coefficients, zeroes, polynomials" }
         ];
 
         this.init();
@@ -112,7 +121,7 @@ class SearchSystem {
                         <!-- Results injected here -->
                         <div class="palette-empty-state">
                             <i class="fas fa-terminal pulse-slow"></i>
-                            <p>Awaiting query input...</p>
+                            <p>Awaiting query input... Try typing "quantum" or "math".</p>
                         </div>
                     </div>
                 </div>
@@ -205,7 +214,7 @@ class SearchSystem {
             resultsContainer.innerHTML = `
                 <div class="palette-empty-state">
                     <i class="fas fa-terminal pulse-slow" style="font-size: 1.5rem;"></i>
-                    <p>Awaiting query input... Try typing "quantum" or "labs".</p>
+                    <p>Awaiting query input... Try typing "quantum" or "math".</p>
                 </div>
             `;
             return;
