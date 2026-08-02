@@ -6,7 +6,6 @@
  * ==========================================================================
  */
 
-// Import Firebase directly from Google's web server (CDN)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { 
     getAuth, 
@@ -16,7 +15,6 @@ import {
     signOut 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// EXACT FIREBASE CONFIGURATION PROVIDED
 const firebaseConfig = {
     apiKey: "AlzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg",
     authDomain: "bsc-physics-a7cfd.firebaseapp.com",
@@ -27,29 +25,20 @@ const firebaseConfig = {
     measurementId: "G-JBF3T794JV"
 };
 
-// Initialize Firebase Application
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 class AuthenticationSystem {
     constructor() {
         this.auth = auth;
-        
-        // Handle folder paths correctly for GitHub Pages deployment
         this.isGitHubPages = window.location.hostname.includes('github.io');
         this.repoBase = this.isGitHubPages ? '/bsc-physics' : '';
-
         this.init();
     }
 
-    /**
-     * Initializes the Authentication System
-     */
     init() {
-        // Expose globally so inline scripts or non-module scripts can access it
         window.AuthSystem = this;
 
-        // Listen for global state changes to track user authentication status
         onAuthStateChanged(this.auth, (user) => {
             if (user) {
                 console.log('[SECURITY] Valid session detected. Clearance granted.');
@@ -62,32 +51,35 @@ class AuthenticationSystem {
     }
 
     /**
-     * Authenticates a user using custom email and passcode inputs.
-     * Supports accounts like harshborah600@gmail.com and sajalbaruah65@gmail.com.
-     * 
-     * @param {string} portal - 'bsc' or 'class9'
-     * @param {string} email - The student's email address
-     * @param {string} passcode - The student's assigned password
-     * @returns {boolean} True if successful, false otherwise
+     * Authenticates a user using your specific email mapping configuration.
+     * Portal 'class9' maps to sajalbaruah65@gmail.com
+     * Portal 'bsc' maps to harshborah600@gmail.com
      */
-    async authenticate(portal, email, passcode) {
+    async authenticate(portal, passcode) {
         try {
             if (window.AppCore) {
                 window.AppCore.notify('Decrypting credentials... Standby.', 'info');
             }
 
-            // Attempt Firebase login with the provided custom email and passcode
+            // Explicit email mapping for your accounts
+            const emailMap = {
+                'class9': 'sajalbaruah65@gmail.com',
+                'bsc': 'harshborah600@gmail.com'
+            };
+            
+            const email = emailMap[portal] || 'sajalbaruah65@gmail.com';
+
+            // Attempt Firebase login with the mapped email and given passcode
             await signInWithEmailAndPassword(this.auth, email, passcode);
             
             if (window.AppCore) {
                 window.AppCore.notify('Access Granted. Rerouting to portal...', 'success');
             }
 
-            // Redirect based on selected portal dropdown
             setTimeout(() => {
                 window.location.href = portal === 'bsc' 
                     ? `${this.repoBase}/portal-physics/index.html` 
-                    : `${this.repoBase}/index.html`; // Class 9 portal route
+                    : `${this.repoBase}/index.html`;
             }, 800);
             
             return true;
@@ -95,18 +87,12 @@ class AuthenticationSystem {
         } catch (error) {
             console.error('[SECURITY] Authentication Failed:', error.message);
             if (window.AppCore) {
-                window.AppCore.notify('Access Denied: Invalid email, passcode or clearance level.', 'danger');
+                window.AppCore.notify('Access Denied: Invalid passcode or clearance level.', 'danger');
             }
             return false;
         }
     }
 
-    /**
-     * Security Check: Verifies the user is logged in before letting them see protected content.
-     * Redirects to the request-access (login) page if unauthorized.
-     * 
-     * @param {string} target - The portal being accessed, used for redirect parameters
-     */
     verifyAccess(target = 'bsc') {
         onAuthStateChanged(this.auth, (user) => {
             if (!user) {
@@ -116,12 +102,6 @@ class AuthenticationSystem {
         });
     }
 
-    /**
-     * Registers a new student account
-     * 
-     * @param {string} email - Student email
-     * @param {string} password - Secure password
-     */
     async registerStudent(email, password) {
         try {
             await createUserWithEmailAndPassword(this.auth, email, password);
@@ -133,9 +113,6 @@ class AuthenticationSystem {
         }
     }
 
-    /**
-     * Logs the current user out and redirects to the main public interface
-     */
     logout() {
         if (window.AppCore) {
             window.AppCore.notify('Initiating secure logout sequence...', 'warning');
@@ -154,10 +131,8 @@ class AuthenticationSystem {
     }
 }
 
-// Instantiate and expose to window for modules that cannot use import/export
 const authSystemInstance = new AuthenticationSystem();
 window.AuthSystem = authSystemInstance;
 
-// Also export as a standard ES Module
 export default authSystemInstance;
 export { auth };
