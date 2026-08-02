@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Class 9 Mathematics Hub | S.Baruah OS</title>
+
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+
+    <!-- FontAwesome Icons for HUD Graphics -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        /* Math-Specific Card Styling */
+        .math-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px solid #ec4899;
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            transition: var(--transition-fast);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .math-card:hover {
+            background: rgba(236, 72, 153, 0.05);
+            border-color: rgba(236, 72, 153, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.2);
+        }
+
+        .math-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+            box-shadow: inset 0 0 15px rgba(236, 72, 153, 0.2);
+        }
+
+        .math-card-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .math-card-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Command Navigation -->
+    <nav class="navbar" style="border-bottom-color: rgba(236, 72, 153, 0.3);">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-brand">
+                <i class="fas fa-arrow-left" style="font-size: 1rem; color: var(--text-secondary);"></i>
+                <i class="fas fa-calculator pulse-slow" style="color: #ec4899; margin-left: var(--space-xs);"></i>
+                CLASS 9 MATHEMATICS
+            </a>
+
+            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div id="nav-links" style="display: flex; align-items: center; gap: var(--space-md);">
+                <!-- Search HUD -->
+                <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm); border-color: rgba(236, 72, 153, 0.3);">
+                    <i class="fa fa-search" style="color: var(--text-secondary);"></i>
+                    <input type="text" placeholder="Search equations..." style="background: transparent; border: none; color: #fff; outline: none; width: 160px; font-family: var(--font-mono); font-size: 0.85rem;">
+                    <span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">CTRL+K</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3-Column Command HUD Layout -->
+    <div class="container portal-layout">
+
+        <!-- LEFT SIDEBAR: Resource Center -->
+        <aside class="sidebar-left animate-fade-up delay-100">
+            <div class="glass-panel" style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
+                <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Academy Matrix</h3>
+                <span class="badge badge-system" style="margin-top: var(--space-xs); background: rgba(236, 72, 153, 0.15); color: #ec4899; border-color: #ec4899;">Active Branch</span>
+            </div>
+
+            <!-- Navigation Directory -->
+            <a href="../index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-th-large"></i> Academy HQ
+            </a>
+            <a href="index.html" class="nav-item active" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: #ec4899; background: rgba(236, 72, 153, 0.1); border-left: 3px solid #ec4899; text-decoration: none; font-weight: 600;">
+                <i class="fas fa-calculator"></i> Mathematics Hub
+            </a>
+        </aside>
+
+        <!-- CENTER VIEWPORT: Content Matrix -->
+        <main class="center-viewport animate-fade-up delay-200">
+            <header style="margin-bottom: var(--space-sm); border-bottom: 1px solid rgba(236, 72, 153, 0.2); padding-bottom: var(--space-md);">
+                <h1 class="heading-display" style="font-size: 2.5rem; margin-bottom: var(--space-xs); color: #ec4899; text-shadow: 0 0 15px rgba(236, 72, 153, 0.4);">Mathematics Archives</h1>
+                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em;">Algebra, Geometry, and Advanced Problem Solving.</p>
+            </header>
+
+            <!-- Advanced Routing Grid -->
+            <div class="module-grid">
+                
+                <!-- Basics & Fundamentals -->
+                <a href="basics/index.html" class="glass-panel math-card">
+                    <div class="math-icon-wrapper">
+                        <i class="fas fa-square-root-variable"></i>
+                    </div>
+                    <h2 class="math-card-title">1. Fundamentals</h2>
+                    <p class="math-card-desc">Core mathematical concepts, formulas, and foundational theorems required for advanced problem solving.</p>
+                    <div class="btn btn-outline" style="border-color: #ec4899; color: #ec4899; width: 100%;">Access Basics</div>
+                </a>
+
+                <!-- Standard Notes -->
+                <a href="notes/index.html" class="glass-panel math-card" style="animation-delay: 100ms;">
+                    <div class="math-icon-wrapper" style="color: var(--accent-cyan); background: rgba(0, 243, 255, 0.1); box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.2);">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h2 class="math-card-title">2. Standard Notes</h2>
+                    <p class="math-card-desc">Comprehensive chapter-wise theoretical notes aligned with the NCERT Class 9 syllabus.</p>
+                    <div class="btn btn-outline" style="width: 100%;">View Notes</div>
+                </a>
+
+                <!-- Practice Questions (Unsolved) -->
+                <a href="practice/index.html" class="glass-panel math-card" style="animation-delay: 200ms;">
+                    <div class="math-icon-wrapper" style="color: var(--accent-science); background: rgba(0, 255, 157, 0.1); box-shadow: inset 0 0 15px rgba(0, 255, 157, 0.2);">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h2 class="math-card-title">3. Practice Bank</h2>
+                    <p class="math-card-desc">Raw question banks, assignments, and previous year numericals for independent practice.</p>
+                    <div class="btn btn-outline" style="border-color: var(--accent-science); color: var(--accent-science); width: 100%;">Start Practice</div>
+                </a>
+
+                <!-- Detailed Solutions -->
+                <a href="solutions/index.html" class="glass-panel math-card" style="animation-delay: 300ms;">
+                    <div class="math-icon-wrapper" style="color: var(--accent-warning); background: rgba(245, 158, 11, 0.1); box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.2);">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h2 class="math-card-title">4. Solutions</h2>
+                    <p class="math-card-desc">Step-by-step detailed breakdowns and answer keys for all practice banks and exercises.</p>
+                    <div class="btn btn-outline" style="border-color: var(--accent-warning); color: var(--accent-warning); width: 100%;">View Solutions</div>
+                </a>
+
+            </div>
+        </main>
+
+        <!-- RIGHT SIDEBAR: Telemetry Panel -->
+        <aside class="sidebar-right animate-fade-up delay-300">
+            <!-- Time / Date -->
+            <div class="hud-stat-box" style="border-left-color: #ec4899;">
+                <div class="hud-stat-title">Academy OS Time</div>
+                <div id="telemetry-clock" class="hud-stat-value neon" style="color: #ec4899; text-shadow: 0 0 8px rgba(236, 72, 153, 0.5);">--:--:--</div>
+                <div id="telemetry-date" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">CYCLE ----.--.--</div>
+            </div>
+
+            <!-- XP Progress -->
+            <div class="hud-stat-box" style="border-left-color: #ec4899;">
+                <div class="hud-stat-title">Scholar Rank</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-xs);">
+                    <div class="hud-stat-value" style="color: #ec4899;">LVL <span id="telemetry-level">1</span></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"><span id="telemetry-xp">0</span> XP</div>
+                </div>
+                <div class="progress-container">
+                    <div id="telemetry-progress-bar" class="progress-fill" style="width: 0%; background: #ec4899; box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);"></div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="../../assets/js/core.js"></script>
+    <script src="../../assets/js/animations.js"></script>
+    
+    <!-- Security verification (Strict Lockdown) -->
+    <script type="module">
+        import authSystem from '../../assets/js/auth.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verify user has 'class9' clearance before rendering content
+            authSystem.verifyAccess('class9');
+            
+            if(window.AppCore) {
+                window.AppCore.notify('Class 9 Mathematics Archives decrypted.', 'success');
+            }
+        });
+    </script>
+</body>
+</html>
