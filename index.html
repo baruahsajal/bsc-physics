@@ -4,28 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>S.Baruah OS | Physics Portal</title>
-    
+
     <!-- CSS Architecture -->
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    
+
     <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Modern Hero Image Styling */
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto var(--space-xl);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+        }
+        .hero-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-base) 0%, transparent 100%);
+        }
+        .hero-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            mix-blend-mode: luminosity;
+            opacity: 0.85;
+        }
+        /* Structured Grid for Stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        .stat-card {
+            text-align: center;
+            padding: var(--space-lg);
+            background: rgba(0, 243, 255, 0.03);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            transition: var(--transition-fast);
+        }
+        .stat-card:hover {
+            background: rgba(0, 243, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 243, 255, 0.1);
+            border-color: rgba(0, 243, 255, 0.4);
+        }
+    </style>
 </head>
 <body>
     <!-- Top Command Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="nav-brand">
-                <i class="fa fa-atom pulse-slow" style="color: var(--accent-cyan);"></i>
+                <i class="fas fa-atom pulse-slow" style="color: var(--accent-cyan);"></i>
                 SYS.TERMINAL // PHYSICS
             </a>
-            
+
             <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
-                <i class="fa fa-bars"></i>
+                <i class="fas fa-bars"></i>
             </button>
-            
+
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html" class="nav-link active">Main Uplink</a></li>
                 <li><a href="notes.html" class="nav-link">Databanks</a></li>
@@ -42,7 +90,7 @@
 
     <!-- 3-Column Command HUD Layout -->
     <div class="container portal-layout">
-        
+
         <!-- LEFT SIDEBAR: System Navigation & Controls -->
         <aside class="sidebar-left animate-fade-up">
             <div class="glass-panel" style="padding: var(--space-md); margin-bottom: var(--space-md);">
@@ -56,13 +104,16 @@
             <div class="glass-panel" style="padding: var(--space-md); flex-grow: 1;">
                 <h3 class="heading-display" style="font-size: 1rem; color: var(--text-secondary); margin-bottom: var(--space-md);">Quick Launch</h3>
                 <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-                    <a href="portal-physics/index.html" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-physics); font-family: var(--font-rajdhani); text-transform: uppercase;">
+                    
+                    <!-- SECURITY FIX: These now point to request-access.html to prevent bypass -->
+                    <a href="request-access.html?target=bsc" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-physics); font-family: var(--font-rajdhani); text-transform: uppercase; transition: 0.2s;">
                         <i class="fas fa-satellite-dish" style="margin-right: 8px; color: var(--accent-physics);"></i> B.Sc Physics
                     </a>
-                    <a href="portal-science/index.html" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-science); font-family: var(--font-rajdhani); text-transform: uppercase;">
+                    <a href="request-access.html?target=class9" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-science); font-family: var(--font-rajdhani); text-transform: uppercase; transition: 0.2s;">
                         <i class="fas fa-microscope" style="margin-right: 8px; color: var(--accent-science);"></i> Class 9 Science
                     </a>
-                    <a href="simulations/index.html" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-cyan); font-family: var(--font-rajdhani); text-transform: uppercase;">
+                    <!-- Simulations is public -->
+                    <a href="simulations/index.html" class="nav-item" style="color: var(--text-primary); text-decoration: none; padding: var(--space-sm); background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); border-left: 2px solid var(--accent-cyan); font-family: var(--font-rajdhani); text-transform: uppercase; transition: 0.2s;">
                         <i class="fas fa-flask" style="margin-right: 8px; color: var(--accent-cyan);"></i> Simulations Hub
                     </a>
                 </div>
@@ -80,18 +131,23 @@
 
         <!-- CENTER VIEWPORT: Main Landing Content -->
         <main class="center-viewport">
-            
-            <!-- Hero Banner -->
-            <section class="glass-panel card animate-fade-up delay-100" style="text-align: center; padding: var(--space-3xl) var(--space-xl); background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 70%);">
-                <i class="fas fa-satellite-dish pulse-slow" style="font-size: 4rem; color: var(--accent-physics); margin-bottom: var(--space-lg);"></i>
-                <h1 class="heading-display text-gradient" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: var(--space-md);">The World of Physics</h1>
-                <p class="heading-rajdhani" style="font-size: 1.5rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto var(--space-xl);">Exploring the Fundamental Laws Governing Our Universe.</p>
+
+            <!-- High-End Structured Hero Banner -->
+            <section class="glass-panel card animate-fade-up delay-100" style="text-align: center; padding: var(--space-2xl) var(--space-xl); background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 70%);">
                 
+                <!-- Modern Image Placeholder -->
+                <div class="hero-visual">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop" alt="Abstract Physics Grid">
+                </div>
+
+                <h1 class="heading-display text-gradient" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: var(--space-sm);">The World of Physics</h1>
+                <p class="heading-rajdhani" style="font-size: 1.5rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto var(--space-xl);">Exploring the Fundamental Laws Governing Our Universe.</p>
+
                 <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-                    <a href="request-access.html?target=bsc" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
-                        <i class="fa fa-satellite-dish"></i> B.Sc. Physics Portal
+                    <a href="request-access.html?target=bsc" class="btn btn-primary" style="padding: 0.85rem 1.8rem; font-size: 1.05rem;">
+                        <i class="fas fa-satellite-dish"></i> B.Sc. Physics Portal
                     </a>
-                    <a href="request-access.html?target=class9" class="btn btn-outline" style="padding: 0.75rem 1.5rem; font-size: 1rem; border-color: var(--accent-science); color: var(--accent-science);">
+                    <a href="request-access.html?target=class9" class="btn btn-outline" style="padding: 0.85rem 1.8rem; font-size: 1.05rem; border-color: var(--accent-science); color: var(--accent-science);">
                         <i class="fas fa-microscope"></i> Class 9 Academy
                     </a>
                 </div>
@@ -99,33 +155,35 @@
 
             <!-- Info Section: What is Physics? -->
             <section class="glass-panel card animate-fade-up delay-200">
-                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
-                    <i class="fa fa-brain" style="font-size: 2rem; color: var(--accent-cyan);"></i>
-                    <h2 class="heading-display" style="font-size: 1.75rem;">System Overview: Physics</h2>
+                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: var(--space-sm);">
+                    <i class="fas fa-brain pulse-slow" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                    <h2 class="heading-display" style="font-size: 1.8rem; color: var(--text-primary);">System Overview</h2>
                 </div>
-                <p style="margin-bottom: var(--space-md); font-size: 1.1rem; color: var(--text-secondary);">Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale. From the quantum realm of subatomic particles to the cosmic expanse of galaxies, physics provides the mathematical and conceptual framework for comprehending matter, energy, space, and time.</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-md); margin-top: var(--space-xl);">
-                    <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
-                        <div class="heading-display text-gradient" style="font-size: 2rem;">4</div>
-                        <div style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-weight: 600;">Fundamental Forces</div>
+                <p style="margin-bottom: var(--space-md); font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8;">Physics is the <strong>fundamental science</strong> that seeks to understand how the universe works at every scale. From the quantum realm of subatomic particles to the cosmic expanse of galaxies, physics provides the mathematical and conceptual framework for comprehending matter, energy, space, and time.</p>
+
+                <!-- Upgraded Stat Grid -->
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: 8px;">4</div>
+                        <div style="color: var(--text-primary); font-family: var(--font-rajdhani); font-weight: 600; text-transform: uppercase;">Fundamental Forces</div>
                     </div>
-                    <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
-                        <div class="heading-display text-gradient" style="font-size: 2rem;">&infin;</div>
-                        <div style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-weight: 600;">Possibilities</div>
+                    <div class="stat-card">
+                        <div class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: 8px;">&infin;</div>
+                        <div style="color: var(--text-primary); font-family: var(--font-rajdhani); font-weight: 600; text-transform: uppercase;">Possibilities</div>
                     </div>
-                    <div style="text-align: center; padding: var(--space-md); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(0, 243, 255, 0.1);">
-                        <div class="heading-display text-gradient" style="font-size: 2rem;">3×10⁸</div>
-                        <div style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-weight: 600;">Speed of Light (m/s)</div>
+                    <div class="stat-card">
+                        <div class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: 8px;">3×10⁸</div>
+                        <div style="color: var(--text-primary); font-family: var(--font-rajdhani); font-weight: 600; text-transform: uppercase;">Speed of Light (m/s)</div>
                     </div>
                 </div>
             </section>
 
             <!-- Branches of Physics Data Table -->
             <section class="glass-panel card animate-fade-up delay-300">
-                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
-                    <i class="fas fa-code-branch" style="font-size: 2rem; color: var(--accent-physics);"></i>
-                    <h2 class="heading-display" style="font-size: 1.75rem;">Major Branches Directory</h2>
+                <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(189, 0, 255, 0.2); padding-bottom: var(--space-sm);">
+                    <i class="fas fa-code-branch pulse-slow" style="font-size: 2rem; color: var(--accent-physics);"></i>
+                    <h2 class="heading-display" style="font-size: 1.8rem; color: var(--text-primary);">Branches Directory</h2>
                 </div>
                 <div style="overflow-x: auto;">
                     <table class="modern-table">
@@ -138,22 +196,22 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="color: var(--accent-cyan); font-weight: 600;">Classical Mechanics</td>
+                                <td style="color: var(--accent-cyan); font-weight: 600;"><i class="fas fa-cube" style="margin-right: 8px; opacity: 0.7;"></i> Classical Mechanics</td>
                                 <td>Study of motion and forces on macroscopic objects</td>
                                 <td class="font-mono" style="font-size: 0.85rem;">Newton's Laws, Energy</td>
                             </tr>
                             <tr>
-                                <td style="color: var(--accent-cyan); font-weight: 600;">Electromagnetism</td>
+                                <td style="color: var(--accent-cyan); font-weight: 600;"><i class="fas fa-magnet" style="margin-right: 8px; opacity: 0.7;"></i> Electromagnetism</td>
                                 <td>Electric and magnetic fields and their interactions</td>
                                 <td class="font-mono" style="font-size: 0.85rem;">Maxwell's Eq, EM Waves</td>
                             </tr>
                             <tr>
-                                <td style="color: var(--accent-cyan); font-weight: 600;">Quantum Mechanics</td>
+                                <td style="color: var(--accent-cyan); font-weight: 600;"><i class="fas fa-atom" style="margin-right: 8px; opacity: 0.7;"></i> Quantum Mechanics</td>
                                 <td>Physics at atomic and subatomic scales</td>
                                 <td class="font-mono" style="font-size: 0.85rem;">Schrödinger Eq, Wave-Particle</td>
                             </tr>
                             <tr>
-                                <td style="color: var(--accent-cyan); font-weight: 600;">Thermodynamics</td>
+                                <td style="color: var(--accent-cyan); font-weight: 600;"><i class="fas fa-fire" style="margin-right: 8px; opacity: 0.7;"></i> Thermodynamics</td>
                                 <td>Study of heat, energy transfer, and entropy</td>
                                 <td class="font-mono" style="font-size: 0.85rem;">Laws of Thermo, Entropy</td>
                             </tr>
@@ -161,15 +219,39 @@
                     </table>
                 </div>
             </section>
-            
-            <div class="glass-panel animate-fade-up delay-400" style="padding: var(--space-lg); border-left: 4px solid var(--accent-cyan); background: rgba(0, 243, 255, 0.05);">
-                <p style="font-size: 1.1rem; font-style: italic; margin-bottom: var(--space-sm); color: var(--text-primary);">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
-                <p class="heading-display" style="color: var(--accent-cyan); text-align: right; font-size: 0.9rem;">- Dan Brown</p>
+
+            <div class="glass-panel animate-fade-up delay-400" style="padding: var(--space-lg); border-left: 4px solid var(--accent-cyan); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md);">
+                <p style="font-size: 1.15rem; font-style: italic; margin-bottom: var(--space-sm); color: var(--text-primary); line-height: 1.6;">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
+                <p class="heading-display" style="color: var(--accent-cyan); text-align: right; font-size: 1rem;">- Dan Brown</p>
             </div>
 
-            <!-- Footer specific to the center viewport -->
-            <footer style="text-align: center; padding-top: var(--space-xl); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
-                <p>&copy; 2026 S.Baruah Academy OS | Built by Sajal Barua</p>
+            <!-- UNIVERSAL TELEMETRY & COMMS FOOTER (Placed inside viewport so it scrolls naturally) -->
+            <footer class="universal-footer animate-fade-up delay-500" style="background: transparent; box-shadow: none; border-top: 1px solid rgba(0, 243, 255, 0.2); padding-top: var(--space-xl); margin-top: var(--space-xl);">
+                <div class="footer-grid">
+                    
+                    <!-- Left Side: Databank Branding & Clock -->
+                    <div class="footer-branding">
+                        <h3 style="font-family: var(--font-display); color: var(--text-primary); letter-spacing: 0.15em; font-size: 1.2rem; margin: 0 0 6px 0;">S.BARUAH ACADEMY</h3>
+                        <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1rem; letter-spacing: 0.05em; margin: 0 0 8px 0;">
+                            Instructor: Sajal Baruah
+                        </p>
+                        <div class="footer-ist-clock" style="font-family: var(--font-mono); color: var(--accent-cyan); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; padding: 0.3rem 0.8rem; background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: var(--radius-xs);">
+                            <i class="fas fa-satellite-dish pulse-slow"></i> 
+                            IST: <span id="system-ist-clock">--:--:-- --</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Comms Array (Pill Buttons) -->
+                    <div class="footer-contact-pills" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="tel:+919678092519" class="pill-btn pill-blue" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                            <i class="fas fa-phone-alt"></i> Call
+                        </a>
+                        <a href="https://wa.me/919678092519" class="pill-btn pill-green" target="_blank" rel="noopener noreferrer" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                            <i class="fab fa-whatsapp"></i> Chat
+                        </a>
+                    </div>
+                    
+                </div>
             </footer>
 
         </main>
@@ -232,7 +314,7 @@
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/animations.js"></script>
     <script src="assets/js/telemetry.js"></script>
-    
+
     <!-- ES Modules (Firebase Auth & Sync) -->
     <script type="module" src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/firebase.js"></script>
