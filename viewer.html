@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Secure Databank Viewer | S.Baruah OS</title>
+    <title>Secure Document Viewer // S.Baruah OS</title>
     
     <!-- CSS Architecture -->
     <link rel="stylesheet" href="assets/css/variables.css">
@@ -12,112 +12,157 @@
     
     <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
-        /* Viewer-Specific Layout Adjustments */
         body {
-            overflow: hidden; /* Lock body scrolling, allow iframe to scroll */
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background-color: var(--bg-base);
+            overflow: hidden;
+            background: var(--bg-base);
         }
 
         .viewer-header {
+            height: 60px;
             background: var(--bg-glass-heavy);
             backdrop-filter: var(--blur-heavy);
             -webkit-backdrop-filter: var(--blur-heavy);
-            border-bottom: var(--border-glass-strong);
-            padding: var(--space-sm) var(--space-lg);
+            border-bottom: var(--border-glass);
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            z-index: var(--z-nav);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            padding: 0 var(--space-lg);
+            z-index: 100;
         }
 
-        .viewer-controls {
+        .viewer-title-group {
             display: flex;
-            gap: var(--space-sm);
             align-items: center;
+            gap: var(--space-md);
         }
 
-        .content-area {
-            flex: 1;
-            width: 100%;
-            position: relative;
-            background: #ffffff; /* Default to white for documents, iframe content can override */
+        .viewer-back-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
             display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-fast);
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .viewer-back-btn:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .viewer-viewport {
             flex-grow: 1;
+            width: 100%;
+            border: none;
+            background: var(--bg-surface);
         }
 
-        /* Mobile Adjustments for Viewer */
-        @media (max-width: 768px) {
-            .viewer-header {
-                padding: var(--space-sm);
-            }
-            #content-title {
-                font-size: 0.9rem !important;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 150px;
-            }
-            .btn-text-hide {
-                display: none;
-            }
+        .viewer-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
         }
     </style>
 </head>
 <body>
-    
-    <!-- HUD Viewer Header -->
-    <header class="viewer-header animate-fade-up">
-        <div style="display: flex; align-items: center; gap: var(--space-md);">
-            <!-- Back / Abort Button -->
-            <button onclick="window.history.back()" class="btn btn-outline" style="padding: 0.5rem; border: none; box-shadow: none;">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            
-            <!-- Dynamic Metadata -->
+
+    <!-- Secure Viewer Header Bar -->
+    <header class="viewer-header">
+        <div class="viewer-title-group">
+            <a id="back-link" href="#" class="viewer-back-btn">
+                <i class="fas fa-arrow-left"></i> Return
+            </a>
             <div>
-                <h1 id="content-title" class="heading-display" style="font-size: 1.1rem; margin: 0; color: var(--text-primary);">Loading Databank...</h1>
-                <span id="content-type" class="badge badge-progress" style="font-size: 0.65rem; margin-top: 4px;">INITIALIZING</span>
+                <h1 id="doc-title" class="heading-display" style="font-size: 1.1rem; color: var(--text-primary); margin: 0;">Loading Payload...</h1>
+                <span id="doc-type-badge" class="badge badge-system" style="font-size: 0.6rem; padding: 0.1rem 0.4rem; margin-top: 2px;">SECURE STREAM</span>
             </div>
         </div>
-        
-        <!-- Action Controls -->
-        <div class="viewer-controls">
-            <!-- Fullscreen Toggle -->
-            <button id="fullscreen-btn" class="btn btn-outline" style="padding: 0.5rem 0.75rem;" title="Toggle Fullscreen">
-                <i class="fas fa-expand"></i>
+
+        <div class="viewer-meta">
+            <span style="display: flex; align-items: center; gap: 6px;">
+                <i class="fas fa-shield-halved" style="color: var(--accent-cyan);"></i> ENCLAVE ACTIVE
+            </span>
+            <button onclick="window.location.reload()" class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">
+                <i class="fas fa-rotate"></i> Refresh
             </button>
-            
-            <!-- Secure Download -->
-            <a id="download-content-btn" href="#" class="btn btn-primary" style="padding: 0.5rem 1rem;" title="Download Encrypted File">
-                <i class="fas fa-download"></i> <span class="btn-text-hide">Download</span>
-            </a>
         </div>
     </header>
 
-    <!-- Main Rendering Viewport -->
-    <main class="content-area animate-fade-up delay-100">
-        <!-- The payload is injected here via viewer.js -->
-        <iframe id="content-frame" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
-    </main>
+    <!-- Document Payload Viewport (Iframe) -->
+    <iframe id="payload-frame" class="viewer-viewport" name="payload-frame" sandbox="allow-scripts allow-same-origin"></iframe>
 
     <!-- Core Scripts -->
     <script src="assets/js/core.js"></script>
     <script src="assets/js/animations.js"></script>
-    <script src="assets/js/viewer.js"></script>
     
-    <!-- ES Modules (Firebase Auth for route protection) -->
-    <script type="module" src="assets/js/auth.js"></script>
+    <!-- Dynamic URL Parsing & Routing Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const filePath = urlParams.get('file');
+            const fileType = urlParams.get('type') || 'Document';
+            const fileTitle = urlParams.get('title') || 'Educational Payload';
+            const portal = urlParams.get('portal') || 'bsc';
+            
+            // Set Header Information
+            document.getElementById('doc-title').textContent = decodeURIComponent(fileTitle);
+            document.getElementById('doc-type-badge').textContent = fileType.toUpperCase();
+            
+            // Configure Back Button Destination based on Portal
+            const backLink = document.getElementById('back-link');
+            if (portal === 'class9') {
+                backLink.href = filePath && filePath.includes('physics') ? 'portal-science/physics/index.html' : 
+                                filePath && filePath.includes('chemistry') ? 'portal-science/chemistry/index.html' : 
+                                filePath && filePath.includes('biology') ? 'portal-science/biology/index.html' : 'portal-science/index.html';
+            } else {
+                backLink.href = filePath && filePath.includes('sem1') ? 'portal-physics/sem1/index.html' : 
+                                filePath && filePath.includes('sem2') ? 'portal-physics/sem2/index.html' : 
+                                filePath && filePath.includes('sem3') ? 'portal-physics/sem3/index.html' : 'portal-physics/index.html';
+            }
+            
+            // Load Payload into Iframe
+            const iframe = document.getElementById('payload-frame');
+            if (filePath) {
+                iframe.src = filePath;
+                if (window.AppCore) {
+                    window.AppCore.notify(`Loaded payload: ${fileTitle}`, 'success');
+                }
+            } else {
+                iframe.srcdoc = `
+                    <div style="font-family: monospace; color: #ff7b72; padding: 40px; text-align: center; background: #0d1117; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <i class="fas fa-triangle-exclamation" style="font-size: 3rem; margin-bottom: 16px;"></i>
+                        <h2>CRITICAL ERROR: No Payload Specified</h2>
+                        <p style="color: #8b949e; margin-top: 8px;">The secure viewer requires a valid file path query parameter.</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+    
+    <!-- Security verification -->
+    <script type="module">
+        import authSystemInstance from './assets/js/auth.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const portal = urlParams.get('portal') || 'bsc';
+            authSystemInstance.verifyAccess(portal);
+        });
+    </script>
 </body>
 </html>
