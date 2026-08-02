@@ -20,6 +20,10 @@ class AnimationSystem {
             this.setupScrollReveal();
             this.setupHolographicTilt();
             this.setupDynamicGlow();
+            
+            // Initialize new HUD upgrades
+            this.setupTelemetryClock();
+            this.setupAmbientParticles();
         });
 
         // Re-initialize animations when dynamic content is injected (e.g., dashboard load)
@@ -90,14 +94,14 @@ class AnimationSystem {
     handleTilt(e) {
         const card = e.currentTarget;
         const rect = card.getBoundingClientRect();
-        
+
         // Calculate mouse position relative to the center of the card
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         // Calculate rotation limits (max 5 degrees for subtlety)
         const rotateX = ((y - centerY) / centerY) * -5;
         const rotateY = ((x - centerX) / centerX) * 5;
@@ -139,7 +143,7 @@ class AnimationSystem {
         glow.style.transform = 'translate(-50%, -50%)';
         glow.style.transition = 'opacity 0.3s ease';
         glow.style.opacity = '0';
-        
+
         document.body.appendChild(glow);
 
         let isMoving = false;
@@ -150,7 +154,7 @@ class AnimationSystem {
             mouseX = e.clientX;
             mouseY = e.clientY;
             glow.style.opacity = '1';
-            
+
             if (!isMoving) {
                 isMoving = true;
                 requestAnimationFrame(this.updateGlowPosition.bind(this, glow, () => {
@@ -172,6 +176,88 @@ class AnimationSystem {
      */
     updateGlowPosition(element, callback) {
         callback();
+    }
+
+    /**
+     * =========================================
+     * IST TELEMETRY CLOCK
+     * =========================================
+     */
+    setupTelemetryClock() {
+        const clockDisplay = document.getElementById('system-ist-clock');
+        if (!clockDisplay) return;
+
+        function updateTick() {
+            const now = new Date();
+            
+            // Force Indian Standard Time (IST) formatting
+            const timeOptions = { 
+                timeZone: 'Asia/Kolkata', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true 
+            };
+            
+            // Generates format: "05:30:36 PM"
+            const formattedTime = new Intl.DateTimeFormat('en-IN', timeOptions).format(now);
+            clockDisplay.textContent = formattedTime;
+        }
+
+        // Fire immediately, then lock to 1-second interval loops
+        updateTick();
+        setInterval(updateTick, 1000);
+    }
+
+    /**
+     * =========================================
+     * AMBIENT PARTICLE MESH (3D Depth)
+     * =========================================
+     */
+    setupAmbientParticles() {
+        // Establish canvas layer at the base of the DOM
+        let meshContainer = document.getElementById('ambient-particle-mesh');
+        if (!meshContainer) {
+            meshContainer = document.createElement('div');
+            meshContainer.id = 'ambient-particle-mesh';
+            document.body.prepend(meshContainer);
+        }
+
+        // Keep particle count moderate to protect client-side rendering performance
+        const maxOrbs = 30; 
+
+        const spawnOrb = () => {
+            const orb = document.createElement('div');
+            orb.classList.add('cyber-orb');
+            
+            // Randomized volumetric sizing (2px to 7px)
+            const diameter = Math.random() * 5 + 2;
+            orb.style.width = `${diameter}px`;
+            orb.style.height = `${diameter}px`;
+            
+            // Spawn randomly across the X-axis of the viewport
+            orb.style.left = `${Math.random() * 100}vw`;
+            
+            // Randomized velocity (Duration between 15s and 25s for a slow, deep-space feel)
+            const flightTime = Math.random() * 10 + 15;
+            orb.style.animationDuration = `${flightTime}s`;
+            
+            // Staggered launch times
+            orb.style.animationDelay = `${Math.random() * 5}s`;
+            
+            meshContainer.appendChild(orb);
+
+            // Garbage collection: Remove orb after it leaves viewport, spawn a replacement
+            setTimeout(() => {
+                orb.remove();
+                spawnOrb();
+            }, (flightTime + 5) * 1000);
+        };
+
+        // Initial sequence burst
+        for (let i = 0; i < maxOrbs; i++) {
+            spawnOrb();
+        }
     }
 }
 
