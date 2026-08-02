@@ -532,25 +532,228 @@
 }
 
 /* ----------------------------------------------------------------------
-   11. FOOTER
+   11. SECURE PAYMENT PANEL (QR SCANNER)
    ---------------------------------------------------------------------- */
-.footer {
-    background: var(--bg-surface);
-    border-top: 1px solid rgba(0, 243, 255, 0.2);
-    padding: var(--space-2xl) 0 var(--space-xl);
+.payment-card {
+    border: 1px solid rgba(189, 0, 255, 0.4);
+    box-shadow: var(--shadow-glow-physics);
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
     position: relative;
-    margin-top: auto;
+    overflow: hidden;
 }
 
-.footer::before {
-    content: "";
+.payment-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(189, 0, 255, 0.2);
+    padding-bottom: var(--space-sm);
+}
+
+.qr-matrix-container {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin: var(--space-lg) auto;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--accent-cyan);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), inset 0 0 30px rgba(0, 243, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Simulated QR Code Graphic */
+.qr-matrix-container img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.4));
+    z-index: 1;
+}
+
+/* Holographic Neural Scan Line */
+.hud-scanner-line {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--grad-physics);
-    box-shadow: var(--shadow-glow-cyan);
+    width: 100%;
+    height: 3px;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 20px 8px rgba(0, 243, 255, 0.6);
+    animation: neuralScan 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
 }
 
+@keyframes neuralScan {
+    0% { top: -10%; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 110%; opacity: 0; }
+}
 
+.neon-upi-display {
+    color: #ff00ff;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.3);
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    letter-spacing: 0.1em;
+    margin-top: var(--space-md);
+    padding: var(--space-xs);
+    background: rgba(255, 0, 255, 0.05);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 0, 255, 0.2);
+    display: inline-block;
+}
+
+/* ----------------------------------------------------------------------
+   12. UNIVERSAL ADVANCED FOOTER
+   ---------------------------------------------------------------------- */
+.universal-footer {
+    background: var(--bg-glass-heavy);
+    backdrop-filter: var(--blur-heavy);
+    -webkit-backdrop-filter: var(--blur-heavy);
+    border-top: 1px solid var(--accent-cyan);
+    box-shadow: 0 -5px 30px rgba(0, 243, 255, 0.15);
+    padding: var(--space-xl) 0;
+    margin-top: auto;
+    position: relative;
+    z-index: var(--z-elevated);
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-xl);
+}
+
+.footer-branding h3 {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    letter-spacing: 0.15em;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.footer-ist-clock {
+    font-family: var(--font-mono);
+    color: var(--accent-cyan);
+    font-size: 0.95rem;
+    margin-top: var(--space-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.3rem 0.8rem;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    border-radius: var(--radius-xs);
+    box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+/* Modern Contact Pills */
+.footer-contact-pills {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    font-family: var(--font-rajdhani);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Blue Phone Pill */
+.pill-blue {
+    background: rgba(59, 130, 246, 0.1);
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.3);
+}
+.pill-blue:hover {
+    background: rgba(59, 130, 246, 0.25);
+    border-color: #60a5fa;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Neon Green WhatsApp Pill */
+.pill-green {
+    background: rgba(34, 197, 94, 0.1);
+    color: #4ade80;
+    border-color: rgba(34, 197, 94, 0.3);
+}
+.pill-green:hover {
+    background: rgba(34, 197, 94, 0.25);
+    border-color: #4ade80;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Red Email Pill */
+.pill-red {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+.pill-red:hover {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: #f87171;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------------------------
+   13. FLOATING PARTICLE BACKGROUND (3D ORBS)
+   ---------------------------------------------------------------------- */
+#ambient-particle-mesh {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: var(--z-negative);
+    overflow: hidden;
+}
+
+.cyber-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 12px var(--accent-cyan), 0 0 24px var(--accent-cyan);
+    opacity: 0;
+    animation: driftUp linear infinite;
+    filter: blur(1px); 
+}
+
+@keyframes driftUp {
+    0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
