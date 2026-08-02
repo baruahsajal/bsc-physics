@@ -16,7 +16,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AlzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg",
+    apiKey: "AIzaSyCXXPGAVnV3xCHeynk-1uOj50BZZqyiuWg", // FIXED: Changed 'Alza' to 'AIza'
     authDomain: "bsc-physics-a7cfd.firebaseapp.com",
     projectId: "bsc-physics-a7cfd",
     storageBucket: "bsc-physics-a7cfd.firebasestorage.app",
@@ -66,12 +66,12 @@ class AuthenticationSystem {
                 'class9': 'sajalbaruah65@gmail.com',
                 'bsc': 'harshborah600@gmail.com'
             };
-            
+
             const email = emailMap[portal] || 'sajalbaruah65@gmail.com';
 
             // Attempt Firebase login with the mapped email and given passcode
             await signInWithEmailAndPassword(this.auth, email, passcode);
-            
+
             if (window.AppCore) {
                 window.AppCore.notify('Access Granted. Rerouting to portal...', 'success');
             }
@@ -81,7 +81,7 @@ class AuthenticationSystem {
                     ? `${this.repoBase}/portal-physics/index.html` 
                     : `${this.repoBase}/index.html`;
             }, 800);
-            
+
             return true;
 
         } catch (error) {
