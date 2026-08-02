@@ -225,34 +225,54 @@
                 <p class="heading-display" style="color: var(--accent-cyan); text-align: right; font-size: 1rem;">- Dan Brown</p>
             </div>
 
-            <!-- UNIVERSAL TELEMETRY & COMMS FOOTER (Placed inside viewport so it scrolls naturally) -->
-            <footer class="universal-footer animate-fade-up delay-500" style="background: transparent; box-shadow: none; border-top: 1px solid rgba(0, 243, 255, 0.2); padding-top: var(--space-xl); margin-top: var(--space-xl);">
-                <div class="footer-grid">
-                    
-                    <!-- Left Side: Databank Branding & Clock -->
-                    <div class="footer-branding">
-                        <h3 style="font-family: var(--font-display); color: var(--text-primary); letter-spacing: 0.15em; font-size: 1.2rem; margin: 0 0 6px 0;">S.BARUAH ACADEMY</h3>
-                        <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1rem; letter-spacing: 0.05em; margin: 0 0 8px 0;">
-                            Instructor: Sajal Baruah
-                        </p>
-                        <div class="footer-ist-clock" style="font-family: var(--font-mono); color: var(--accent-cyan); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; padding: 0.3rem 0.8rem; background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: var(--radius-xs);">
-                            <i class="fas fa-satellite-dish pulse-slow"></i> 
-                            IST: <span id="system-ist-clock">--:--:-- --</span>
-                        </div>
-                    </div>
+        <!-- UNIVERSAL TELEMETRY & COMMS FOOTER -->
+    <footer class="universal-footer" style="width: 100%; background: var(--bg-glass-heavy); backdrop-filter: var(--blur-heavy); -webkit-backdrop-filter: var(--blur-heavy); border-top: 1px solid var(--accent-cyan); box-shadow: 0 -5px 30px rgba(0, 243, 255, 0.15); padding: var(--space-xl) 0; position: relative; z-index: var(--z-elevated);">
+        <div class="container footer-grid" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-xl); max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-lg);">
 
-                    <!-- Right Side: Comms Array (Pill Buttons) -->
-                    <div class="footer-contact-pills" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <a href="tel:+919678092519" class="pill-btn pill-blue" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-                            <i class="fas fa-phone-alt"></i> Call
-                        </a>
-                        <a href="https://wa.me/919678092519" class="pill-btn pill-green" target="_blank" rel="noopener noreferrer" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-                            <i class="fab fa-whatsapp"></i> Chat
-                        </a>
-                    </div>
-                    
+            <!-- Left Side: Databank Branding & Clock -->
+            <div class="footer-branding">
+                <h3 style="font-family: var(--font-display); color: var(--text-primary); letter-spacing: 0.15em; font-size: 1.4rem; margin: 0 0 6px 0; text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);">S.BARUAH ACADEMY</h3>
+                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em; margin: 0 0 8px 0;">
+                    Instructor: Sajal Baruah
+                </p>
+                <div class="footer-ist-clock" style="font-family: var(--font-mono); color: var(--accent-cyan); font-size: 0.95rem; margin-top: var(--space-sm); display: inline-flex; align-items: center; gap: 8px; padding: 0.3rem 0.8rem; background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: var(--radius-xs); box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);">
+                    <i class="fas fa-satellite-dish pulse-slow"></i> 
+                    IST: <span id="system-ist-clock">--:--:-- --</span>
                 </div>
-            </footer>
+            </div>
+
+            <!-- Right Side: Comms Array (Pill Buttons) -->
+            <div class="footer-contact-pills" style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+                
+                <!-- Phone -->
+                <a href="tel:+916001950614" class="pill-btn pill-blue" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.1); color: #60a5fa;" onmouseover="this.style.background='rgba(59, 130, 246, 0.25)'; this.style.borderColor='#60a5fa'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(59, 130, 246, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(59, 130, 246, 0.1)'; this.style.borderColor='rgba(59, 130, 246, 0.3)'; this.style.color='#60a5fa'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+                    <i class="fas fa-phone-alt"></i> Call Now
+                </a>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/919678092519" class="pill-btn pill-green" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.1); color: #4ade80;" onmouseover="this.style.background='rgba(34, 197, 94, 0.25)'; this.style.borderColor='#4ade80'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(34, 197, 94, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(34, 197, 94, 0.1)'; this.style.borderColor='rgba(34, 197, 94, 0.3)'; this.style.color='#4ade80'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                
+                <!-- Email -->
+                <a href="mailto:sajalbaruah65@gmail.com" class="pill-btn pill-red" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1); color: #f87171;" onmouseover="this.style.background='rgba(239, 68, 68, 0.25)'; this.style.borderColor='#f87171'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(239, 68, 68, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(239, 68, 68, 0.1)'; this.style.borderColor='rgba(239, 68, 68, 0.3)'; this.style.color='#f87171'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+                    <i class="fas fa-envelope"></i> Email Us
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/sajal.baruah.58" class="pill-btn pill-facebook" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(24, 119, 242, 0.3); background: rgba(24, 119, 242, 0.1); color: #1877f2;" onmouseover="this.style.background='rgba(24, 119, 242, 0.25)'; this.style.borderColor='#1877f2'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(24, 119, 242, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(24, 119, 242, 0.1)'; this.style.borderColor='rgba(24, 119, 242, 0.3)'; this.style.color='#1877f2'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/sajal-baruah-626783424?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="pill-btn pill-linkedin" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(10, 102, 194, 0.3); background: rgba(10, 102, 194, 0.1); color: #0a66c2;" onmouseover="this.style.background='rgba(10, 102, 194, 0.25)'; this.style.borderColor='#0a66c2'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(10, 102, 194, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(10, 102, 194, 0.1)'; this.style.borderColor='rgba(10, 102, 194, 0.3)'; this.style.color='#0a66c2'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+
+            </div>
+        </div>
+    </footer>
+
 
         </main>
 
