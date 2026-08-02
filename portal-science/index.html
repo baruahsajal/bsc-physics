@@ -3,188 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Class 9 Science - Complete Curriculum Dashboard</title>
+    <title>Class 9 Science Academy | S.Baruah OS</title>
+    
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    
+    <!-- FontAwesome Icons for HUD Graphics -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --bg: #020617;
-            --panel: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text: #f8fafc;
-            --accent: #38bdf8;
-            --border: rgba(255, 255, 255, 0.1);
-            --chem: #a855f7;
-            --bio: #22c55e;
-            --phy: #38bdf8;
+        .module-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: var(--space-lg); 
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--bg); color: var(--text); padding: 20px; min-height: 100vh; }
-
-        header { text-align: center; margin-bottom: 30px; }
-        header h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 5px; }
-        header p { color: #94a3b8; font-size: 0.95rem; }
-
-        .container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
-
-        .section-title { font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-        .chapter-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 25px 20px; backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 15px; transition: transform 0.2s, border-color 0.2s; }
-        .chapter-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-
-        .chapter-header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .chapter-num { font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 6px; background: rgba(255,255,255,0.05); color: #94a3b8; letter-spacing: 1px; }
-
-        .chapter-card h3 { font-size: 1.2rem; color: var(--text); margin-top: 5px; }
-        .chapter-card p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; margin-bottom: 15px; }
-
-        /* New Single Gateway Button */
-        .btn-enter-chapter { 
-            display: block; 
-            width: 100%; 
-            padding: 14px; 
-            background: linear-gradient(135deg, #0ea5e9, #2563eb); 
-            border-radius: 8px; 
-            color: white; 
-            font-size: 0.95rem; 
-            font-weight: bold; 
-            text-align: center; 
-            text-decoration: none; 
-            transition: all 0.2s ease;
-            margin-top: auto; /* Pushes the button to the bottom of the card */
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .subject-list { 
+            list-style: none; 
+            margin: var(--space-md) 0; 
+            flex-grow: 1;
         }
-        .btn-enter-chapter:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); 
-            background: linear-gradient(135deg, #38bdf8, #3b82f6);
+        .subject-list li { 
+            margin-bottom: var(--space-sm); 
+            padding-bottom: var(--space-sm); 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .subject-list li:last-child { 
+            border-bottom: none; 
+        }
+        .subject-name { 
+            font-size: 0.9rem; 
+            color: var(--text-primary); 
+        }
+        .subject-code { 
+            font-family: var(--font-mono); 
+            font-size: 0.75rem; 
+            color: var(--accent-science); 
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>Class 9 Science Curriculum</h1>
-        <p>Assamese Medium Curriculum & Interactive Portals</p>
-    </header>
-
-    <div class="container">
-
-        <!-- CHEMISTRY CHAPTERS -->
-        <div>
-            <h2 class="section-title" style="color: var(--chem);">🧪 Chemistry Chapters</h2>
-            <div class="grid">
-                <!-- Ch 1 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 01</span></div>
-                    <h3>Matter in Our Surroundings</h3>
-                    <p>States of matter, physical nature, characteristics of particles, and evaporation.</p>
-                    <a href="chapter01/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
+    
+    <!-- Top Command Navigation -->
+    <nav class="navbar" style="border-bottom-color: rgba(0, 255, 157, 0.3);">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-brand">
+                <i class="fas fa-arrow-left" style="font-size: 1rem; color: var(--text-secondary);"></i>
+                <i class="fa fa-microscope pulse-slow" style="color: var(--accent-science); margin-left: var(--space-xs);"></i>
+                CLASS 9 SCIENCE HQ
+            </a>
+            
+            <button id="mobile-menu-btn" class="btn btn-outline" style="display: none; padding: 0.5rem;">
+                <i class="fa fa-bars"></i>
+            </button>
+            
+            <div id="nav-links" style="display: flex; align-items: center; gap: var(--space-md);">
+                <!-- Search HUD -->
+                <div class="glass-panel" style="padding: 0.35rem 1rem; border-radius: var(--radius-full); display: flex; align-items: center; gap: var(--space-sm); border-color: rgba(0, 255, 157, 0.3);">
+                    <i class="fa fa-search" style="color: var(--text-secondary);"></i>
+                    <input type="text" placeholder="Query databanks..." style="background: transparent; border: none; color: #fff; outline: none; width: 180px; font-family: var(--font-mono); font-size: 0.85rem;">
+                    <span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">CTRL+K</span>
                 </div>
-
-                <!-- Ch 2 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 02</span></div>
-                    <h3>Is Matter Around Us Pure?</h3>
-                    <p>Mixtures, solutions, physical and chemical changes, and separation techniques.</p>
-                    <a href="chapter02/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
-                </div>
-
-                <!-- Ch 3 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 03</span></div>
-                    <h3>Atoms and Molecules</h3>
-                    <p>Laws of chemical combination, atoms, molecules, ions, and mole concept.</p>
-                    <a href="chapter03/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
-                </div>
-
-                <!-- Ch 4 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 04</span></div>
-                    <h3>Structure of the Atom</h3>
-                    <p>Charged particles in matter, atomic models (Thomson, Rutherford, Bohr), and valency.</p>
-                    <a href="chapter04/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
-                </div>
+                
+                <button onclick="window.AuthSystem.logout()" class="btn btn-danger" style="padding: 0.35rem 1rem; font-size: 0.75rem;">
+                    <i class="fas fa-power-off"></i> Disconnect
+                </button>
             </div>
         </div>
+    </nav>
 
-        <!-- BIOLOGY CHAPTERS -->
-        <div>
-            <h2 class="section-title" style="color: var(--bio);">🌿 Biology Chapters</h2>
-            <div class="grid">
-                <!-- Ch 5 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 05</span></div>
-                    <h3>The Fundamental Unit of Life</h3>
-                    <p>Cell structure, plasma membrane, cell wall, nucleus, cytoplasm, and cell organelles.</p>
-                    <a href="chapter05/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
+    <!-- 3-Column Command HUD Layout -->
+    <div class="container portal-layout">
+        
+        <!-- LEFT SIDEBAR: Resource Center -->
+        <aside class="sidebar-left animate-fade-up delay-100">
+            <div class="glass-panel" style="padding: var(--space-md); border-bottom: var(--border-glass); margin-bottom: var(--space-sm);">
+                <h3 class="heading-display" style="font-size: 1.1rem; color: var(--text-primary);">Academy Center</h3>
+                <span class="badge badge-system" style="margin-top: var(--space-xs); background: rgba(0, 255, 157, 0.15); color: var(--accent-science); border-color: var(--accent-science);"><i class="fas fa-shield-check"></i> Authenticated</span>
+            </div>
+            
+            <!-- Navigation Directory -->
+            <a href="index.html" class="nav-item active" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--accent-science); background: rgba(0, 255, 157, 0.1); border-left: 3px solid var(--accent-science); text-decoration: none; font-weight: 600;">
+                <i class="fas fa-th-large"></i> Syllabus Matrix
+            </a>
+            <a href="physics/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-atom"></i> Physics Databanks
+            </a>
+            <a href="chemistry/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-flask"></i> Chemistry Labs
+            </a>
+            <a href="biology/index.html" class="nav-item" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); color: var(--text-secondary); border-left: 3px solid transparent; text-decoration: none; transition: 0.2s;">
+                <i class="fas fa-dna"></i> Biology Archives
+            </a>
+        </aside>
+
+        <!-- CENTER VIEWPORT: Syllabus Matrix -->
+        <main class="center-viewport animate-fade-up delay-200">
+            <header style="margin-bottom: var(--space-sm);">
+                <h1 class="heading-display text-gradient" style="font-size: 2.5rem; margin-bottom: var(--space-xs);">Class 9 Science Modules</h1>
+                <p style="color: var(--text-secondary); font-family: var(--font-rajdhani); font-size: 1.1rem; letter-spacing: 0.05em;">NCERT Curriculum & Fundamental Science Training Protocols</p>
+            </header>
+
+            <div class="module-grid">
+                
+                <!-- Unit 1: Physics -->
+                <div class="glass-panel card animate-fade-up delay-100" style="border-top: 3px solid var(--accent-science);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h2 class="heading-display" style="font-size: 1.25rem;">Physics Modules</h2>
+                        <span class="badge badge-completed">Active</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div>
+                                <div class="subject-code">SCI-PHY-01</div>
+                                <div class="subject-name">Motion, Force & Laws of Motion</div>
+                            </div>
+                            <a href="physics/index.html" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.75rem; border-color: var(--accent-science); color: var(--accent-science);"><i class="fas fa-book"></i></a>
+                        </li>
+                        <li>
+                            <div>
+                                <div class="subject-code">SCI-PHY-02</div>
+                                <div class="subject-name">Gravitation, Work & Energy</div>
+                            </div>
+                            <a href="physics/index.html" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.75rem; border-color: var(--accent-science); color: var(--accent-science);"><i class="fas fa-book"></i></a>
+                        </li>
+                    </ul>
+                    <a href="physics/index.html" class="btn btn-outline" style="width: 100%; border-color: var(--accent-science); color: var(--accent-science);">Access Physics Lab</a>
                 </div>
 
-                <!-- Ch 6 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 06</span></div>
-                    <h3>Tissues</h3>
-                    <p>Plant and animal tissues, meristematic, permanent, epithelial, connective, and nervous tissues.</p>
-                    <a href="chapter06/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
+                <!-- Unit 2: Chemistry -->
+                <div class="glass-panel card animate-fade-up delay-200" style="border-top: 3px solid var(--accent-cyan);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h2 class="heading-display" style="font-size: 1.25rem;">Chemistry Modules</h2>
+                        <span class="badge badge-progress" style="background: rgba(0, 243, 255, 0.1); color: var(--accent-cyan); border: 1px solid rgba(0, 243, 255, 0.4);">Active</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div>
+                                <div class="subject-code">SCI-CHEM-01</div>
+                                <div class="subject-name">Matter in Our Surroundings & Atoms</div>
+                            </div>
+                            <a href="chemistry/index.html" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.75rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                    </ul>
+                    <a href="chemistry/index.html" class="btn btn-primary" style="width: 100%;">Access Chemistry Lab</a>
                 </div>
 
-                <!-- Ch 7 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 07</span></div>
-                    <h3>Improvement in Food Resources</h3>
-                    <p>Crop variety improvement, production management, animal husbandry, and protection measures.</p>
-                    <a href="chapter07/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
+                <!-- Unit 3: Biology -->
+                <div class="glass-panel card animate-fade-up delay-300" style="border-top: 3px solid var(--accent-warning);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h2 class="heading-display" style="font-size: 1.25rem;">Biology Modules</h2>
+                        <span class="badge badge-system">Active</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li>
+                            <div>
+                                <div class="subject-code">SCI-BIO-01</div>
+                                <div class="subject-name">The Fundamental Unit of Life (Cell)</div>
+                            </div>
+                            <a href="biology/index.html" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.75rem;"><i class="fas fa-book"></i></a>
+                        </li>
+                    </ul>
+                    <a href="biology/index.html" class="btn btn-outline" style="width: 100%; border-color: var(--accent-warning); color: var(--accent-warning);">Access Bio Archives</a>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- RIGHT SIDEBAR: Telemetry Panel -->
+        <aside class="sidebar-right animate-fade-up delay-300">
+            <!-- Time / Date -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-science);">
+                <div class="hud-stat-title">Academy OS Time</div>
+                <div id="telemetry-clock" class="hud-stat-value neon">--:--:--</div>
+                <div id="telemetry-date" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">CYCLE ----.--.--</div>
+            </div>
+
+            <!-- XP Progress -->
+            <div class="hud-stat-box" style="border-left-color: var(--accent-science);">
+                <div class="hud-stat-title">Scholar Rank</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-xs);">
+                    <div class="hud-stat-value" style="color: var(--accent-science);">LVL <span id="telemetry-level">1</span></div>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"><span id="telemetry-xp">0</span> XP</div>
+                </div>
+                <div class="progress-container">
+                    <div id="telemetry-progress-bar" class="progress-fill" style="width: 0%; background: var(--accent-science); box-shadow: 0 0 10px rgba(0, 255, 157, 0.5);"></div>
                 </div>
             </div>
-        </div>
 
-        <!-- PHYSICS & EARTH SCIENCE CHAPTERS -->
-        <div>
-            <h2 class="section-title" style="color: var(--phy);">⚡ Physics & Earth Science Chapters</h2>
-            <div class="grid">
-                <!-- Ch 8 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 08</span></div>
-                    <h3>Motion</h3>
-                    <p>Distance, displacement, velocity, acceleration, and graphical representations.</p>
-                    <!-- Linked directly to your newly created motion folder -->
-                    <a href="chapter08/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
-                </div>
-
-                <!-- Ch 9 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 09</span></div>
-                    <h3>Force and Laws of Motion</h3>
-                    <p>Balanced and unbalanced forces, Newton's laws of motion, and conservation of momentum.</p>
-                    <a href="chapter09/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
-                </div>
-
-                <!-- Ch 10 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 10</span></div>
-                    <h3>Gravitation</h3>
-                    <p>Universal law of gravitation, free fall, mass, weight, and thrust and pressure.</p>
-                    <a href="chapter10/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
-                </div>
-
-                <!-- Ch 11 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 11</span></div>
-                    <h3>Work and Energy</h3>
-                    <p>Work done, kinetic and potential energy, law of conservation of energy, and power.</p>
-                    <a href="chapter11/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
-                </div>
-
-                <!-- Ch 12 -->
-                <div class="chapter-card">
-                    <div class="chapter-header"><span class="chapter-num">CHAPTER 12</span></div>
-                    <h3>Sound</h3>
-                    <p>Production and propagation of sound, wave characteristics, reflection, and human ear.</p>
-                    <a href="chapter12/index.html" class="btn-enter-chapter">Enter Chapter Portal ➔</a>
+            <!-- Global Activity Log -->
+            <div class="glass-panel" style="padding: var(--space-md); flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 class="heading-display" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Academy Log</h3>
+                <div id="telemetry-activity-log" style="flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 4px;">
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: var(--space-md);">Awaiting events...</div>
                 </div>
             </div>
-        </div>
-
+        </aside>
     </div>
+
+    <!-- Core Scripts -->
+    <script src="../assets/js/core.js"></script>
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/mobile.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/telemetry.js"></script>
+    
+    <!-- Security verification -->
+    <script type="module">
+        import authSystemInstance from '../assets/js/auth.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            // Protect this route for Class 9 portal
+            authSystemInstance.verifyAccess('class9');
+            // Log entry point
+            if(window.AppCore) window.AppCore.notify('Class 9 Science Academy Dashboard accessed.', 'success');
+        });
+    </script>
 </body>
 </html>
