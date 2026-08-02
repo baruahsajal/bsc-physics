@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Secured Enclave // Access Terminal</title>
-    
+
     <!-- CSS Architecture -->
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/components.css">
-    
+
     <!-- FontAwesome Icons for HUD Graphics -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         body {
             display: flex;
@@ -123,7 +123,7 @@
 <body>
 
     <div class="enclave-container animate-fade-up">
-        
+
         <!-- Header Branding -->
         <div style="text-align: center; margin-bottom: var(--space-lg);">
             <i class="fas fa-shield-alt pulse-slow" style="font-size: 2.5rem; color: var(--accent-cyan); margin-bottom: var(--space-xs);"></i>
@@ -143,8 +143,8 @@
                 <div class="form-group">
                     <label class="form-label" for="portal-select">Select Destination</label>
                     <select id="portal-select" class="form-select">
-                        <option value="bsc">B.Sc. Physics Ecosystem</option>
                         <option value="class9">Class 9 Science Academy</option>
+                        <option value="bsc">B.Sc. Physics Ecosystem</option>
                     </select>
                 </div>
 
@@ -153,7 +153,7 @@
                     <input type="password" id="passcode-input" class="form-input" placeholder="Enter your assigned passcode" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; justify-content: center; font-size: 0.95rem;">
+                <button type="submit" id="unlock-btn" class="btn btn-primary" style="width: 100%; padding: 0.75rem; justify-content: center; font-size: 0.95rem;">
                     Unlock Portal <i class="fas fa-lock-open" style="margin-left: 8px;"></i>
                 </button>
             </form>
@@ -185,8 +185,8 @@
                 <div class="form-group">
                     <label class="form-label">Target Module</label>
                     <select name="target_module" class="form-select">
-                        <option value="B.Sc Physics">B.Sc Physics Portal</option>
                         <option value="Class 9 Science">Class 9 Science Academy</option>
+                        <option value="B.Sc Physics">B.Sc Physics Portal</option>
                     </select>
                 </div>
 
@@ -213,19 +213,23 @@
     <!-- Core Scripts -->
     <script src="assets/js/core.js"></script>
     <script src="assets/js/animations.js"></script>
-    
-    <!-- Tab Switching Logic Script -->
+
+    <!-- Firebase Auth ES Module MUST load before the inline script -->
+    <script type="module" src="assets/js/auth.js"></script>
+
+    <!-- Tab Switching & Login Logic Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Tab Switching Logic
             const tabs = document.querySelectorAll('.enclave-tab');
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     const targetId = tab.getAttribute('data-target');
-                    
+
                     // Update active tab styles
                     tabs.forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-                    
+
                     // Update active panes
                     document.querySelectorAll('.tab-content').forEach(pane => {
                         pane.classList.remove('active');
@@ -234,25 +238,42 @@
                 });
             });
 
-            // Handle Login Form Submission via AuthSystem
+            // Handle Login Form Submission
             const loginForm = document.getElementById('login-form');
             if (loginForm) {
                 loginForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
+                    e.preventDefault(); // Prevent page reload
+                    
                     const portal = document.getElementById('portal-select').value;
                     const passcode = document.getElementById('passcode-input').value;
-                    
+                    const btn = document.getElementById('unlock-btn');
+                    const originalBtnText = btn.innerHTML;
+
+                    // Ensure the Firebase module has successfully loaded
                     if (window.AuthSystem) {
-                        await window.AuthSystem.authenticate(portal, passcode);
+                        // Change button to show loading state
+                        btn.innerHTML = 'Verifying... <i class="fas fa-spinner fa-spin" style="margin-left: 8px;"></i>';
+                        btn.disabled = true;
+
+                        // Attempt to authenticate
+                        const success = await window.AuthSystem.authenticate(portal, passcode);
+                        
+                        // If it fails, reset the button so the user can try again
+                        if (!success) {
+                            btn.innerHTML = originalBtnText;
+                            btn.disabled = false;
+                        }
                     } else {
                         console.error('[SECURITY] AuthSystem module not loaded.');
+                        if (window.AppCore) {
+                            window.AppCore.notify('System is initializing. Please wait a moment and try again.', 'warning');
+                        } else {
+                            alert("Security module is still loading. Please try again in a moment.");
+                        }
                     }
                 });
             }
         });
     </script>
-    
-    <!-- Firebase Auth ES Module -->
-    <script type="module" src="assets/js/auth.js"></script>
 </body>
 </html>
