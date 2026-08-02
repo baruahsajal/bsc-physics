@@ -162,8 +162,8 @@
         <!-- TAB 2: REQUEST ACCESS PANEL -->
         <div id="request-pane" class="tab-content">
             <form action="https://api.web3forms.com/submit" method="POST">
-                <!-- Web3Forms Access Key -->
-                <input type="hidden" name="apikey" value="15f13211-3a69-4812-9a92-0d4bff3669d1">
+                <!-- Web3Forms Access Key (FIXED) -->
+                <input type="hidden" name="access_key" value="15f13211-3a69-4812-9a92-0d4bff3669d1">
                 <input type="hidden" name="subject" value="New Portal Access Request">
                 <input type="hidden" name="redirect" value="https://api.web3forms.com/success">
 
@@ -243,7 +243,7 @@
             if (loginForm) {
                 loginForm.addEventListener('submit', async (e) => {
                     e.preventDefault(); // Prevent page reload
-                    
+
                     const portal = document.getElementById('portal-select').value;
                     const passcode = document.getElementById('passcode-input').value;
                     const btn = document.getElementById('unlock-btn');
@@ -257,7 +257,7 @@
 
                         // Attempt to authenticate
                         const success = await window.AuthSystem.authenticate(portal, passcode);
-                        
+
                         // If it fails, reset the button so the user can try again
                         if (!success) {
                             btn.innerHTML = originalBtnText;
