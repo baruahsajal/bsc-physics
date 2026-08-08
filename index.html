@@ -93,7 +93,7 @@
 
         <!-- LEFT SIDEBAR: System Navigation & Controls -->
         <aside class="sidebar-left animate-fade-up">
-            
+
             <!-- Admin Profile Photo Card -->
             <div class="glass-panel" style="padding: 0; margin-bottom: var(--space-md); overflow: hidden; border: 1px solid rgba(0, 243, 255, 0.2); position: relative; box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);">
                 <img src="assets/images/profile.jpg" alt="Instructor Sajal Baruah" style="width: 100%; display: block; border-bottom: 2px solid var(--accent-cyan); object-fit: cover; aspect-ratio: 4/5;">
@@ -234,15 +234,51 @@
                 </div>
             </section>
 
-            <div class="glass-panel animate-fade-up delay-400" style="padding: var(--space-lg); border-left: 4px solid var(--accent-cyan); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md);">
+            <div class="glass-panel animate-fade-up delay-400" style="padding: var(--space-lg); border-left: 4px solid var(--accent-cyan); background: rgba(0, 243, 255, 0.05); border-radius: var(--radius-md); margin-top: var(--space-xl);">
                 <p style="font-size: 1.15rem; font-style: italic; margin-bottom: var(--space-sm); color: var(--text-primary); line-height: 1.6;">"The laws of physics are the canvas God laid down on which to paint his masterpiece."</p>
                 <p class="heading-display" style="color: var(--accent-cyan); text-align: right; font-size: 1rem;">- Dan Brown</p>
             </div>
 
-            <!-- UNIVERSAL TELEMETRY & COMMS FOOTER (Placed inside viewport so it scrolls naturally) -->
+            <!-- ========================================== -->
+            <!-- FINANCIAL LEDGER UI MODULE INJECTION       -->
+            <!-- ========================================== -->
+            <section class="glass-panel card animate-fade-up delay-400" style="margin-top: var(--space-xl);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md); border-bottom: 1px solid rgba(0, 255, 157, 0.2); padding-bottom: var(--space-sm);">
+                    <div style="display: flex; align-items: center; gap: var(--space-md);">
+                        <i class="fas fa-file-invoice-dollar pulse-slow" style="font-size: 2rem; color: var(--accent-science);"></i>
+                        <h2 class="heading-display" style="font-size: 1.8rem; color: var(--text-primary);">Financial Ledger</h2>
+                    </div>
+                    <span class="badge badge-system" style="background: rgba(0, 255, 157, 0.15); color: var(--accent-science); border-color: var(--accent-science);">LIVE SYNC</span>
+                </div>
+                
+                <div style="overflow-x: auto;">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Date Logged</th>
+                                <th>Student Info</th>
+                                <th>Transaction Type</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <!-- The ID below is crucial. ledger.js targets this to inject the rows -->
+                        <tbody id="payment-history-table">
+                            <tr>
+                                <td colspan="5" style="text-align: center; color: var(--text-muted); padding: var(--space-md);">
+                                    <i class="fas fa-circle-notch fa-spin"></i> Fetching databanks...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <!-- ========================================== -->
+
+            <!-- UNIVERSAL TELEMETRY & COMMS FOOTER -->
             <footer class="universal-footer animate-fade-up delay-500" style="width: 100%; background: transparent; box-shadow: none; border-top: 1px solid rgba(0, 243, 255, 0.2); padding-top: var(--space-xl); margin-top: var(--space-xl);">
-                <div class="footer-grid">
-                    
+                <div class="footer-grid" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-md);">
+
                     <!-- Left Side: Databank Branding & Clock -->
                     <div class="footer-branding">
                         <h3 style="font-family: var(--font-display); color: var(--text-primary); letter-spacing: 0.15em; font-size: 1.2rem; margin: 0 0 6px 0;">S.BARUAH ACADEMY</h3>
@@ -261,31 +297,19 @@
                         <a href="tel:+916001950614" class="pill-btn pill-blue" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.1); color: #60a5fa;" onmouseover="this.style.background='rgba(59, 130, 246, 0.25)'; this.style.borderColor='#60a5fa'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(59, 130, 246, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(59, 130, 246, 0.1)'; this.style.borderColor='rgba(59, 130, 246, 0.3)'; this.style.color='#60a5fa'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
                             <i class="fas fa-phone-alt"></i> Call
                         </a>
-                        
+
                         <!-- WhatsApp -->
                         <a href="https://wa.me/919678092519" class="pill-btn pill-green" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.1); color: #4ade80;" onmouseover="this.style.background='rgba(34, 197, 94, 0.25)'; this.style.borderColor='#4ade80'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(34, 197, 94, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(34, 197, 94, 0.1)'; this.style.borderColor='rgba(34, 197, 94, 0.3)'; this.style.color='#4ade80'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
                             <i class="fab fa-whatsapp"></i> Chat
                         </a>
-                        
+
                         <!-- Email -->
                         <a href="mailto:sajalbaruah65@gmail.com" class="pill-btn pill-red" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1); color: #f87171;" onmouseover="this.style.background='rgba(239, 68, 68, 0.25)'; this.style.borderColor='#f87171'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(239, 68, 68, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(239, 68, 68, 0.1)'; this.style.borderColor='rgba(239, 68, 68, 0.3)'; this.style.color='#f87171'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
                             <i class="fas fa-envelope"></i> Email
                         </a>
-
-                        <!-- Facebook -->
-                        <a href="https://www.facebook.com/sajal.baruah.58" class="pill-btn pill-facebook" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(24, 119, 242, 0.3); background: rgba(24, 119, 242, 0.1); color: #1877f2;" onmouseover="this.style.background='rgba(24, 119, 242, 0.25)'; this.style.borderColor='#1877f2'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(24, 119, 242, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(24, 119, 242, 0.1)'; this.style.borderColor='rgba(24, 119, 242, 0.3)'; this.style.color='#1877f2'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
-                            <i class="fab fa-facebook-f"></i> Meta
-                        </a>
-
-                        <!-- LinkedIn -->
-                        <a href="https://www.linkedin.com/in/sajal-baruah-626783424?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="pill-btn pill-linkedin" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; padding: 0.6rem 1.4rem; border-radius: 50px; font-family: var(--font-rajdhani); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(10, 102, 194, 0.3); background: rgba(10, 102, 194, 0.1); color: #0a66c2;" onmouseover="this.style.background='rgba(10, 102, 194, 0.25)'; this.style.borderColor='#0a66c2'; this.style.color='#ffffff'; this.style.boxShadow='0 0 20px rgba(10, 102, 194, 0.6)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='rgba(10, 102, 194, 0.1)'; this.style.borderColor='rgba(10, 102, 194, 0.3)'; this.style.color='#0a66c2'; this.style.boxShadow='none'; this.style.transform='translateY(0)';">
-                            <i class="fab fa-linkedin-in"></i> Pro
-                        </a>
                     </div>
-                    
                 </div>
             </footer>
-
         </main>
 
         <!-- RIGHT SIDEBAR: Telemetry & Network Health -->
@@ -346,6 +370,9 @@
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/animations.js"></script>
     <script src="assets/js/telemetry.js"></script>
+
+    <!-- NEW: Ledger Synchronization Script -->
+    <script src="assets/js/ledger.js"></script>
 
     <!-- ES Modules (Firebase Auth & Sync) -->
     <script type="module" src="assets/js/auth.js"></script>
