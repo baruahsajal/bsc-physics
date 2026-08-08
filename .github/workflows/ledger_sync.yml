@@ -1,0 +1,33 @@
+name: Automated Ledger Sync
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs at midnight UTC
+  workflow_dispatch: # Allows you to click a "Run workflow" button manually in GitHub
+
+jobs:
+  update-ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Initialize Python Environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Execute Mainframe Python Script
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+        run: python scripts/email_scanner.py
+
+      - name: Commit and Sync Databanks
+        run: |
+          git config --global user.name 'S.Baruah Mainframe'
+          git config --global user.email 'bot@sbaruah.academy'
+          git add database/payment_history.json
+          # Commit the changes; if no changes exist, it exits safely
+          git commit -m "SYS_UPDATE: Automated ledger synchronization" || echo "No new transactions found"
+          git push
