@@ -3,7 +3,7 @@ name: Automated Ledger Sync
 on:
   schedule:
     - cron: '0 0 * * *' # Runs at midnight UTC
-  workflow_dispatch: # Allows you to click a "Run workflow" button manually in GitHub
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 jobs:
   update-ledger:
@@ -28,6 +28,5 @@ jobs:
           git config --global user.name 'S.Baruah Mainframe'
           git config --global user.email 'bot@sbaruah.academy'
           git add database/payment_history.json
-          # Commit the changes; if no changes exist, it exits safely
           git commit -m "SYS_UPDATE: Automated ledger synchronization" || echo "No new transactions found"
           git push
