@@ -10,7 +10,7 @@ class TelemetrySystem {
     constructor() {
         this.clockInterval = null;
         this.healthInterval = null;
-        
+
         // Base XP configuration
         this.xpConfig = {
             levelBase: 1000,
@@ -38,17 +38,17 @@ class TelemetrySystem {
     startSystemClock() {
         const clockElement = document.getElementById('telemetry-clock');
         const dateElement = document.getElementById('telemetry-date');
-        
+
         if (!clockElement) return;
 
         const updateClock = () => {
             const now = new Date();
-            
+
             // Format: HH:MM:SS
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
-            
+
             // Format: YYYY.MM.DD
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -102,7 +102,7 @@ class TelemetrySystem {
         const xpElement = document.getElementById('telemetry-xp');
         const levelElement = document.getElementById('telemetry-level');
         const barElement = document.getElementById('telemetry-progress-bar');
-        
+
         if (!xpElement || !levelElement || !barElement) return;
 
         // Retrieve XP from core state, default to 0
@@ -129,7 +129,7 @@ class TelemetrySystem {
         // Update UI
         xpElement.textContent = currentXP.toLocaleString();
         levelElement.textContent = level;
-        
+
         // Animate the progress bar width
         setTimeout(() => {
             barElement.style.width = `${progressPercentage}%`;
@@ -146,10 +146,10 @@ class TelemetrySystem {
 
         let currentXP = parseInt(window.AppCore.state.userXP || 0, 10);
         currentXP += amount;
-        
+
         window.AppCore.setState('userXP', currentXP);
         this.loadUserProgress();
-        
+
         // Notify the user via the HUD
         window.AppCore.notify(`+${amount} XP: ${reason}`, 'success');
     }
@@ -160,10 +160,10 @@ class TelemetrySystem {
      */
     setupNotificationListener() {
         const logContainer = document.getElementById('telemetry-activity-log');
-        
+
         window.addEventListener('systemNotification', (e) => {
             const { message, type, timestamp } = e.detail;
-            
+
             // Map types to specific colors and icons
             const typeConfig = {
                 'info': { color: 'var(--accent-cyan)', icon: 'fa-info-circle' },
@@ -173,7 +173,7 @@ class TelemetrySystem {
             };
 
             const config = typeConfig[type] || typeConfig['info'];
-            
+
             // Format time for the log entry
             const date = new Date(timestamp);
             const timeStr = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
@@ -190,7 +190,7 @@ class TelemetrySystem {
             if (logContainer) {
                 // Prepend to the top of the log container
                 logContainer.insertAdjacentHTML('afterbegin', logHTML);
-                
+
                 // Keep only the last 10 logs to prevent DOM bloat
                 if (logContainer.children.length > 10) {
                     logContainer.removeChild(logContainer.lastElementChild);
