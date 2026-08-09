@@ -18,11 +18,10 @@ jobs:
           python-version: '3.x'
 
       - name: Execute Mainframe Python Script
-              env:
-        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-        EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
-        VAULT_PIN: ${{ secrets.VAULT_PIN }}
-
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+          VAULT_PIN: ${{ secrets.VAULT_PIN }}
         run: python scripts/email_scanner.py
 
       - name: Commit and Sync Databanks
